@@ -1,0 +1,634 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		872CA1072421F0FA005D043A /* SelectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 872CA1062421F0FA005D043A /* SelectionItem.m */; };
+		872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 872CA10C2421FCA5005D043A /* ThemedButton.m */; };
+		872CA10F2421FFC0005D043A /* calculator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA10E2421FFC0005D043A /* calculator@3x.png */; };
+		872CA1112421FFC6005D043A /* calculator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA1102421FFC6005D043A /* calculator@2x.png */; };
+		872CA1132421FFCB005D043A /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA1122421FFCB005D043A /* calculator.png */; };
+		87497A98241845BA003B0468 /* chocolate.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A97241845BA003B0468 /* chocolate.png */; };
+		87497A9A241845BE003B0468 /* cake.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A99241845BE003B0468 /* cake.png */; };
+		87497AA024186C25003B0468 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A9F24186C25003B0468 /* star.png */; };
+		87497AA224186C29003B0468 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497AA124186C29003B0468 /* star@2x.png */; };
+		87497AA424186C2E003B0468 /* star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497AA324186C2E003B0468 /* star@3x.png */; };
+		87497AA624186CC6003B0468 /* notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497AA524186CC6003B0468 /* notebook.png */; };
+		87497AA824186CF4003B0468 /* notebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497AA724186CF4003B0468 /* notebook@2x.png */; };
+		87497AAA24186CF8003B0468 /* notebook@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497AA924186CF8003B0468 /* notebook@3x.png */; };
+		87497AAE24186DAB003B0468 /* iPadLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497AAC24186DAB003B0468 /* iPadLogViewController.m */; };
+		87497AAF24186DAB003B0468 /* iPadLogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87497AAD24186DAB003B0468 /* iPadLogViewController.xib */; };
+		87497AB324187595003B0468 /* LogEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497AB124187595003B0468 /* LogEntryTableViewCell.m */; };
+		87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87497AB224187595003B0468 /* LogEntryTableViewCell.xib */; };
+		87497ABF24187FB7003B0468 /* iPadLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497ABD24187FB7003B0468 /* iPadLogDetailViewController.m */; };
+		87497AC024187FB7003B0468 /* iPadLogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87497ABE24187FB7003B0468 /* iPadLogDetailViewController.xib */; };
+		8767AC32241F330900C8FD73 /* iPadMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC30241F330900C8FD73 /* iPadMainViewController.m */; };
+		8767AC33241F330900C8FD73 /* iPadMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC31241F330900C8FD73 /* iPadMainViewController.xib */; };
+		8767AC3A241F364000C8FD73 /* iPadCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC38241F364000C8FD73 /* iPadCalculationViewController.m */; };
+		8767AC3B241F364000C8FD73 /* iPadCalculationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC39241F364000C8FD73 /* iPadCalculationViewController.xib */; };
+		8767AC3D241F3CF000C8FD73 /* quarter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC3C241F3CF000C8FD73 /* quarter.png */; };
+		8767AC3F241F3F5600C8FD73 /* half.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC3E241F3F5600C8FD73 /* half.png */; };
+		8767AC41241F3F5A00C8FD73 /* full.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC40241F3F5A00C8FD73 /* full.png */; };
+		8767AC43241F3F5E00C8FD73 /* round.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC42241F3F5E00C8FD73 /* round.png */; };
+		8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */; };
+		8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */; };
+		87C0C5272417C9C80093840D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C5262417C9C80093840D /* Foundation.framework */; };
+		87C0C5292417C9C80093840D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C5282417C9C80093840D /* CoreGraphics.framework */; };
+		87C0C52B2417C9C80093840D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C52A2417C9C80093840D /* UIKit.framework */; };
+		87C0C5312417C9C80093840D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C0C52F2417C9C80093840D /* InfoPlist.strings */; };
+		87C0C5332417C9C80093840D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0C5322417C9C80093840D /* main.m */; };
+		87C0C5372417C9C80093840D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0C5362417C9C80093840D /* AppDelegate.m */; };
+		87C0C5392417C9C80093840D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0C5382417C9C80093840D /* Images.xcassets */; };
+		87C0C5402417C9C80093840D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C53F2417C9C80093840D /* XCTest.framework */; };
+		87C0C5412417C9C80093840D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C5262417C9C80093840D /* Foundation.framework */; };
+		87C0C5422417C9C80093840D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C52A2417C9C80093840D /* UIKit.framework */; };
+		87C0C54A2417C9C80093840D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C0C5482417C9C80093840D /* InfoPlist.strings */; };
+		87C0C54C2417C9C80093840D /* Paul_s_BakeryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */; };
+		87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D166C12417EF8500E866A2 /* iPadAdminViewController.m */; };
+		87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */; };
+		87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */; };
+		87D166C92417F2A600E866A2 /* iPadSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		87C0C5432417C9C80093840D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87C0C51B2417C9C80093840D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87C0C5222417C9C80093840D;
+			remoteInfo = "Paul's Bakery";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		872CA1052421F0FA005D043A /* SelectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionItem.h; sourceTree = "<group>"; };
+		872CA1062421F0FA005D043A /* SelectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionItem.m; sourceTree = "<group>"; };
+		872CA10B2421FCA5005D043A /* ThemedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemedButton.h; sourceTree = "<group>"; };
+		872CA10C2421FCA5005D043A /* ThemedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemedButton.m; sourceTree = "<group>"; };
+		872CA10E2421FFC0005D043A /* calculator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator@3x.png"; sourceTree = "<group>"; };
+		872CA1102421FFC6005D043A /* calculator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator@2x.png"; sourceTree = "<group>"; };
+		872CA1122421FFCB005D043A /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator.png; sourceTree = "<group>"; };
+		87497A97241845BA003B0468 /* chocolate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chocolate.png; sourceTree = "<group>"; };
+		87497A99241845BE003B0468 /* cake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cake.png; sourceTree = "<group>"; };
+		87497A9F24186C25003B0468 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		87497AA124186C29003B0468 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		87497AA324186C2E003B0468 /* star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@3x.png"; sourceTree = "<group>"; };
+		87497AA524186CC6003B0468 /* notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notebook.png; sourceTree = "<group>"; };
+		87497AA724186CF4003B0468 /* notebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notebook@2x.png"; sourceTree = "<group>"; };
+		87497AA924186CF8003B0468 /* notebook@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notebook@3x.png"; sourceTree = "<group>"; };
+		87497AAB24186DAB003B0468 /* iPadLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadLogViewController.h; sourceTree = "<group>"; };
+		87497AAC24186DAB003B0468 /* iPadLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadLogViewController.m; sourceTree = "<group>"; };
+		87497AAD24186DAB003B0468 /* iPadLogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadLogViewController.xib; sourceTree = "<group>"; };
+		87497AB024187595003B0468 /* LogEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntryTableViewCell.h; sourceTree = "<group>"; };
+		87497AB124187595003B0468 /* LogEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntryTableViewCell.m; sourceTree = "<group>"; };
+		87497AB224187595003B0468 /* LogEntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogEntryTableViewCell.xib; sourceTree = "<group>"; };
+		87497ABC24187FB7003B0468 /* iPadLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadLogDetailViewController.h; sourceTree = "<group>"; };
+		87497ABD24187FB7003B0468 /* iPadLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadLogDetailViewController.m; sourceTree = "<group>"; };
+		87497ABE24187FB7003B0468 /* iPadLogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadLogDetailViewController.xib; sourceTree = "<group>"; };
+		8767AC2F241F330900C8FD73 /* iPadMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadMainViewController.h; sourceTree = "<group>"; };
+		8767AC30241F330900C8FD73 /* iPadMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadMainViewController.m; sourceTree = "<group>"; };
+		8767AC31241F330900C8FD73 /* iPadMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadMainViewController.xib; sourceTree = "<group>"; };
+		8767AC37241F364000C8FD73 /* iPadCalculationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadCalculationViewController.h; sourceTree = "<group>"; };
+		8767AC38241F364000C8FD73 /* iPadCalculationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadCalculationViewController.m; sourceTree = "<group>"; };
+		8767AC39241F364000C8FD73 /* iPadCalculationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadCalculationViewController.xib; sourceTree = "<group>"; };
+		8767AC3C241F3CF000C8FD73 /* quarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quarter.png; sourceTree = "<group>"; };
+		8767AC3E241F3F5600C8FD73 /* half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half.png; sourceTree = "<group>"; };
+		8767AC40241F3F5A00C8FD73 /* full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full.png; sourceTree = "<group>"; };
+		8767AC42241F3F5E00C8FD73 /* round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round.png; sourceTree = "<group>"; };
+		8767AC49241F42BB00C8FD73 /* ItemSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelectionView.h; sourceTree = "<group>"; };
+		8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelectionView.m; sourceTree = "<group>"; };
+		8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSelectionView.xib; sourceTree = "<group>"; };
+		87C0C5232417C9C80093840D /* Paul's Bakery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paul's Bakery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C0C5262417C9C80093840D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		87C0C5282417C9C80093840D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		87C0C52A2417C9C80093840D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		87C0C52E2417C9C80093840D /* Paul's Bakery-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Paul's Bakery-Info.plist"; sourceTree = "<group>"; };
+		87C0C5302417C9C80093840D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		87C0C5322417C9C80093840D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		87C0C5342417C9C80093840D /* Paul's Bakery-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Paul's Bakery-Prefix.pch"; sourceTree = "<group>"; };
+		87C0C5352417C9C80093840D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		87C0C5362417C9C80093840D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		87C0C5382417C9C80093840D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		87C0C53E2417C9C80093840D /* Paul's BakeryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Paul's BakeryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C0C53F2417C9C80093840D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		87C0C5472417C9C80093840D /* Paul's BakeryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Paul's BakeryTests-Info.plist"; sourceTree = "<group>"; };
+		87C0C5492417C9C80093840D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Paul_s_BakeryTests.m; sourceTree = "<group>"; };
+		87D166C02417EF8500E866A2 /* iPadAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadAdminViewController.h; sourceTree = "<group>"; };
+		87D166C12417EF8500E866A2 /* iPadAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadAdminViewController.m; sourceTree = "<group>"; };
+		87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadAdminViewController.xib; sourceTree = "<group>"; };
+		87D166C52417F2A600E866A2 /* iPadSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadSummaryViewController.h; sourceTree = "<group>"; };
+		87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadSummaryViewController.m; sourceTree = "<group>"; };
+		87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadSummaryViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87C0C5202417C9C80093840D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C0C5292417C9C80093840D /* CoreGraphics.framework in Frameworks */,
+				87C0C52B2417C9C80093840D /* UIKit.framework in Frameworks */,
+				87C0C5272417C9C80093840D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C0C53B2417C9C80093840D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C0C5402417C9C80093840D /* XCTest.framework in Frameworks */,
+				87C0C5422417C9C80093840D /* UIKit.framework in Frameworks */,
+				87C0C5412417C9C80093840D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		872CA1042421F0CF005D043A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				872CA1052421F0FA005D043A /* SelectionItem.h */,
+				872CA1062421F0FA005D043A /* SelectionItem.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		87497AB5241875BD003B0468 /* Universal Views */ = {
+			isa = PBXGroup;
+			children = (
+				87497AB024187595003B0468 /* LogEntryTableViewCell.h */,
+				87497AB124187595003B0468 /* LogEntryTableViewCell.m */,
+				87497AB224187595003B0468 /* LogEntryTableViewCell.xib */,
+				8767AC49241F42BB00C8FD73 /* ItemSelectionView.h */,
+				8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */,
+				8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */,
+				872CA10B2421FCA5005D043A /* ThemedButton.h */,
+				872CA10C2421FCA5005D043A /* ThemedButton.m */,
+			);
+			name = "Universal Views";
+			sourceTree = "<group>";
+		};
+		87497AB6241875CA003B0468 /* iPad Views */ = {
+			isa = PBXGroup;
+			children = (
+				8767AC2F241F330900C8FD73 /* iPadMainViewController.h */,
+				8767AC30241F330900C8FD73 /* iPadMainViewController.m */,
+				8767AC31241F330900C8FD73 /* iPadMainViewController.xib */,
+				87D166C02417EF8500E866A2 /* iPadAdminViewController.h */,
+				87D166C12417EF8500E866A2 /* iPadAdminViewController.m */,
+				87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */,
+				87D166C52417F2A600E866A2 /* iPadSummaryViewController.h */,
+				87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */,
+				87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */,
+				87497AAB24186DAB003B0468 /* iPadLogViewController.h */,
+				87497AAC24186DAB003B0468 /* iPadLogViewController.m */,
+				87497AAD24186DAB003B0468 /* iPadLogViewController.xib */,
+				87497ABC24187FB7003B0468 /* iPadLogDetailViewController.h */,
+				87497ABD24187FB7003B0468 /* iPadLogDetailViewController.m */,
+				87497ABE24187FB7003B0468 /* iPadLogDetailViewController.xib */,
+				8767AC37241F364000C8FD73 /* iPadCalculationViewController.h */,
+				8767AC38241F364000C8FD73 /* iPadCalculationViewController.m */,
+				8767AC39241F364000C8FD73 /* iPadCalculationViewController.xib */,
+			);
+			name = "iPad Views";
+			sourceTree = "<group>";
+		};
+		87C0C51A2417C9C80093840D = {
+			isa = PBXGroup;
+			children = (
+				87C0C52C2417C9C80093840D /* Paul's Bakery */,
+				87C0C5452417C9C80093840D /* Paul's BakeryTests */,
+				87C0C5252417C9C80093840D /* Frameworks */,
+				87C0C5242417C9C80093840D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		87C0C5242417C9C80093840D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C5232417C9C80093840D /* Paul's Bakery.app */,
+				87C0C53E2417C9C80093840D /* Paul's BakeryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87C0C5252417C9C80093840D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C5262417C9C80093840D /* Foundation.framework */,
+				87C0C5282417C9C80093840D /* CoreGraphics.framework */,
+				87C0C52A2417C9C80093840D /* UIKit.framework */,
+				87C0C53F2417C9C80093840D /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87C0C52C2417C9C80093840D /* Paul's Bakery */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C5352417C9C80093840D /* AppDelegate.h */,
+				87C0C5362417C9C80093840D /* AppDelegate.m */,
+				87497AB6241875CA003B0468 /* iPad Views */,
+				87497AB5241875BD003B0468 /* Universal Views */,
+				872CA1042421F0CF005D043A /* Classes */,
+				87497A97241845BA003B0468 /* chocolate.png */,
+				87497A99241845BE003B0468 /* cake.png */,
+				87497A9F24186C25003B0468 /* star.png */,
+				87497AA124186C29003B0468 /* star@2x.png */,
+				87497AA324186C2E003B0468 /* star@3x.png */,
+				87497AA524186CC6003B0468 /* notebook.png */,
+				87497AA724186CF4003B0468 /* notebook@2x.png */,
+				87497AA924186CF8003B0468 /* notebook@3x.png */,
+				872CA1122421FFCB005D043A /* calculator.png */,
+				872CA1102421FFC6005D043A /* calculator@2x.png */,
+				872CA10E2421FFC0005D043A /* calculator@3x.png */,
+				8767AC3C241F3CF000C8FD73 /* quarter.png */,
+				8767AC3E241F3F5600C8FD73 /* half.png */,
+				8767AC40241F3F5A00C8FD73 /* full.png */,
+				8767AC42241F3F5E00C8FD73 /* round.png */,
+				87C0C5382417C9C80093840D /* Images.xcassets */,
+				87C0C52D2417C9C80093840D /* Supporting Files */,
+			);
+			path = "Paul's Bakery";
+			sourceTree = "<group>";
+		};
+		87C0C52D2417C9C80093840D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C52E2417C9C80093840D /* Paul's Bakery-Info.plist */,
+				87C0C52F2417C9C80093840D /* InfoPlist.strings */,
+				87C0C5322417C9C80093840D /* main.m */,
+				87C0C5342417C9C80093840D /* Paul's Bakery-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87C0C5452417C9C80093840D /* Paul's BakeryTests */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */,
+				87C0C5462417C9C80093840D /* Supporting Files */,
+			);
+			path = "Paul's BakeryTests";
+			sourceTree = "<group>";
+		};
+		87C0C5462417C9C80093840D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87C0C5472417C9C80093840D /* Paul's BakeryTests-Info.plist */,
+				87C0C5482417C9C80093840D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87C0C5222417C9C80093840D /* Paul's Bakery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C0C54F2417C9C80093840D /* Build configuration list for PBXNativeTarget "Paul's Bakery" */;
+			buildPhases = (
+				87C0C51F2417C9C80093840D /* Sources */,
+				87C0C5202417C9C80093840D /* Frameworks */,
+				87C0C5212417C9C80093840D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Paul's Bakery";
+			productName = "Paul's Bakery";
+			productReference = 87C0C5232417C9C80093840D /* Paul's Bakery.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87C0C53D2417C9C80093840D /* Paul's BakeryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C0C5522417C9C80093840D /* Build configuration list for PBXNativeTarget "Paul's BakeryTests" */;
+			buildPhases = (
+				87C0C53A2417C9C80093840D /* Sources */,
+				87C0C53B2417C9C80093840D /* Frameworks */,
+				87C0C53C2417C9C80093840D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87C0C5442417C9C80093840D /* PBXTargetDependency */,
+			);
+			name = "Paul's BakeryTests";
+			productName = "Paul's BakeryTests";
+			productReference = 87C0C53E2417C9C80093840D /* Paul's BakeryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		87C0C51B2417C9C80093840D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "dosdude1 Apps";
+				TargetAttributes = {
+					87C0C53D2417C9C80093840D = {
+						TestTargetID = 87C0C5222417C9C80093840D;
+					};
+				};
+			};
+			buildConfigurationList = 87C0C51E2417C9C80093840D /* Build configuration list for PBXProject "Paul's Bakery" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 87C0C51A2417C9C80093840D;
+			productRefGroup = 87C0C5242417C9C80093840D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87C0C5222417C9C80093840D /* Paul's Bakery */,
+				87C0C53D2417C9C80093840D /* Paul's BakeryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87C0C5212417C9C80093840D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872CA1112421FFC6005D043A /* calculator@2x.png in Resources */,
+				8767AC43241F3F5E00C8FD73 /* round.png in Resources */,
+				87497AA624186CC6003B0468 /* notebook.png in Resources */,
+				87C0C5312417C9C80093840D /* InfoPlist.strings in Resources */,
+				87497AC024187FB7003B0468 /* iPadLogDetailViewController.xib in Resources */,
+				8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */,
+				87497AA024186C25003B0468 /* star.png in Resources */,
+				872CA10F2421FFC0005D043A /* calculator@3x.png in Resources */,
+				87497AA424186C2E003B0468 /* star@3x.png in Resources */,
+				87497A98241845BA003B0468 /* chocolate.png in Resources */,
+				8767AC41241F3F5A00C8FD73 /* full.png in Resources */,
+				8767AC3D241F3CF000C8FD73 /* quarter.png in Resources */,
+				87497AAA24186CF8003B0468 /* notebook@3x.png in Resources */,
+				87D166C92417F2A600E866A2 /* iPadSummaryViewController.xib in Resources */,
+				87497AA224186C29003B0468 /* star@2x.png in Resources */,
+				87497AAF24186DAB003B0468 /* iPadLogViewController.xib in Resources */,
+				87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */,
+				8767AC3F241F3F5600C8FD73 /* half.png in Resources */,
+				8767AC3B241F364000C8FD73 /* iPadCalculationViewController.xib in Resources */,
+				87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */,
+				87497AA824186CF4003B0468 /* notebook@2x.png in Resources */,
+				8767AC33241F330900C8FD73 /* iPadMainViewController.xib in Resources */,
+				87C0C5392417C9C80093840D /* Images.xcassets in Resources */,
+				872CA1132421FFCB005D043A /* calculator.png in Resources */,
+				87497A9A241845BE003B0468 /* cake.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C0C53C2417C9C80093840D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C0C54A2417C9C80093840D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87C0C51F2417C9C80093840D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */,
+				8767AC3A241F364000C8FD73 /* iPadCalculationViewController.m in Sources */,
+				87497AAE24186DAB003B0468 /* iPadLogViewController.m in Sources */,
+				87497ABF24187FB7003B0468 /* iPadLogDetailViewController.m in Sources */,
+				872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */,
+				8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */,
+				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
+				87497AB324187595003B0468 /* LogEntryTableViewCell.m in Sources */,
+				87C0C5372417C9C80093840D /* AppDelegate.m in Sources */,
+				8767AC32241F330900C8FD73 /* iPadMainViewController.m in Sources */,
+				87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */,
+				87C0C5332417C9C80093840D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C0C53A2417C9C80093840D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C0C54C2417C9C80093840D /* Paul_s_BakeryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		87C0C5442417C9C80093840D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87C0C5222417C9C80093840D /* Paul's Bakery */;
+			targetProxy = 87C0C5432417C9C80093840D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		87C0C52F2417C9C80093840D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87C0C5302417C9C80093840D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		87C0C5482417C9C80093840D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87C0C5492417C9C80093840D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		87C0C54D2417C9C80093840D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87C0C54E2417C9C80093840D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		87C0C5502417C9C80093840D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
+				INFOPLIST_FILE = "Paul's Bakery/Paul's Bakery-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		87C0C5512417C9C80093840D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
+				INFOPLIST_FILE = "Paul's Bakery/Paul's Bakery-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		87C0C5532417C9C80093840D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Paul's Bakery.app/Paul's Bakery";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Paul's BakeryTests/Paul's BakeryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		87C0C5542417C9C80093840D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Paul's Bakery.app/Paul's Bakery";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
+				INFOPLIST_FILE = "Paul's BakeryTests/Paul's BakeryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87C0C51E2417C9C80093840D /* Build configuration list for PBXProject "Paul's Bakery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C0C54D2417C9C80093840D /* Debug */,
+				87C0C54E2417C9C80093840D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87C0C54F2417C9C80093840D /* Build configuration list for PBXNativeTarget "Paul's Bakery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C0C5502417C9C80093840D /* Debug */,
+				87C0C5512417C9C80093840D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87C0C5522417C9C80093840D /* Build configuration list for PBXNativeTarget "Paul's BakeryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C0C5532417C9C80093840D /* Debug */,
+				87C0C5542417C9C80093840D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87C0C51B2417C9C80093840D /* Project object */;
+}
