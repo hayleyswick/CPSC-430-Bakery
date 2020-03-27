@@ -2,12 +2,14 @@ import Order
 
 class Logs:
 
-    logs[]
-
-
+	def __init__(self):
+		self.logs = logs[]
 
     def GetLogs():
         return logs
+
+    def AddOrger():
+
 
     def EditLog(logNum, changes):
 
