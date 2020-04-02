@@ -17,6 +17,9 @@ class Inventory:
     def updateBatterQuantity(self, flavor, quantity):
         self.batterQuantity[flavor] = quantity 
         
+    def getBatterQuantity(self, flavor):
+        return self.batterQuantity[flavor]
+        
     def updateBakedGoods(self, good, quantity):
         self.bakedGoods[good] = quantity
         
