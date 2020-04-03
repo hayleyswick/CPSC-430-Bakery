@@ -10,6 +10,11 @@ def login(username, password):
 	sql = "SELECT `id`, `password` FROM `users` WHERE `username`=%s"
 	cursor.execute(sql, (username))
 	result = cursor.fetchone()
+
+	if not result:
+		return {'status':'ERR',
+				'code':'incorrect_login'}
+
 	user_password = result['password']
 	user_id = result['id']
 
@@ -39,12 +44,14 @@ def verify_session(session_id):
 				'code':'invalid_session'}
 	else:
 		user_id = result['user_id']
-		sql = "SELECT `username` FROM `users` WHERE `id`=%s"
+		sql = "SELECT `username`, `type` FROM `users` WHERE `id`=%s"
 		cursor.execute(sql, (user_id))
 		result = cursor.fetchone()
 		username = result['username']
+		user_type = result['type']
 		return {'status':'OK',
-				'username':username}
+				'username':username,
+				'user_type':user_type}
 
 
 def create_user(username, password, user_type):
