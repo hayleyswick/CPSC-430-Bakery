@@ -14,24 +14,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    /*if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (!iPadMvc) {
-            iPadMvc = [[iPadMainViewController alloc] initWithNibName:@"iPadMainViewController" bundle:nil];
-        }
-        [self.window setRootViewController:iPadMvc];
-    }
-    */
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (!testVC) {
-            testVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
-        }
-        [self.window setRootViewController:testVC];
-    }
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    man = [[WindowManager alloc] initWithRootWindow:self.window];
+    [man loadInitialView];
     return YES;
 }
 

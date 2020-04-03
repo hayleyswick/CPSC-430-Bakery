@@ -26,8 +26,6 @@
 		87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87497AB224187595003B0468 /* LogEntryTableViewCell.xib */; };
 		87497ABF24187FB7003B0468 /* iPadLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497ABD24187FB7003B0468 /* iPadLogDetailViewController.m */; };
 		87497AC024187FB7003B0468 /* iPadLogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87497ABE24187FB7003B0468 /* iPadLogDetailViewController.xib */; };
-		8767AC32241F330900C8FD73 /* iPadMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC30241F330900C8FD73 /* iPadMainViewController.m */; };
-		8767AC33241F330900C8FD73 /* iPadMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC31241F330900C8FD73 /* iPadMainViewController.xib */; };
 		8767AC3A241F364000C8FD73 /* iPadCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC38241F364000C8FD73 /* iPadCalculationViewController.m */; };
 		8767AC3B241F364000C8FD73 /* iPadCalculationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC39241F364000C8FD73 /* iPadCalculationViewController.xib */; };
 		8767AC3D241F3CF000C8FD73 /* quarter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC3C241F3CF000C8FD73 /* quarter.png */; };
@@ -48,6 +46,13 @@
 		87C0C5422417C9C80093840D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C52A2417C9C80093840D /* UIKit.framework */; };
 		87C0C54A2417C9C80093840D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C0C5482417C9C80093840D /* InfoPlist.strings */; };
 		87C0C54C2417C9C80093840D /* Paul_s_BakeryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */; };
+		87CA19B72436D7AA00036F7B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CA19B62436D7AA00036F7B /* User.m */; };
+		87CA19BA2436E21800036F7B /* WindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CA19B92436E21800036F7B /* WindowManager.m */; };
+		87CA19BD2436E50600036F7B /* PreferencesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CA19BC2436E50600036F7B /* PreferencesHandler.m */; };
+		87CE36A82436AABC00C48742 /* iPadLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE36A62436AABC00C48742 /* iPadLoginViewController.m */; };
+		87CE36A92436AABC00C48742 /* iPadLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87CE36A72436AABC00C48742 /* iPadLoginViewController.xib */; };
+		87CE36AC2436AB6E00C48742 /* BakeryCalculatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE36AB2436AB6E00C48742 /* BakeryCalculatorController.m */; };
+		87CE36AF2436B3B400C48742 /* RESTQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE36AE2436B3B400C48742 /* RESTQueryController.m */; };
 		87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D166C12417EF8500E866A2 /* iPadAdminViewController.m */; };
 		87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */; };
 		87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */; };
@@ -89,9 +94,6 @@
 		87497ABC24187FB7003B0468 /* iPadLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadLogDetailViewController.h; sourceTree = "<group>"; };
 		87497ABD24187FB7003B0468 /* iPadLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadLogDetailViewController.m; sourceTree = "<group>"; };
 		87497ABE24187FB7003B0468 /* iPadLogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadLogDetailViewController.xib; sourceTree = "<group>"; };
-		8767AC2F241F330900C8FD73 /* iPadMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadMainViewController.h; sourceTree = "<group>"; };
-		8767AC30241F330900C8FD73 /* iPadMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadMainViewController.m; sourceTree = "<group>"; };
-		8767AC31241F330900C8FD73 /* iPadMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadMainViewController.xib; sourceTree = "<group>"; };
 		8767AC37241F364000C8FD73 /* iPadCalculationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadCalculationViewController.h; sourceTree = "<group>"; };
 		8767AC38241F364000C8FD73 /* iPadCalculationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadCalculationViewController.m; sourceTree = "<group>"; };
 		8767AC39241F364000C8FD73 /* iPadCalculationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadCalculationViewController.xib; sourceTree = "<group>"; };
@@ -118,6 +120,19 @@
 		87C0C5472417C9C80093840D /* Paul's BakeryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Paul's BakeryTests-Info.plist"; sourceTree = "<group>"; };
 		87C0C5492417C9C80093840D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Paul_s_BakeryTests.m; sourceTree = "<group>"; };
+		87CA19B52436D7AA00036F7B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		87CA19B62436D7AA00036F7B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		87CA19B82436E21800036F7B /* WindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowManager.h; sourceTree = "<group>"; };
+		87CA19B92436E21800036F7B /* WindowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowManager.m; sourceTree = "<group>"; };
+		87CA19BB2436E50600036F7B /* PreferencesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesHandler.h; sourceTree = "<group>"; };
+		87CA19BC2436E50600036F7B /* PreferencesHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesHandler.m; sourceTree = "<group>"; };
+		87CE36A52436AABC00C48742 /* iPadLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadLoginViewController.h; sourceTree = "<group>"; };
+		87CE36A62436AABC00C48742 /* iPadLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadLoginViewController.m; sourceTree = "<group>"; };
+		87CE36A72436AABC00C48742 /* iPadLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadLoginViewController.xib; sourceTree = "<group>"; };
+		87CE36AA2436AB6E00C48742 /* BakeryCalculatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BakeryCalculatorController.h; sourceTree = "<group>"; };
+		87CE36AB2436AB6E00C48742 /* BakeryCalculatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BakeryCalculatorController.m; sourceTree = "<group>"; };
+		87CE36AD2436B3B400C48742 /* RESTQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTQueryController.h; sourceTree = "<group>"; };
+		87CE36AE2436B3B400C48742 /* RESTQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTQueryController.m; sourceTree = "<group>"; };
 		87D166C02417EF8500E866A2 /* iPadAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadAdminViewController.h; sourceTree = "<group>"; };
 		87D166C12417EF8500E866A2 /* iPadAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadAdminViewController.m; sourceTree = "<group>"; };
 		87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadAdminViewController.xib; sourceTree = "<group>"; };
@@ -153,8 +168,18 @@
 		872CA1042421F0CF005D043A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				87CA19B82436E21800036F7B /* WindowManager.h */,
+				87CA19B92436E21800036F7B /* WindowManager.m */,
 				872CA1052421F0FA005D043A /* SelectionItem.h */,
 				872CA1062421F0FA005D043A /* SelectionItem.m */,
+				87CE36AA2436AB6E00C48742 /* BakeryCalculatorController.h */,
+				87CE36AB2436AB6E00C48742 /* BakeryCalculatorController.m */,
+				87CE36AD2436B3B400C48742 /* RESTQueryController.h */,
+				87CE36AE2436B3B400C48742 /* RESTQueryController.m */,
+				87CA19B52436D7AA00036F7B /* User.h */,
+				87CA19B62436D7AA00036F7B /* User.m */,
+				87CA19BB2436E50600036F7B /* PreferencesHandler.h */,
+				87CA19BC2436E50600036F7B /* PreferencesHandler.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -177,9 +202,9 @@
 		87497AB6241875CA003B0468 /* iPad Views */ = {
 			isa = PBXGroup;
 			children = (
-				8767AC2F241F330900C8FD73 /* iPadMainViewController.h */,
-				8767AC30241F330900C8FD73 /* iPadMainViewController.m */,
-				8767AC31241F330900C8FD73 /* iPadMainViewController.xib */,
+				87CE36A52436AABC00C48742 /* iPadLoginViewController.h */,
+				87CE36A62436AABC00C48742 /* iPadLoginViewController.m */,
+				87CE36A72436AABC00C48742 /* iPadLoginViewController.xib */,
 				87D166C02417EF8500E866A2 /* iPadAdminViewController.h */,
 				87D166C12417EF8500E866A2 /* iPadAdminViewController.m */,
 				87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */,
@@ -380,10 +405,10 @@
 				87497AAF24186DAB003B0468 /* iPadLogViewController.xib in Resources */,
 				87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */,
 				8767AC3F241F3F5600C8FD73 /* half.png in Resources */,
+				87CE36A92436AABC00C48742 /* iPadLoginViewController.xib in Resources */,
 				8767AC3B241F364000C8FD73 /* iPadCalculationViewController.xib in Resources */,
 				87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */,
 				87497AA824186CF4003B0468 /* notebook@2x.png in Resources */,
-				8767AC33241F330900C8FD73 /* iPadMainViewController.xib in Resources */,
 				87C0C5392417C9C80093840D /* Images.xcassets in Resources */,
 				872CA1132421FFCB005D043A /* calculator.png in Resources */,
 				87497A9A241845BE003B0468 /* cake.png in Resources */,
@@ -405,18 +430,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87CA19B72436D7AA00036F7B /* User.m in Sources */,
 				87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */,
+				87CA19BD2436E50600036F7B /* PreferencesHandler.m in Sources */,
+				87CE36A82436AABC00C48742 /* iPadLoginViewController.m in Sources */,
 				8767AC3A241F364000C8FD73 /* iPadCalculationViewController.m in Sources */,
 				87497AAE24186DAB003B0468 /* iPadLogViewController.m in Sources */,
 				87497ABF24187FB7003B0468 /* iPadLogDetailViewController.m in Sources */,
 				872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */,
+				87CE36AF2436B3B400C48742 /* RESTQueryController.m in Sources */,
 				8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */,
 				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
 				87497AB324187595003B0468 /* LogEntryTableViewCell.m in Sources */,
 				87C0C5372417C9C80093840D /* AppDelegate.m in Sources */,
-				8767AC32241F330900C8FD73 /* iPadMainViewController.m in Sources */,
 				87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */,
+				87CA19BA2436E21800036F7B /* WindowManager.m in Sources */,
 				87C0C5332417C9C80093840D /* main.m in Sources */,
+				87CE36AC2436AB6E00C48742 /* BakeryCalculatorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

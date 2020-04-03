@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "iPadMainViewController.h"
-#import "iPadAdminViewController.h"
+#import "WindowManager.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-{
-    iPadMainViewController *iPadMvc;
-    iPadAdminViewController *testVC;
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    WindowManager *man;
 }
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end
