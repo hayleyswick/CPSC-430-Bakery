@@ -37,5 +37,15 @@ def api_create_user():
 
 	return jsonify(actions.create_user(username, password, user_type))
 
+@app.route('/api/create_order', methods=['POST'])
+def api_create_order():
+	request.get_data()
+	data = request.form
+	customerN = data['customer_name']
+	batterT = data['batter_type']
+	cakeS = data['cake_shape']
+	quant = data ['quantity']
+
+	return jsonify(actions.create_order(customerN, batterT, cakeS, quant))
 
 app.run(host= '0.0.0.0')

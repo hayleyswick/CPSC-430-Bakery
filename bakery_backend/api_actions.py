@@ -69,3 +69,10 @@ def create_user(username, password, user_type):
 	    cursor.execute(sql, (generate_random_id(), username, password, user_type))
 	    connection.commit()
 	    return {'status':'OK'}
+
+def create_order(customer_name, battterType, cakeShape, quantity):
+	cursor = connection.cursor()
+	sql = "INSERT INTO `orders` (`order_number`, `customer_name`, `batter_type`, `cake_shape`, `quantity`) VALUES (%s, %s, %s, %s, %s)"
+	cursor.execute(sql, (generate_random_id(), customer_name, battterType, cakeShape, quantity))
+	connection.commit()
+	return {'status':'OK'}
