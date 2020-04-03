@@ -48,4 +48,18 @@ def api_create_order():
 
 	return jsonify(actions.create_order(customerN, batterT, cakeS, quant))
 
+@app.route('/api/get_logs', methods=['GET'])
+def api_get_logs():
+	return jsonify(actions.get_logs())
+
+@app.route('/api/edit_order', methods=['POST'])
+def api_edit_order():
+	request.get_data()
+	data = request.form
+	orderN = data['order_number']
+	batterT = data['batter_type']
+	cakeS = data['cake_shape']
+	quant = data['quantity']
+
+	return jsonify(actions.edit_order(orderN,batterT,cakeS,quant))
 app.run(host= '0.0.0.0')

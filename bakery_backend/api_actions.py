@@ -70,9 +70,23 @@ def create_user(username, password, user_type):
 	    connection.commit()
 	    return {'status':'OK'}
 
-def create_order(customer_name, battterType, cakeShape, quantity):
+def create_order(customer_name, batterType, cakeShape, quantity):
 	cursor = connection.cursor()
 	sql = "INSERT INTO `orders` (`order_number`, `customer_name`, `batter_type`, `cake_shape`, `quantity`) VALUES (%s, %s, %s, %s, %s)"
-	cursor.execute(sql, (generate_random_id(), customer_name, battterType, cakeShape, quantity))
+	cursor.execute(sql, (generate_random_id(), customer_name, batterType, cakeShape, quantity))
 	connection.commit()
 	return {'status':'OK'}
+
+def get_logs():
+	cursor = connection.cursor()
+	sql = "SELECT * FROM `orders`"
+	cursor.execute(sql)
+	connection.commit()
+	return{'status':'OK'}
+
+def edit_order(orderNumber, batterType, cakeShape, quantity):
+	cursor = connection.cursor()
+	sql = "UPDATE `orders` SET batter_type=batterType, cake_shape=cakeShape, quantity=quantity WHERE order_number = orderNumber"
+	cursor.execute(sql, (orderNumber, batterType, cakeShape, quantity))
+	connection.commit()
+	return{'status':'OK'}
