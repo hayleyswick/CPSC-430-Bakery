@@ -62,4 +62,19 @@ def api_edit_order():
 	quant = data['quantity']
 
 	return jsonify(actions.edit_order(orderN,batterT,cakeS,quant))
+
+@app.route('/api/updateBatterQuantity', methods=['POST'])
+def api_updateBatterQuantity():
+    request.get_data()
+    data = request.form
+    batterT = data['batterType']
+    quantity = data['quantity']
+    
+    return jsonify(actions.updateBatterQuantity(flavor, quantity))
+    
+@app.route('/api/getBatterQuantity', methods=['GET'])
+def api_getBatterQuantity():
+    
+    return jsonify(actions.getBatterQuantity(flavor))
+
 app.run(host= '0.0.0.0')
