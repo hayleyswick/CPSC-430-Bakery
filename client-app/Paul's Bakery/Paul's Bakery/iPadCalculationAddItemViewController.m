@@ -46,15 +46,15 @@ static NSString *CellIdentifier = @"SelectionViewCell";
     if (!cakeTypeSelections) {
         cakeTypeSelections = [[NSMutableArray alloc] init];
     }
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"quarter.png"] forText:@"1/4 Sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"half.png"] forText:@"1/2 Sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"full.png"] forText:@"Full Sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"round.png"] forText:@"Full Round"]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"quarter.png"] forText:@"1/4 Sheet" withReferenceString:@"quarter-sheet"]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"half.png"] forText:@"1/2 Sheet" withReferenceString:@"half-sheet"]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"full.png"] forText:@"Full Sheet" withReferenceString:@"full-sheet"]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"round.png"] forText:@"Full Round" withReferenceString:@"full-round"]];
     if (!batterTypeSelections) {
         batterTypeSelections = [[NSMutableArray alloc] init];
     }
-    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"cake.png"] forText:@"Vanilla Cake"]];
-    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"chocolate.png"] forText:@"Chocolate Cake"]];
+    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"cake.png"] forText:@"Vanilla Batter" withReferenceString:@"vanilla"]];
+    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"chocolate.png"] forText:@"Chocolate Batter" withReferenceString:@"chocolate"]];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -133,5 +133,49 @@ static NSString *CellIdentifier = @"SelectionViewCell";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)addItemAndClose:(id)sender {
+    OrderItem *item = [[OrderItem alloc] init];
+    BOOL batterSelected = NO;
+    BOOL cakeSelected = NO;
+    for (SelectionItem *i in cakeTypeSelections) {
+        if ([i isSelected]) {
+            item.cakeType = i.referenceString;
+            item.cakeTypeText = i.selectionItemText;
+            item.cakeTypeImage = i.selectionItemImage;
+            cakeSelected = YES;
+            break;
+        }
+    }
+    for (SelectionItem *i in batterTypeSelections) {
+        if ([i isSelected]) {
+            item.batterType = i.referenceString;
+            item.batterTypeText = i.selectionItemText;
+            item.batterTypeImage = i.selectionItemImage;
+            batterSelected = YES;
+            break;
+        }
+    }
+    
+    if (batterSelected && cakeSelected) {
+        item.quantity = (int)[self.quantityControl value];
+        [self.delegate didFinishEditingWithItem:item];
+        [self closeView:self];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Options Not Selected" message:@"Please select all options before adding an item." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+-(void)clear {
+    for (SelectionItem *i in cakeTypeSelections) {
+        [i setIsSelected:NO];
+    }
+    for (SelectionItem *i in batterTypeSelections) {
+        [i setIsSelected:NO];
+    }
+    [self.quantityControl setValue:1.0];
+    [self quantityValueChanged:self];
+    [self.cakeTypeSelectionView reloadData];
+    [self.batterTypeSelectionView reloadData];
+}
 
 @end

@@ -7,5 +7,5 @@ CREATE TABLE sessions (session_id VARCHAR(45) PRIMARY KEY NOT NULL, user_id VARC
 CREATE TABLE inventory (batter_type TEXT, quantity DOUBLE);
 CREATE TABLE order_details (order_number INT NOT NULL, batter_type TEXT, cake_type TEXT, quantity DOUBLE);
 CREATE TABLE orders (order_number INT PRIMARY KEY NOT NULL AUTO_INCREMENT, customer_firstname TEXT, customer_lastname TEXT, order_date DATE);
-CREATE TABLE baked_good (id INT PRIMARY KEY NOT NULL, name TEXT, shape TEXT, batter_type TEXT, batter_per_batch DOUBLE, quantity INT); 
+CREATE TABLE baked_goods (id INT PRIMARY KEY NOT NULL, name TEXT, shape TEXT, batter_type TEXT, batter_per_batch DOUBLE, quantity INT); 
 

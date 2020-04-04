@@ -14,9 +14,10 @@
 
 @property (nonatomic, strong) UIImage *selectionItemImage;
 @property (nonatomic, strong) NSString *selectionItemText;
+@property (nonatomic, strong) NSString *referenceString;
 
 -(id)init;
--(id)initWithImage:(UIImage *)img forText:(NSString *)text;
+-(id)initWithImage:(UIImage *)img forText:(NSString *)text withReferenceString:(NSString *)ref;
 -(void)setIsSelected:(BOOL)selected;
 -(BOOL)isSelected;
 

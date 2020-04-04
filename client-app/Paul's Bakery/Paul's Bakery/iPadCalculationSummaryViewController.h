@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CalculationViewItemCell.h"
+#import "OrderManager.h"
 
 @interface iPadCalculationSummaryViewController : UITableViewController
+
+-(void)didFinishEditingOrder;
 
 @end

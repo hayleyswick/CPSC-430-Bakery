@@ -35,8 +35,10 @@
     
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadSummaryViewController alloc] initWithNibName:@"iPadSummaryViewController" bundle:nil]]];
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadLogViewController alloc] initWithNibName:@"iPadLogViewController" bundle:nil]]];
-    //[tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil]]];
-    [tabbedViews addObject:[[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil]];
+    
+    iPadCalculationViewController *calcView = [[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil];
+    calcView.delegate = self;
+    [tabbedViews addObject:calcView];
     
     self.viewControllers = tabbedViews;
     
@@ -46,6 +48,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController: (UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
+    
+    //  Force master view to show in portrait and landscape
+    
+    return NO;
 }
 
 @end

@@ -15,10 +15,11 @@
     isSelected = NO;
     return self;
 }
--(id)initWithImage:(UIImage *)img forText:(NSString *)text {
+-(id)initWithImage:(UIImage *)img forText:(NSString *)text withReferenceString:(NSString *)ref {
     self = [self init];
     self.selectionItemImage = img;
     self.selectionItemText = text;
+    self.referenceString = ref;
     return self;
 }
 -(void)setIsSelected:(BOOL)selected {

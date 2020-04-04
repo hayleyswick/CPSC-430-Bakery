@@ -24,10 +24,12 @@
         }
         if(!resultView ) {
             resultView = [[iPadCalculationResultViewController alloc] initWithNibName:@"iPadCalculationResultViewController" bundle:nil];
+            [resultView setSummaryTableView:summaryView];
         }
         
         UINavigationController *mainNavController = [[UINavigationController alloc] initWithRootViewController:resultView];
         UINavigationController *secondaryNavController = [[UINavigationController alloc] initWithRootViewController:summaryView];
+        
         [self setViewControllers:@[secondaryNavController, mainNavController]];
     }
     return self;

@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationAddItemViewController.h"
+#import "OrderManager.h"
 
-@interface iPadCalculationResultViewController : UIViewController {
+@interface iPadCalculationResultViewController : UIViewController <AddOrderItemDelegate> {
+    iPadCalculationSummaryViewController *summaryTableView;
     iPadCalculationAddItemViewController *addItemView;
 }
+
+-(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view;
+-(IBAction)showAddItemView:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *noDataView;
 
 @end

@@ -22,7 +22,11 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.title = @"Items";
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,37 +39,51 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[[[OrderManager sharedInstance] editingOrder] getItems] count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"CalculationItemCell";
+    CalculationViewItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CalculationViewItemCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    OrderItem *item = [[[[OrderManager sharedInstance] editingOrder] getItems] objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    cell.cakeTypeTextLabel.text = item.cakeTypeText;
+    cell.batterTypeTextLabel.text= item.batterTypeText;
+    cell.cakeTypeImage.image = item.cakeTypeImage;
+    cell.batterTypeImage.image = item.batterTypeImage;
+    cell.quantityLabel.text = [NSString stringWithFormat:@"Quantity: %d", item.quantity];
+    
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
-*/
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 /*
 // Override to support editing the table view.
@@ -112,5 +130,10 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
+
+-(void)didFinishEditingOrder {
+    
+    [self.tableView reloadData];
+}
 
 @end

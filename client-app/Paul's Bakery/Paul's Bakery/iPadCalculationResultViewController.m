@@ -26,19 +26,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Add Item" style:UIBarButtonItemStyleDone target:self action:@selector(showAddItemView)]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Add Item" style:UIBarButtonItemStylePlain target:self action:@selector(showAddItemView:)]];
+    if ([[[OrderManager sharedInstance] editingOrder] getItems].count < 1) {
+        [self.view addSubview:self.noDataView];
+    }
+    
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)showAddItemView {
+
+-(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view {
+    summaryTableView = view;
+}
+-(IBAction)showAddItemView:(id)sender {
     if (!addItemView) {
         addItemView = [[iPadCalculationAddItemViewController alloc] initWithNibName:@"iPadCalculationAddItemViewController" bundle:nil];
         addItemView.modalPresentationStyle = UIModalPresentationFormSheet;
+        addItemView.delegate = self;
     }
+    [addItemView clear];
     [self presentViewController:addItemView animated:YES completion:nil];
+}
+-(void)didFinishEditingWithItem:(OrderItem *)item {
+    [[[OrderManager sharedInstance] editingOrder] addItem:item];
+    [summaryTableView didFinishEditingOrder];
+    [self.noDataView removeFromSuperview];
 }
 @end

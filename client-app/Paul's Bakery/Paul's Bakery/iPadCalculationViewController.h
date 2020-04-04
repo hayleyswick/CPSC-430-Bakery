@@ -10,6 +10,7 @@
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationResultViewController.h"
 
+
 @interface iPadCalculationViewController : UISplitViewController {
     iPadCalculationSummaryViewController *summaryView;
     iPadCalculationResultViewController *resultView;

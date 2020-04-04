@@ -91,7 +91,11 @@
                                     <action selector="closeView:" destination="-1" id="OB2-Jo-gFL"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="OCN-FV-e1o"/>
+                            <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="OCN-FV-e1o">
+                                <connections>
+                                    <action selector="addItemAndClose:" destination="-1" id="htK-7r-jy4"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
