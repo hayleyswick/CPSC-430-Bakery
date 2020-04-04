@@ -34,9 +34,15 @@ def api_create_user():
 	username = data['username']
 	password = data['password']
 	user_type = data['type']
+	firstname = data['firstname']
+	lastname = data['lastname']
 
-	return jsonify(actions.create_user(username, password, user_type))
+	return jsonify(actions.create_user(username, password, user_type, firstname, lastname))
 
+
+
+
+#Will need to be redone, check against new database schema in bakery.sql
 @app.route('/api/create_order', methods=['POST'])
 def api_create_order():
 	request.get_data()

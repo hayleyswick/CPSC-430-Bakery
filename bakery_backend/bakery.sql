@@ -1,10 +1,9 @@
-
 CREATE DATABASE bakery_calc;
 
 USE bakery_calc;
 
-CREATE TABLE users (id VARCHAR(45) PRIMARY KEY NOT NULL, username TEXT, password TEXT, type TEXT);
+CREATE TABLE users (id VARCHAR(45) PRIMARY KEY NOT NULL, username TEXT NOT NULL, password TEXT, type TEXT, firstname TEXT, lastname TEXT);
 CREATE TABLE sessions (session_id VARCHAR(45) PRIMARY KEY NOT NULL, user_id VARCHAR(45) NOT NULL);
-CREATE TABLE inventory (batterType TEXT, quantity INT);
-CREATE TABLE orders (order_number VARCHAR(45) PRIMARY KEY NOT NULL, customer_name TEXT, batter_type TEXT, cake_shape TEXT, quantity INT);
-
+CREATE TABLE inventory (batter_type TEXT, quantity INT);
+CREATE TABLE order_details (order_number INT NOT NULL, batter_type TEXT, quantity INT);
+CREATE TABLE orders (order_number INT PRIMARY KEY NOT NULL AUTO_INCREMENT, customer_firstname TEXT, customer_lastname TEXT, order_date DATE);

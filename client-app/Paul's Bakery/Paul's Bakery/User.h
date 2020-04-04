@@ -10,6 +10,8 @@
 
 #define kUsername "username"
 #define kType "type"
+#define kFirstname "firstname"
+#define kLastname "lastname"
 
 typedef enum {
     userTypeBaker = 0,
@@ -19,12 +21,14 @@ typedef enum {
 @interface User : NSObject
 
 -(id)init;
--(id)initWithUsername:(NSString *)username ofType:(userType)type;
+-(id)initWithUsername:(NSString *)username withFirstname:(NSString *)first withLastname:(NSString *)last ofType:(userType)type;
 -(id)initWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
 
 @property NSString *username;
 @property userType type;
+@property NSString *firstname;
+@property NSString *lastname;
 
 
 @end

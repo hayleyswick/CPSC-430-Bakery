@@ -35,7 +35,9 @@
     
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadSummaryViewController alloc] initWithNibName:@"iPadSummaryViewController" bundle:nil]]];
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadLogViewController alloc] initWithNibName:@"iPadLogViewController" bundle:nil]]];
-    [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil]]];
+    //[tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil]]];
+    [tabbedViews addObject:[[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil]];
+    
     self.viewControllers = tabbedViews;
     
     //self.selectedViewController = [tabbedViews objectAtIndex:0];

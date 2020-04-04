@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BakeryCalculatorController.h"
 
 @interface iPadSummaryViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *batterInventoryView;
+@property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 @end

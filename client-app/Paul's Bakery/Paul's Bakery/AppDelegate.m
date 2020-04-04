@@ -14,8 +14,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    man = [[WindowManager alloc] initWithRootWindow:self.window];
+    
+    if (!man) {
+        man = [[WindowManager alloc] initWithRootWindow:self.window];
+    }
+    
     [man loadInitialView];
+    
     return YES;
 }
 

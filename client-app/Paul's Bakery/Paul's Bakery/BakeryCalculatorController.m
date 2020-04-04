@@ -57,7 +57,7 @@
                     t = userTypeAdmin;
                 }
                 [[PreferencesHandler sharedInstance] setHasValidSession:YES];
-                loggedInUser = [[User alloc] initWithUsername:[data objectForKey:@"username"] ofType:t];
+                loggedInUser = [[User alloc] initWithUsername:[data objectForKey:@"username"] withFirstname:[data objectForKey:@"firstname"] withLastname:[data objectForKey:@"lastname"] ofType:t];
                 [[PreferencesHandler sharedInstance] setCurrentUser:loggedInUser];
                 [self.loginDelegate didLoginAsUser:loggedInUser];
                 break;
@@ -68,7 +68,7 @@
     }
 }
 -(void)connection:(RESTQueryController *)conn didFailWithError:(NSError *)error {
-    NSLog(@"Connection Error Occurred");
+    [self.errorDelegate handleError:@"conn_error"];
 }
 
 -(User *)loggedInUser {

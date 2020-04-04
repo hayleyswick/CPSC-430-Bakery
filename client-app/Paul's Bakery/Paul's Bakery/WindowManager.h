@@ -2,7 +2,7 @@
 //  WindowManager.h
 //  Paul's Bakery
 //
-//  Created by Collin Mistr on 4/2/20.
+//  Created by Collin Mistr on 4/3/20.
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
@@ -16,10 +16,10 @@
     iPadLoginViewController *iPadLoginVC;
 }
 
+@property (nonatomic, strong) UIWindow *window;
+
 -(id)init;
 -(id)initWithRootWindow:(UIWindow *)win;
 -(void)loadInitialView;
-
-@property (nonatomic, strong) UIWindow *window;
 
 @end

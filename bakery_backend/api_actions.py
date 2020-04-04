@@ -44,17 +44,21 @@ def verify_session(session_id):
 				'code':'invalid_session'}
 	else:
 		user_id = result['user_id']
-		sql = "SELECT `username`, `type` FROM `users` WHERE `id`=%s"
+		sql = "SELECT `username`, `type`, `firstname`, `lastname` FROM `users` WHERE `id`=%s"
 		cursor.execute(sql, (user_id))
 		result = cursor.fetchone()
 		username = result['username']
 		user_type = result['type']
+		firstname = result['firstname']
+		lastname = result['lastname']
 		return {'status':'OK',
 				'username':username,
-				'user_type':user_type}
+				'user_type':user_type,
+				'firstname':firstname,
+				'lastname':lastname}
 
 
-def create_user(username, password, user_type):
+def create_user(username, password, user_type, firstname, lastname):
 	cursor = connection.cursor()
 	sql = "SELECT COUNT(`username`) FROM `users` WHERE `username`=%s"
 	cursor.execute(sql, (username))
@@ -65,8 +69,8 @@ def create_user(username, password, user_type):
 		return {'status': 'ERR',
 		       'code': 'user_exists' }
 	else:
-	    sql = "INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES (%s, %s, %s, %s)"
-	    cursor.execute(sql, (generate_random_id(), username, password, user_type))
+	    sql = "INSERT INTO `users` (`id`, `username`, `password`, `type`, `firstname`, `lastname`) VALUES (%s, %s, %s, %s, %s, %s)"
+	    cursor.execute(sql, (generate_random_id(), username, password, user_type, firstname, lastname))
 	    connection.commit()
 	    return {'status':'OK'}
 

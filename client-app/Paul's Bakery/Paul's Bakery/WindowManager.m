@@ -2,7 +2,7 @@
 //  WindowManager.m
 //  Paul's Bakery
 //
-//  Created by Collin Mistr on 4/2/20.
+//  Created by Collin Mistr on 4/3/20.
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
@@ -16,47 +16,62 @@
     [BakeryCalculatorController sharedInstance].errorDelegate = self;
     return self;
 }
+
 -(id)initWithRootWindow:(UIWindow *)win {
     self = [self init];
     self.window = win;
     return self;
 }
+
 -(void)loadInitialView {
     if ([[BakeryCalculatorController sharedInstance] loggedInUser]) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if (!iPadAdminVC) {
                 iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
             }
-            [self.window setRootViewController:iPadAdminVC];
+            [self setActiveViewController:iPadAdminVC withAnimation:NO];
         }
+        
     } else {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if (!iPadLoginVC) {
                 iPadLoginVC = [[iPadLoginViewController alloc] initWithNibName:@"iPadLoginViewController" bundle:nil];
             }
-            [self.window setRootViewController:iPadLoginVC];
+            [self setActiveViewController:iPadLoginVC withAnimation:NO];
         }
     }
     
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
 }
--(void)animateToView:(UIViewController *)view {
-    if(UIInterfaceOrientationIsLandscape(self.window.rootViewController.interfaceOrientation)) {
+-(void)setActiveViewController:(UIViewController *)controller withAnimation:(BOOL)animate {
+    
+    UIViewController *wrapperVC = [[UIViewController alloc] init];
+    [wrapperVC.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:235.0/255.0 blue:219.0/255.0 alpha:1.0f]];
+    [wrapperVC.view addSubview:controller.view];
+    
+    if (animate) {
+        UIViewAnimationOptions opt;
+        
+        if(UIInterfaceOrientationIsLandscape(self.window.rootViewController.interfaceOrientation)) {
+            opt = UIViewAnimationOptionTransitionFlipFromBottom;
+        }
+        else {
+            opt = UIViewAnimationOptionTransitionFlipFromRight;
+        }
+        
         [UIView transitionWithView:self.window
                           duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromBottom
-                        animations:^{ [self.window setRootViewController:view]; }
+                           options:opt
+                        animations:^{ [self.window setRootViewController:wrapperVC]; }
                         completion:nil];
-    }
-    else {
-        [UIView transitionWithView:self.window
-                          duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromRight
-                        animations:^{ [self.window setRootViewController:view]; }
-                        completion:nil];
+    } else {
+        [self.window setRootViewController:wrapperVC];
     }
 }
+
 -(void)didLoginAsUser:(User *)user {
     switch (user.type) {
         case userTypeAdmin: {
@@ -65,7 +80,7 @@
                     iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
                 }
                 
-                [self animateToView:iPadAdminVC];
+                [self setActiveViewController:iPadAdminVC withAnimation:YES];
             }
             break;
         }
@@ -74,7 +89,7 @@
                 if (!iPadAdminVC) {
                     iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
                 }
-                [self animateToView:iPadAdminVC];
+                [self setActiveViewController:iPadAdminVC withAnimation:YES];
             }
             break;
         default: {
@@ -90,8 +105,13 @@
     if ([err_code isEqualToString:@"incorrect_login"]) {
         title = @"Login Invalid";
         info = @"The username or password you have entered is invalid";
+    } else if ([err_code isEqualToString:@"conn_error"]) {
+        title = @"Network Error";
+        info = @"The server could not be reached. Please check your Internet connection and try again";
     }
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:info delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
 }
+
+
 @end
