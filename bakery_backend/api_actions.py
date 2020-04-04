@@ -74,12 +74,25 @@ def create_user(username, password, user_type, firstname, lastname):
 	    connection.commit()
 	    return {'status':'OK'}
 
-def create_order(customer_name, batterType, cakeShape, quantity):
+def create_order(customer_firstname, customer_lastname):
 	cursor = connection.cursor()
-	sql = "INSERT INTO `orders` (`order_number`, `customer_name`, `batter_type`, `cake_shape`, `quantity`) VALUES (%s, %s, %s, %s, %s)"
-	cursor.execute(sql, (generate_random_id(), customer_name, batterType, cakeShape, quantity))
+	sql = "INSERT INTO `orders` (`customer_firstname`, `customer_lastname`) VALUES (%s, %s)"
+	cursor.execute(sql, (customer_firstname, customer_lastname))
+	sql = "SELECT order_number FROM orders WHERE customer_firstname = %s AND customer_lastname = %s"
+	cursor.execute(sql, (customer_firstname, customer_lastname))
+	order_number = cursor.fetchone()
+
 	connection.commit()
-	return {'status':'OK'}
+	return {'status':'OK', 
+			'order_number':order_number
+			}
+
+def create_cake_order(order_number, batter_type, cake_type, quantity):
+	cursor = connection.cursor()
+	sql = "INSERT INTO `order_details` (`order_number`, `batter_type`, `cake_type`, `quantity`) VALUES (%s, %s, %s, %s)"
+	cursor.execute(sql, (customer_firstname, customer_lastname))
+	connection.commit()
+	return {'status':'OK'}			
 
 def get_logs():
 	cursor = connection.cursor()
@@ -88,10 +101,15 @@ def get_logs():
 	connection.commit()
 	return{'status':'OK'}
 
-def edit_order(orderNumber, batterType, cakeShape, quantity):
+def delete_order(orderNumber):
 	cursor = connection.cursor()
-	sql = "UPDATE `orders` SET batter_type=batterType, cake_shape=cakeShape, quantity=quantity WHERE order_number = orderNumber"
-	cursor.execute(sql, (orderNumber, batterType, cakeShape, quantity))
+	sql = "SELECT order_number FROM order_details WHERE order_number = %s"
+	cursor.execute(sql, (orderNumber))
+	order_number = cursor.fetchall()
+
+	sql = "DELETE * FROM `order_details` WHERE order_number = %s"
+	cursor.execute(sql, (orderNumber))
+
 	connection.commit()
 	return{'status':'OK'}
 

@@ -47,27 +47,33 @@ def api_create_user():
 def api_create_order():
 	request.get_data()
 	data = request.form
-	customerN = data['customer_name']
-	batterT = data['batter_type']
-	cakeS = data['cake_shape']
-	quant = data ['quantity']
+	customer_firstname = data['customer_firstname']
+	customer_lastname = data['customer_lastname']
 
-	return jsonify(actions.create_order(customerN, batterT, cakeS, quant))
+	return jsonify(actions.create_order(customer_firstname, customer_lastname))
+
+@app.route('/api/create_cake_order', methods=['POST'])
+def api_create_cake_order():
+	request.get_data()
+	data = request.form
+	order_number = data['order_number']
+	batter_type = data['batter_type']
+	cake_type = data['cake_type']
+	quanity = data['quanity']
+
+	return jsonify(actions.create_cake_order(order_number, batter_type, cake_type, quanity))
 
 @app.route('/api/get_logs', methods=['GET'])
 def api_get_logs():
 	return jsonify(actions.get_logs())
 
-@app.route('/api/edit_order', methods=['POST'])
-def api_edit_order():
+@app.route('/api/delete_order', methods=['POST'])
+def api_delete_order():
 	request.get_data()
 	data = request.form
-	orderN = data['order_number']
-	batterT = data['batter_type']
-	cakeS = data['cake_shape']
-	quant = data['quantity']
+	order_number = data['order_number']
 
-	return jsonify(actions.edit_order(orderN,batterT,cakeS,quant))
+	return jsonify(actions.delete_order(order_number))
 
 @app.route('/api/update_batter_quantity', methods=['POST'])
 def api_update_batter_quantity():
