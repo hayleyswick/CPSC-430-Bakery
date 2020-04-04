@@ -69,18 +69,18 @@ def api_edit_order():
 
 	return jsonify(actions.edit_order(orderN,batterT,cakeS,quant))
 
-@app.route('/api/updateBatterQuantity', methods=['POST'])
-def api_updateBatterQuantity():
+@app.route('/api/update_batter_quantity', methods=['POST'])
+def api_update_batter_quantity():
     request.get_data()
     data = request.form
-    batterT = data['batterType']
+    batterT = data['batter_type']
     quantity = data['quantity']
     
-    return jsonify(actions.updateBatterQuantity(flavor, quantity))
+    return jsonify(actions.update_batter_quantity(flavor, quantity))
     
-@app.route('/api/getBatterQuantity', methods=['GET'])
-def api_getBatterQuantity():
+@app.route('/api/get_batter_quantity', methods=['GET'])
+def api_get_batter_quantity():
     
-    return jsonify(actions.getBatterQuantity(flavor))
+    return jsonify(actions.get_batter_quantity(flavor))
 
 app.run(host= '0.0.0.0')
