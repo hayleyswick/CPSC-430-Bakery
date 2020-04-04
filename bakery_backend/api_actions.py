@@ -95,16 +95,16 @@ def edit_order(orderNumber, batterType, cakeShape, quantity):
 	connection.commit()
 	return{'status':'OK'}
 
-def updateBatterQuantity(flavor, quantity):
+def update_batter_quantity(flavor, quantity):
     cursor = connection.cursor()
-    sql = "UPDATE `inventory` SET quantity=quantity WHERE batterType=flavor"
+    sql = "UPDATE `inventory` SET quantity=quantity WHERE batter_type=flavor"
     cursor.execute(sql, (flavor, quantity))
     connection.commit()
     return{'status':'OK'}
         
-def getBatterQuantity(flavor):
+def get_batter_quantity(flavor):
     cursor = connection.cursor()
-    sql = "SELECT quantity FROM `inventory` WHERE batterType=flavor"
+    sql = "SELECT quantity FROM `inventory` WHERE batter_type=flavor"
     cursor.execute(sql, (flavor))
     connection.commit()
     return{'status':'OK'}
