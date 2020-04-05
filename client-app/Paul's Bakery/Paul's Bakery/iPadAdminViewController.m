@@ -34,11 +34,10 @@
     }
     
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadSummaryViewController alloc] initWithNibName:@"iPadSummaryViewController" bundle:nil]]];
-    [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadLogViewController alloc] initWithNibName:@"iPadLogViewController" bundle:nil]]];
-    
     iPadCalculationViewController *calcView = [[iPadCalculationViewController alloc] initWithNibName:@"iPadCalculationViewController" bundle:nil];
     calcView.delegate = self;
     [tabbedViews addObject:calcView];
+    [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadLogViewController alloc] initWithNibName:@"iPadLogViewController" bundle:nil]]];
     
     self.viewControllers = tabbedViews;
     

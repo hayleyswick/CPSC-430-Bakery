@@ -17,6 +17,11 @@
     return self;
 }
 -(void)addItem:(OrderItem *)item {
+    for (OrderItem *i in items) {
+        if (i == item) {
+            return;
+        }
+    }
     [items addObject:item];
 }
 -(void)removeItem:(OrderItem *)item {

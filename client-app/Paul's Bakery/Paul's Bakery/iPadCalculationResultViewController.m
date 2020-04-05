@@ -30,7 +30,7 @@
     if ([[[OrderManager sharedInstance] editingOrder] getItems].count < 1) {
         [self.view addSubview:self.noDataView];
     }
-    
+    [self.navigationItem setTitle:@"Calculation"];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -41,18 +41,25 @@
 -(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view {
     summaryTableView = view;
 }
+-(void)useAddItemView:(iPadCalculationAddItemViewController *)v{
+    addItemView = v;
+}
 -(IBAction)showAddItemView:(id)sender {
-    if (!addItemView) {
-        addItemView = [[iPadCalculationAddItemViewController alloc] initWithNibName:@"iPadCalculationAddItemViewController" bundle:nil];
-        addItemView.modalPresentationStyle = UIModalPresentationFormSheet;
-        addItemView.delegate = self;
-    }
+    [addItemView setSelectionMode:selectionModeAdd];
     [addItemView clear];
     [self presentViewController:addItemView animated:YES completion:nil];
 }
--(void)didFinishEditingWithItem:(OrderItem *)item {
-    [[[OrderManager sharedInstance] editingOrder] addItem:item];
-    [summaryTableView didFinishEditingOrder];
-    [self.noDataView removeFromSuperview];
+-(void)didFinishEditingOrder {
+    if ([[[OrderManager sharedInstance] editingOrder] getItems].count > 0) {
+        [self.noDataView removeFromSuperview];
+    } else {
+        [self.view addSubview:self.noDataView];
+    }
+}
+- (IBAction)showEditOrdderInfoView:(id)sender {
+    if (!editOrderInfoView) {
+        editOrderInfoView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
+    }
+    [self presentViewController:editOrderInfoView animated:YES completion:nil];
 }
 @end

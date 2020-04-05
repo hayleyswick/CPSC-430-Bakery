@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationResultViewController.h"
+#import "iPadCalculationAddItemViewController.h"
 
 
-@interface iPadCalculationViewController : UISplitViewController {
+@interface iPadCalculationViewController : UISplitViewController <AddOrderItemDelegate, SummaryViewDelegate> {
     iPadCalculationSummaryViewController *summaryView;
     iPadCalculationResultViewController *resultView;
+    iPadCalculationAddItemViewController *addItemView;
 }
 
 @end

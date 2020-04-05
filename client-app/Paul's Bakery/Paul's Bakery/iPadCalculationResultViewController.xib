@@ -23,6 +23,9 @@
                     <state key="normal" title="Add as Order">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="showEditOrdderInfoView:" destination="-1" eventType="touchUpInside" id="W9D-CQ-DUH"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="calibratedRGB"/>

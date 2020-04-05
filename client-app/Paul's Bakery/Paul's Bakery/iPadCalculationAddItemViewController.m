@@ -20,7 +20,8 @@ static NSString *CellIdentifier = @"SelectionViewCell";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.modalPresentationStyle = UIModalPresentationFormSheet;
+        currentMode = selectionModeAdd;
     }
     return self;
 }
@@ -41,6 +42,7 @@ static NSString *CellIdentifier = @"SelectionViewCell";
     self.batterTypeSelectionView.dataSource = self;
     
     [self.quantityControl setMinimumValue:1.0];
+    [self updateUIForCurrentMode];
 }
 -(void)initSelections {
     if (!cakeTypeSelections) {
@@ -56,10 +58,47 @@ static NSString *CellIdentifier = @"SelectionViewCell";
     [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"cake.png"] forText:@"Vanilla Batter" withReferenceString:@"vanilla"]];
     [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"chocolate.png"] forText:@"Chocolate Batter" withReferenceString:@"chocolate"]];
 }
+-(void)updateUIForCurrentMode {
+    switch (currentMode) {
+        case selectionModeAdd:
+            [self.navItem setTitle:@"Add Item"];
+            [self.navItem.rightBarButtonItem setTitle:@"Add"];
+            break;
+        case selectionModeEdit:
+            [self.navItem setTitle:@"Edit Item"];
+            [self.navItem.rightBarButtonItem setTitle:@"Save"];
+            break;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)setSelectionMode:(selectionMode)mode {
+    currentMode = mode;
+    [self updateUIForCurrentMode];
+}
+-(void)setEditingOrderItem:(OrderItem *)item {
+    editingItem = item;
+    for (SelectionItem *i in cakeTypeSelections) {
+        if ([[i referenceString] isEqualToString:[editingItem cakeType]]) {
+            [i setIsSelected:YES];
+        } else {
+            [i setIsSelected:NO];
+        }
+    }
+    for (SelectionItem *i in batterTypeSelections) {
+        if ([[i referenceString] isEqualToString:[editingItem batterType]]) {
+            [i setIsSelected:YES];
+        } else {
+            [i setIsSelected:NO];
+        }
+    }
+    [self.quantityControl setValue:[editingItem quantity]];
+    [self quantityValueChanged:self];
+    [self.cakeTypeSelectionView reloadData];
+    [self.batterTypeSelectionView reloadData];
 }
 -(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -116,14 +155,7 @@ static NSString *CellIdentifier = @"SelectionViewCell";
         [self.batterTypeSelectionView reloadData];
     }
 }
-/*- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
- CGFloat totalCellWidth = 119 * cakeTypeSelections.count;
- CGFloat totalSpacingWidth = 10 * (((float)cakeTypeSelections.count - 1) < 0 ? 0 :cakeTypeSelections.count - 1);
- CGFloat leftInset = (self.cakeTypeSelectionView.bounds.size.width - (totalCellWidth + totalSpacingWidth)) / 2;
- CGFloat rightInset = leftInset;
- UIEdgeInsets sectionInset = UIEdgeInsetsMake(0, leftInset, 0, rightInset);
- return sectionInset;
- }*/
+
 
 - (IBAction)quantityValueChanged:(id)sender {
     [self.quantityLabel setText:[NSString stringWithFormat:@"%d", (int)[self.quantityControl value]]];
@@ -134,7 +166,12 @@ static NSString *CellIdentifier = @"SelectionViewCell";
 }
 
 - (IBAction)addItemAndClose:(id)sender {
-    OrderItem *item = [[OrderItem alloc] init];
+    OrderItem *item;
+    if (currentMode == selectionModeAdd) {
+        item = [[OrderItem alloc] init];
+    } else if (currentMode == selectionModeEdit) {
+        item = editingItem;
+    }
     BOOL batterSelected = NO;
     BOOL cakeSelected = NO;
     for (SelectionItem *i in cakeTypeSelections) {

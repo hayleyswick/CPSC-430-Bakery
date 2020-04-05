@@ -70,6 +70,8 @@
 		87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C22417EF8500E866A2 /* iPadAdminViewController.xib */; };
 		87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */; };
 		87D166C92417F2A600E866A2 /* iPadSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */; };
+		87E131DB243A917B00C77514 /* iPadEditOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */; };
+		87E131DC243A917B00C77514 /* iPadEditOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +175,9 @@
 		87D166C52417F2A600E866A2 /* iPadSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadSummaryViewController.h; sourceTree = "<group>"; };
 		87D166C62417F2A600E866A2 /* iPadSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadSummaryViewController.m; sourceTree = "<group>"; };
 		87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadSummaryViewController.xib; sourceTree = "<group>"; };
+		87E131D8243A917B00C77514 /* iPadEditOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadEditOrderViewController.h; sourceTree = "<group>"; };
+		87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadEditOrderViewController.m; sourceTree = "<group>"; };
+		87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadEditOrderViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +276,9 @@
 				8785ABC82437F5B80055C23C /* iPadCalculationAddItemViewController.h */,
 				8785ABC92437F5B80055C23C /* iPadCalculationAddItemViewController.m */,
 				8785ABCA2437F5B80055C23C /* iPadCalculationAddItemViewController.xib */,
+				87E131D8243A917B00C77514 /* iPadEditOrderViewController.h */,
+				87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */,
+				87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */,
 			);
 			name = "iPad Views";
 			sourceTree = "<group>";
@@ -480,6 +488,7 @@
 				8785ABD12437FE290055C23C /* CalculationViewItemCell.xib in Resources */,
 				872CA1132421FFCB005D043A /* calculator.png in Resources */,
 				87497A9A241845BE003B0468 /* cake.png in Resources */,
+				87E131DC243A917B00C77514 /* iPadEditOrderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +520,7 @@
 				87CE36AF2436B3B400C48742 /* RESTQueryController.m in Sources */,
 				87B9B3A824381E110034A9BF /* Order.m in Sources */,
 				8785ABD5243800800055C23C /* iPadCalculationViewController.m in Sources */,
+				87E131DB243A917B00C77514 /* iPadEditOrderViewController.m in Sources */,
 				8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */,
 				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
 				87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */,

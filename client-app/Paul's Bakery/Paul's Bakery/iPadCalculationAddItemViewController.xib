@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="batterTypeSelectionView" destination="mQE-PJ-xW7" id="K3W-vM-c6b"/>
                 <outlet property="cakeTypeSelectionView" destination="3Do-oS-xup" id="YeT-Du-JIU"/>
+                <outlet property="navItem" destination="Akp-fj-hDL" id="uYm-3V-3mM"/>
                 <outlet property="quantityControl" destination="8cB-Bm-iLH" id="fyi-QD-RE6"/>
                 <outlet property="quantityLabel" destination="kJe-kS-9NW" id="LeO-5d-hbf"/>
                 <outlet property="quantityView" destination="lhh-Wh-iA7" id="dys-eV-h3Z"/>

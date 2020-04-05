@@ -9,9 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "CalculationViewItemCell.h"
 #import "OrderManager.h"
+#import "iPadCalculationAddItemViewController.h"
 
-@interface iPadCalculationSummaryViewController : UITableViewController
+@protocol SummaryViewDelegate <NSObject>
+@optional
+
+-(void)didDeleteItemFromEditingOrder;
+
+@end
+
+@interface iPadCalculationSummaryViewController : UITableViewController {
+    iPadCalculationAddItemViewController *addItemView;
+}
+
+@property (nonatomic, strong) id<SummaryViewDelegate> delegate;
 
 -(void)didFinishEditingOrder;
+-(void)useAddItemView:(iPadCalculationAddItemViewController *)v;
 
 @end
