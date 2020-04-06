@@ -115,14 +115,66 @@ def delete_order(orderNumber):
 
 def update_batter_quantity(flavor, quantity):
     cursor = connection.cursor()
-    sql = "UPDATE `inventory` SET quantity=quantity WHERE batter_type=flavor"
-    cursor.execute(sql, (flavor, quantity))
+    sql = "UPDATE `inventory` SET quantity=%S WHERE batter_type=%s"
+    cursor.execute(sql, (quantity, flavor))
     connection.commit()
     return{'status':'OK'}
         
 def get_batter_quantity(flavor):
     cursor = connection.cursor()
-    sql = "SELECT quantity FROM `inventory` WHERE batter_type=flavor"
+    sql = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
     cursor.execute(sql, (flavor))
     connection.commit()
     return{'status':'OK'}
+
+def create_baked_good(name, shape, batter_type, batter_per_batch):
+	cursor = connection.cursor()
+	sql = "INSERT INTO `baked_goods` (`name`, `shape`, `batter_type`, `batter_per_batch`) VALUES (%s, %s, %s, %s)"
+	cursor.execute(sql, (name, shape, batter_type, batter_per_batch)
+	connection.commit()
+	return{'status':'OK'}
+	
+def update_baked_good_quantity(shape, batter_type, quantity):
+	cursor = connection.cursor()
+	sql = "UPDATE `baked_goods` SET quantity=%s WHERE shape=%s and batter_type=%s"
+	cursor.execute(sql, (quantity, shape, batter_type))
+	connection.commit()
+	return{'status':'OK'}
+   
+def calculate_batter(order_number):
+	cursor = connection.cursor()
+	sql1 = "SELECT batter_type, cake_type, quantity FROM `order_details` WHERE order_number=%s"
+	cursor.execute(sql1, (order_number))
+	quantity = 0
+	batter_type = ""
+	cake_type = ""
+	entries = cursor.fetchall()
+	for row in entries:
+		batter_type = row[0]
+		cake_type = row[1]
+		quantity = row[2]
+	sql2 = "SELECT (%s * batter_per_batch) FROM `baked_goods` WHERE batter_type=%s and shape=%s"
+	cursor.execute(sql2, (quantity, batter_type, cake_type))
+	connection.commit()
+	return{'status':'OK'}
+
+def calculate_batches_with_extra_batter(shape, batter_type):
+	cursor = connection.cursor()
+    sql1 = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
+    cursor.execute(sql, (batter_type))
+    batter_quantity = 0
+    entries = cursor.fetchall()
+    for row in entries:
+		batter_quantity = row[0]
+    sql2 = "SELECT (%s / batter_per_batch) FROM `baked_goods` WHERE batter_type=%s and shape=%s"
+    cursor.execute(sql, (batter_quantity, batter_type, shape))
+    connection.commit()
+    return{'status':'OK'}
+    
+#very simple method for adjusting formulas
+def adjust_formula(shape, batter_type, batter_per_batch):
+	cursor = connection.cursor()
+	sql = "UPDATE `baked_goods` SET batter_per_batch=%s WHERE batter_type=%s and shape=%s"
+	cursor.execute(sql, (batter_per_batch, batter_type, shape))
+	connection.commit()
+	return{'status':'OK'}
