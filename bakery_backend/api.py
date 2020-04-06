@@ -79,14 +79,62 @@ def api_delete_order():
 def api_update_batter_quantity():
     request.get_data()
     data = request.form
-    batterT = data['batter_type']
+    batter_type = data['batter_type']
     quantity = data['quantity']
     
-    return jsonify(actions.update_batter_quantity(flavor, quantity))
+    return jsonify(actions.update_batter_quantity(batter_type, quantity))
     
 @app.route('/api/get_batter_quantity', methods=['GET'])
 def api_get_batter_quantity():
     
     return jsonify(actions.get_batter_quantity(flavor))
+
+@app.route('/api/create_baked_good', methods=['POST'])
+def api_create_baked_good():
+    request.get_data()
+    data = request.form
+    name = data['name']
+    shape = data['shape']
+    batter_type = data['batter_type']
+    batter_per_batch = data['batter_per_batch']
+    
+    return jsonify(actions.create_baked_good(name, shape, batter_type, batter_per_batch))
+    
+@app.route('/api/update_baked_good_quantity', methods=['POST'])
+def api_update_baked_good_quantity():
+    request.get_data()
+    data = request.form
+    shape = data['shape']
+    batter_type = data['batter_type'] 
+    quantity = data['quantity']
+    
+    return jsonify(actions.update_baked_good_quantity(shape, batter_type, quantity))
+    
+@app.route('/api/calculate_batter()', methods=['POST'])
+def api_calculate_batter():
+    request.get_data()
+    data = request.form
+    order_number = data['order_number']
+    
+    return jsonify(actions.calculate_batter(order_number))
+
+@app.route('/api/calculate_batches_with_extra_batter', methods=['POST'])
+def api_calculate_batches_with_extra_batter():
+    request.get_data()
+    data = request.form
+    shape = data['shape']
+    batter_type = data['batter_type']
+
+    return jsonify(actions.calculate_batches_with_extra_batter(flavor, quantity))
+    
+@app.route('/api/adjust_formula', methods=['POST'])
+def api_adjust_formula():
+    request.get_data()
+    data = request.form
+    shape = data['shape']
+    batter_type = data['batter_type']
+    batter_per_batch = data['batter_per_batch']
+    
+    return jsonify(actions.adjust_formula(shape, batter_type, batter_per_batch))
 
 app.run(host= '0.0.0.0')
