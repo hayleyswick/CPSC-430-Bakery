@@ -130,7 +130,7 @@ def get_batter_quantity(flavor):
 def create_baked_good(name, shape, batter_type, batter_per_batch):
 	cursor = connection.cursor()
 	sql = "INSERT INTO `baked_goods` (`name`, `shape`, `batter_type`, `batter_per_batch`) VALUES (%s, %s, %s, %s)"
-	cursor.execute(sql, (name, shape, batter_type, batter_per_batch)
+	cursor.execute(sql, (name, shape, batter_type, batter_per_batch))
 	connection.commit()
 	return{'status':'OK'}
 	
