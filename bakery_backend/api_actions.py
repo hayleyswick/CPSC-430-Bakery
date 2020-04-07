@@ -160,16 +160,16 @@ def calculate_batter(order_number):
 
 def calculate_batches_with_extra_batter(shape, batter_type):
 	cursor = connection.cursor()
-    sql1 = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
-    cursor.execute(sql, (batter_type))
-    batter_quantity = 0
-    entries = cursor.fetchall()
-    for row in entries:
+	sql1 = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
+	cursor.execute(sql1, (batter_type))
+	batter_quantity = 0
+	entries = cursor.fetchall()
+	for row in entries:
 		batter_quantity = row[0]
-    sql2 = "SELECT (%s / batter_per_batch) FROM `baked_goods` WHERE batter_type=%s and shape=%s"
-    cursor.execute(sql, (batter_quantity, batter_type, shape))
-    connection.commit()
-    return{'status':'OK'}
+	sql2 = "SELECT (%s / batter_per_batch) FROM `baked_goods` WHERE batter_type=%s and shape=%s"
+	cursor.execute(sql2, (batter_quantity, batter_type, shape))
+	connection.commit()
+	return{'status':'OK'}
     
 #very simple method for adjusting formulas
 def adjust_formula(shape, batter_type, batter_per_batch):
