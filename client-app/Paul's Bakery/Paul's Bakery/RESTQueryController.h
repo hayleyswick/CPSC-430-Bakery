@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define ServerAddress "192.168.1.18"
+#define ServerAddress "svc.dosdude1.com"
 #define ServerPort "5000"
 
 typedef enum {
