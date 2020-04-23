@@ -28,13 +28,13 @@
 -(void)loginWithUsername:(NSString *)username withPassword:(NSString *)password {
     NSDictionary *data = @{@"username":username, @"password":password};
     RESTQueryController *c = [[RESTQueryController alloc] init];
-    [c sendRequestToEndpoint:@"/api/login" usingRequestType:RequestTypePOST withData:data asID:connectionLogin delegate:self];
+    [c sendPOSTRequestToEndpoint:@"/api/login" withData:data asID:connectionLogin delegate:self];
 }
 
 -(void)loginWithSession:(NSString *)sessionID {
     NSDictionary *data = @{@"session_id":sessionID};
     RESTQueryController *c = [[RESTQueryController alloc] init];
-    [c sendRequestToEndpoint:@"/api/login_with_session" usingRequestType:RequestTypePOST withData:data asID:connectionLoginWithSession delegate:self];
+    [c sendPOSTRequestToEndpoint:@"/api/login_with_session" withData:data asID:connectionLoginWithSession delegate:self];
 }
 
 -(void)connection:(RESTQueryController *)conn didFinishWithData:(NSDictionary *)data {

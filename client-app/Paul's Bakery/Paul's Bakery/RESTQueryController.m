@@ -15,43 +15,45 @@
     return self;
 }
 
--(void)sendRequestToEndpoint:(NSString *)endp usingRequestType:(RequestType)type withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget {
+-(void)sendPOSTRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget {
     
     self.delegate = delegateTarget;
     self.connID = connID;
     
-    NSString *queryString = @"";
-    NSString *requestMethod = @"POST";
-    
-    for (NSString *key in query.allKeys) {
-        if (![queryString isEqualToString:@""]) {
-            queryString = [queryString stringByAppendingString:@"&"];
-        }
-        queryString = [queryString stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [query objectForKey:key]]];
-    }
-    
-    switch (type) {
-        case RequestTypeGET:
-            requestMethod = @"GET";
-            break;
-        case RequestTypePOST:
-            requestMethod = @"POST";
-            break;
-        default:
-            requestMethod = @"GET";
-            break;
-    }
-    
+    NSString *queryString = [self getQueryStringForDict:query];
     NSData *queryData = [queryString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *queryLength = [NSString stringWithFormat:@"%d", [queryData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%s:%s%@", ServerAddress, ServerPort, endp]]];
-    [request setHTTPMethod:requestMethod];
+    [request setHTTPMethod:@"POST"];
     [request setValue:queryLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:queryData];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
+}
+-(void)sendGETRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget {
+    self.delegate = delegateTarget;
+    self.connID = connID;
+    
+    NSString *queryString = [self getQueryStringForDict:query];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%s:%s%@?%@", ServerAddress, ServerPort, endp, queryString]]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [conn start];
+}
+
+-(NSString *)getQueryStringForDict:(NSDictionary *)dict {
+    NSString *queryString = @"";
+    
+    for (NSString *key in dict.allKeys) {
+        if (![queryString isEqualToString:@""]) {
+            queryString = [queryString stringByAppendingString:@"&"];
+        }
+        queryString = [queryString stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [dict objectForKey:key]]];
+    }
+    return queryString;
 }
 
 #pragma mark NSURLConnection Delegate Methods

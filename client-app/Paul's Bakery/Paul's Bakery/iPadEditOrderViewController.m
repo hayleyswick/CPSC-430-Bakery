@@ -32,20 +32,28 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationItem setTitle:@"Order Details"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)closeView {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)addOrderAndClose {
+    
+    [self closeView];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -57,30 +65,62 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CellIdentifier";
+    static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        if (indexPath.section == 0) {
+        if (indexPath.section == editOrderSectionCustomer) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
+            CustomerTableViewCell *cell = [nib objectAtIndex:0];
+            cell.customerNameLabel.text = @"Customer Name";
+            cell.phoneNumberLabel.text = @"(111) 111-1111";
+            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+            return cell;
+        } else if (indexPath.section == editOrderSectionNotes) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
+            textView.font = [UIFont systemFontOfSize:14.0];
+            
+            
             
             // Add a UITextField
-            UITextField *textField = [[UITextField alloc] init];
+            //UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, cell.frame.size.height - 4)];
             // Set a unique tag on each text field
             //textField.tag = titleTag2 + indexPath.row;
             // Add general UITextAttributes if necessary
-            textField.enablesReturnKeyAutomatically = YES;
-            textField.autocorrectionType = UITextAutocorrectionTypeNo;
-            textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-            [cell.contentView addSubview:textField];
+            //textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            //textField.enablesReturnKeyAutomatically = YES;
+            //textField.autocorrectionType = UITextAutocorrectionTypeNo;
+            //textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            textView.backgroundColor = [UIColor clearColor];
+            [cell.contentView addSubview:textView];
+            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
         }
     }
     
     return cell;
 }
-
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == editOrderSectionCustomer) {
+        return @"Customer";
+    } else if (section == editOrderSectionNotes) {
+        return @"Order Notes";
+    }
+    return @"";
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == editOrderSectionCustomer) {
+        return 58;
+    } else if (indexPath.section == editOrderSectionNotes) {
+        return textViewCellHeight;
+    }
+    return 44;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

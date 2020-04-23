@@ -1,38 +1,35 @@
 //
-//  iPadLogViewController.m
+//  iPadSelectCustomerViewController.m
 //  Paul's Bakery
 //
-//  Created by Collin Mistr on 3/10/20.
+//  Created by Collin Mistr on 4/21/20.
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
-#import "iPadLogViewController.h"
+#import "iPadSelectCustomerViewController.h"
 
-@interface iPadLogViewController ()
+@interface iPadSelectCustomerViewController ()
 
 @end
 
-@implementation iPadLogViewController
-
+@implementation iPadSelectCustomerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage imageNamed:@"notebook.png"] tag:1];
+        self.modalPresentationStyle = UIModalPresentationFormSheet;
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = @"Paul's Bakery Batter Calculator";
+    [self.navigationItem setTitle:@"Select Customer"];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New Customer" style:UIBarButtonItemStylePlain target:self action:@selector(transitionToAddNewCustomerView)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -40,6 +37,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)closeView {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -59,16 +60,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"LogEntryCell";
-    LogEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CustomerViewCell";
+    CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LogEntryTableViewCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.orderNumberLabel.text = @"OrderNum1";
-    cell.dateLabel.text = @"12/1/1999";
-    cell.customerNameLabel.text = @"Joe Schmoe";
+    
+    cell.customerNameLabel.text = @"Customer Name";
+    cell.phoneNumberLabel.text = @"(111) 111-1111";
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
     
     return cell;
@@ -76,7 +79,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 58;
+}
+-(void)transitionToAddNewCustomerView {
+    if (!editCustomerView) {
+        editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    }
+    [editCustomerView setViewMode:customerEditModeAdd];
+    [self.navigationController pushViewController:editCustomerView animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.
@@ -122,12 +132,16 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!detailVC) {
-        detailVC = [[iPadLogDetailViewController alloc] initWithNibName:@"iPadLogDetailViewController" bundle:nil];
-        detailVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    if (!editOrderView) {
+        editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
     }
-    [self presentViewController:detailVC animated:YES completion:nil];
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:editOrderView animated:YES];
 }
 
 

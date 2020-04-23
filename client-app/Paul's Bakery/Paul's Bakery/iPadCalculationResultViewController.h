@@ -10,12 +10,13 @@
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationAddItemViewController.h"
 #import "OrderManager.h"
-#import "iPadEditOrderViewController.h"
+#import "iPadSelectCustomerViewController.h"
+#import "SheetNavigationController.h"
 
 @interface iPadCalculationResultViewController : UIViewController <AddOrderItemDelegate> {
     iPadCalculationSummaryViewController *summaryTableView;
     iPadCalculationAddItemViewController *addItemView;
-    iPadEditOrderViewController *editOrderInfoView;
+    SheetNavigationController *selectCustomerView;
 }
 
 -(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view;

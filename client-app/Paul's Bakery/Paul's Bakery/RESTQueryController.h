@@ -16,10 +16,6 @@ typedef enum {
     connectionLoginWithSession = 1
 } RESTConnectionID;
 
-typedef enum {
-    RequestTypeGET = 0,
-    RequestTypePOST = 1
-} RequestType;
 
 @protocol RESTQueryControllerDelegate;
 
@@ -30,7 +26,8 @@ typedef enum {
 @property (nonatomic, strong) NSMutableData *responseData;
 
 -(id)init;
--(void)sendRequestToEndpoint:(NSString *)endp usingRequestType:(RequestType)type withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget;
+-(void)sendPOSTRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget;
+-(void)sendGETRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget;
 
 @end
 

@@ -57,9 +57,8 @@
     }
 }
 - (IBAction)showEditOrdderInfoView:(id)sender {
-    if (!editOrderInfoView) {
-        editOrderInfoView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
-    }
-    [self presentViewController:editOrderInfoView animated:YES completion:nil];
+    iPadSelectCustomerViewController *v = [[iPadSelectCustomerViewController alloc] initWithNibName:@"iPadSelectCustomerViewController" bundle:nil];
+    selectCustomerView = [[SheetNavigationController alloc] initWithRootViewController:v];
+    [self presentViewController:selectCustomerView animated:YES completion:nil];
 }
 @end

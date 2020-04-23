@@ -66,7 +66,7 @@
     cell.batterTypeImage.image = item.batterTypeImage;
     cell.quantityLabel.text = [NSString stringWithFormat:@"Quantity: %d", item.quantity];
     
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
     
     return cell;
 }

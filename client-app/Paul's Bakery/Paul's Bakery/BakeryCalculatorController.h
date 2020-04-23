@@ -29,6 +29,11 @@ typedef enum {
 -(void)handleError:(NSString *)err_code;
 @end
 
+@protocol BakeryCalculatorCustomerDelegate <NSObject>
+@optional
+-(void)handleError:(NSString *)err_code;
+@end
+
 @interface BakeryCalculatorController : NSObject {
     User *loggedInUser;
 }

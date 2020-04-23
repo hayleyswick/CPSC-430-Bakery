@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomerTableViewCell.h"
 
-@interface iPadEditOrderViewController : UITableViewController
+#define textViewCellHeight 155
+
+typedef enum {
+    editOrderSectionCustomer = 0,
+    editOrderSectionNotes = 1
+} editOrderSection;
+
+@interface iPadEditOrderViewController : UITableViewController 
 
 @end

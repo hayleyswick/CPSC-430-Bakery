@@ -32,6 +32,8 @@
 		8767AC43241F3F5E00C8FD73 /* round.png in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC42241F3F5E00C8FD73 /* round.png */; };
 		8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */; };
 		8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */; };
+		876DC54C2451475E00A1A5DA /* CustomerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DC54B2451475E00A1A5DA /* CustomerManager.m */; };
+		876DC54F2451476600A1A5DA /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DC54E2451476600A1A5DA /* Customer.m */; };
 		8785ABBC2437BFA80055C23C /* ThemedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785ABBB2437BFA80055C23C /* ThemedTextField.m */; };
 		8785ABBE2437C4A70055C23C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8785ABBD2437C4A70055C23C /* logo.png */; };
 		8785ABC72437D7060055C23C /* WindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785ABC62437D7060055C23C /* WindowManager.m */; };
@@ -48,6 +50,18 @@
 		87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A124381C5C0034A9BF /* OrderItem.m */; };
 		87B9B3A524381C7C0034A9BF /* OrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A424381C7C0034A9BF /* OrderManager.m */; };
 		87B9B3A824381E110034A9BF /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A724381E110034A9BF /* Order.m */; };
+		87BD39A2244FE520005A7F59 /* SheetNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39A1244FE520005A7F59 /* SheetNavigationController.m */; };
+		87BD39A6244FE773005A7F59 /* iPadSelectCustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39A4244FE773005A7F59 /* iPadSelectCustomerViewController.m */; };
+		87BD39A7244FE773005A7F59 /* iPadSelectCustomerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BD39A5244FE773005A7F59 /* iPadSelectCustomerViewController.xib */; };
+		87BD39AB244FE7C2005A7F59 /* CustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39A9244FE7C2005A7F59 /* CustomerTableViewCell.m */; };
+		87BD39AC244FE7C2005A7F59 /* CustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BD39AA244FE7C2005A7F59 /* CustomerTableViewCell.xib */; };
+		87BD39AE244FEBC7005A7F59 /* sihouette-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BD39AD244FEBC7005A7F59 /* sihouette-large.png */; };
+		87BD39B0244FEBCA005A7F59 /* sihouette-large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BD39AF244FEBCA005A7F59 /* sihouette-large@2x.png */; };
+		87BD39B4244FF31F005A7F59 /* iPadEditCustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39B2244FF31F005A7F59 /* iPadEditCustomerViewController.m */; };
+		87BD39B5244FF31F005A7F59 /* iPadEditCustomerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BD39B3244FF31F005A7F59 /* iPadEditCustomerViewController.xib */; };
+		87BD39B824500089005A7F59 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39B724500089005A7F59 /* Form.m */; };
+		87BD39BB24500097005A7F59 /* FormSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39BA24500097005A7F59 /* FormSection.m */; };
+		87BD39BE245000A1005A7F59 /* FormItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BD39BD245000A1005A7F59 /* FormItem.m */; };
 		87C0C5272417C9C80093840D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C5262417C9C80093840D /* Foundation.framework */; };
 		87C0C5292417C9C80093840D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C5282417C9C80093840D /* CoreGraphics.framework */; };
 		87C0C52B2417C9C80093840D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C52A2417C9C80093840D /* UIKit.framework */; };
@@ -116,6 +130,10 @@
 		8767AC49241F42BB00C8FD73 /* ItemSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelectionView.h; sourceTree = "<group>"; };
 		8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelectionView.m; sourceTree = "<group>"; };
 		8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSelectionView.xib; sourceTree = "<group>"; };
+		876DC54A2451475E00A1A5DA /* CustomerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManager.h; sourceTree = "<group>"; };
+		876DC54B2451475E00A1A5DA /* CustomerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManager.m; sourceTree = "<group>"; };
+		876DC54D2451476600A1A5DA /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		876DC54E2451476600A1A5DA /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		8785ABBA2437BFA80055C23C /* ThemedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemedTextField.h; sourceTree = "<group>"; };
 		8785ABBB2437BFA80055C23C /* ThemedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemedTextField.m; sourceTree = "<group>"; };
 		8785ABBD2437C4A70055C23C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -142,6 +160,25 @@
 		87B9B3A424381C7C0034A9BF /* OrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderManager.m; sourceTree = "<group>"; };
 		87B9B3A624381E110034A9BF /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		87B9B3A724381E110034A9BF /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		87BD39A0244FE520005A7F59 /* SheetNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetNavigationController.h; sourceTree = "<group>"; };
+		87BD39A1244FE520005A7F59 /* SheetNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetNavigationController.m; sourceTree = "<group>"; };
+		87BD39A3244FE773005A7F59 /* iPadSelectCustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadSelectCustomerViewController.h; sourceTree = "<group>"; };
+		87BD39A4244FE773005A7F59 /* iPadSelectCustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadSelectCustomerViewController.m; sourceTree = "<group>"; };
+		87BD39A5244FE773005A7F59 /* iPadSelectCustomerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadSelectCustomerViewController.xib; sourceTree = "<group>"; };
+		87BD39A8244FE7C2005A7F59 /* CustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableViewCell.h; sourceTree = "<group>"; };
+		87BD39A9244FE7C2005A7F59 /* CustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTableViewCell.m; sourceTree = "<group>"; };
+		87BD39AA244FE7C2005A7F59 /* CustomerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerTableViewCell.xib; sourceTree = "<group>"; };
+		87BD39AD244FEBC7005A7F59 /* sihouette-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sihouette-large.png"; sourceTree = "<group>"; };
+		87BD39AF244FEBCA005A7F59 /* sihouette-large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sihouette-large@2x.png"; sourceTree = "<group>"; };
+		87BD39B1244FF31F005A7F59 /* iPadEditCustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadEditCustomerViewController.h; sourceTree = "<group>"; };
+		87BD39B2244FF31F005A7F59 /* iPadEditCustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadEditCustomerViewController.m; sourceTree = "<group>"; };
+		87BD39B3244FF31F005A7F59 /* iPadEditCustomerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadEditCustomerViewController.xib; sourceTree = "<group>"; };
+		87BD39B624500089005A7F59 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		87BD39B724500089005A7F59 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
+		87BD39B924500097005A7F59 /* FormSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormSection.h; sourceTree = "<group>"; };
+		87BD39BA24500097005A7F59 /* FormSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormSection.m; sourceTree = "<group>"; };
+		87BD39BC245000A1005A7F59 /* FormItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormItem.h; sourceTree = "<group>"; };
+		87BD39BD245000A1005A7F59 /* FormItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormItem.m; sourceTree = "<group>"; };
 		87C0C5232417C9C80093840D /* Paul's Bakery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paul's Bakery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C0C5262417C9C80093840D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		87C0C5282417C9C80093840D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -222,6 +259,16 @@
 				87B9B3A724381E110034A9BF /* Order.m */,
 				87B9B3A024381C5C0034A9BF /* OrderItem.h */,
 				87B9B3A124381C5C0034A9BF /* OrderItem.m */,
+				87BD39B624500089005A7F59 /* Form.h */,
+				87BD39B724500089005A7F59 /* Form.m */,
+				87BD39B924500097005A7F59 /* FormSection.h */,
+				87BD39BA24500097005A7F59 /* FormSection.m */,
+				87BD39BC245000A1005A7F59 /* FormItem.h */,
+				87BD39BD245000A1005A7F59 /* FormItem.m */,
+				876DC54A2451475E00A1A5DA /* CustomerManager.h */,
+				876DC54B2451475E00A1A5DA /* CustomerManager.m */,
+				876DC54D2451476600A1A5DA /* Customer.h */,
+				876DC54E2451476600A1A5DA /* Customer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -235,6 +282,9 @@
 				8785ABCD2437FE290055C23C /* CalculationViewItemCell.h */,
 				8785ABCE2437FE290055C23C /* CalculationViewItemCell.m */,
 				8785ABCF2437FE290055C23C /* CalculationViewItemCell.xib */,
+				87BD39A8244FE7C2005A7F59 /* CustomerTableViewCell.h */,
+				87BD39A9244FE7C2005A7F59 /* CustomerTableViewCell.m */,
+				87BD39AA244FE7C2005A7F59 /* CustomerTableViewCell.xib */,
 				8767AC49241F42BB00C8FD73 /* ItemSelectionView.h */,
 				8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */,
 				8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */,
@@ -242,6 +292,8 @@
 				872CA10C2421FCA5005D043A /* ThemedButton.m */,
 				8785ABBA2437BFA80055C23C /* ThemedTextField.h */,
 				8785ABBB2437BFA80055C23C /* ThemedTextField.m */,
+				87BD39A0244FE520005A7F59 /* SheetNavigationController.h */,
+				87BD39A1244FE520005A7F59 /* SheetNavigationController.m */,
 			);
 			name = "Universal Views";
 			sourceTree = "<group>";
@@ -276,6 +328,12 @@
 				8785ABC82437F5B80055C23C /* iPadCalculationAddItemViewController.h */,
 				8785ABC92437F5B80055C23C /* iPadCalculationAddItemViewController.m */,
 				8785ABCA2437F5B80055C23C /* iPadCalculationAddItemViewController.xib */,
+				87BD39A3244FE773005A7F59 /* iPadSelectCustomerViewController.h */,
+				87BD39A4244FE773005A7F59 /* iPadSelectCustomerViewController.m */,
+				87BD39A5244FE773005A7F59 /* iPadSelectCustomerViewController.xib */,
+				87BD39B1244FF31F005A7F59 /* iPadEditCustomerViewController.h */,
+				87BD39B2244FF31F005A7F59 /* iPadEditCustomerViewController.m */,
+				87BD39B3244FF31F005A7F59 /* iPadEditCustomerViewController.xib */,
 				87E131D8243A917B00C77514 /* iPadEditOrderViewController.h */,
 				87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */,
 				87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */,
@@ -343,6 +401,8 @@
 				872CA1122421FFCB005D043A /* calculator.png */,
 				872CA1102421FFC6005D043A /* calculator@2x.png */,
 				872CA10E2421FFC0005D043A /* calculator@3x.png */,
+				87BD39AD244FEBC7005A7F59 /* sihouette-large.png */,
+				87BD39AF244FEBCA005A7F59 /* sihouette-large@2x.png */,
 				8767AC3C241F3CF000C8FD73 /* quarter.png */,
 				8767AC3E241F3F5600C8FD73 /* half.png */,
 				8767AC40241F3F5A00C8FD73 /* full.png */,
@@ -462,12 +522,15 @@
 				8767AC43241F3F5E00C8FD73 /* round.png in Resources */,
 				87497AA624186CC6003B0468 /* notebook.png in Resources */,
 				8785ABBE2437C4A70055C23C /* logo.png in Resources */,
+				87BD39A7244FE773005A7F59 /* iPadSelectCustomerViewController.xib in Resources */,
 				87C0C5312417C9C80093840D /* InfoPlist.strings in Resources */,
 				87497AC024187FB7003B0468 /* iPadLogDetailViewController.xib in Resources */,
 				8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */,
 				8785ABDB2438012D0055C23C /* iPadCalculationSummaryViewController.xib in Resources */,
 				87497AA024186C25003B0468 /* star.png in Resources */,
+				87BD39B0244FEBCA005A7F59 /* sihouette-large@2x.png in Resources */,
 				872CA10F2421FFC0005D043A /* calculator@3x.png in Resources */,
+				87BD39B5244FF31F005A7F59 /* iPadEditCustomerViewController.xib in Resources */,
 				87497AA424186C2E003B0468 /* star@3x.png in Resources */,
 				8785ABD6243800800055C23C /* iPadCalculationViewController.xib in Resources */,
 				8785ABCC2437F5B80055C23C /* iPadCalculationAddItemViewController.xib in Resources */,
@@ -481,11 +544,13 @@
 				87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */,
 				8785ABE0243803790055C23C /* iPadCalculationResultViewController.xib in Resources */,
 				8767AC3F241F3F5600C8FD73 /* half.png in Resources */,
+				87BD39AE244FEBC7005A7F59 /* sihouette-large.png in Resources */,
 				87CE36A92436AABC00C48742 /* iPadLoginViewController.xib in Resources */,
 				87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */,
 				87497AA824186CF4003B0468 /* notebook@2x.png in Resources */,
 				87C0C5392417C9C80093840D /* Images.xcassets in Resources */,
 				8785ABD12437FE290055C23C /* CalculationViewItemCell.xib in Resources */,
+				87BD39AC244FE7C2005A7F59 /* CustomerTableViewCell.xib in Resources */,
 				872CA1132421FFCB005D043A /* calculator.png in Resources */,
 				87497A9A241845BE003B0468 /* cake.png in Resources */,
 				87E131DC243A917B00C77514 /* iPadEditOrderViewController.xib in Resources */,
@@ -510,10 +575,12 @@
 				8785ABBC2437BFA80055C23C /* ThemedTextField.m in Sources */,
 				87CA19B72436D7AA00036F7B /* User.m in Sources */,
 				87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */,
+				87BD39AB244FE7C2005A7F59 /* CustomerTableViewCell.m in Sources */,
 				87CA19BD2436E50600036F7B /* PreferencesHandler.m in Sources */,
 				87CE36A82436AABC00C48742 /* iPadLoginViewController.m in Sources */,
 				8785ABDF243803790055C23C /* iPadCalculationResultViewController.m in Sources */,
 				87497AAE24186DAB003B0468 /* iPadLogViewController.m in Sources */,
+				87BD39B824500089005A7F59 /* Form.m in Sources */,
 				87497ABF24187FB7003B0468 /* iPadLogDetailViewController.m in Sources */,
 				872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */,
 				8785ABD02437FE290055C23C /* CalculationViewItemCell.m in Sources */,
@@ -522,17 +589,24 @@
 				8785ABD5243800800055C23C /* iPadCalculationViewController.m in Sources */,
 				87E131DB243A917B00C77514 /* iPadEditOrderViewController.m in Sources */,
 				8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */,
+				87BD39BE245000A1005A7F59 /* FormItem.m in Sources */,
+				87BD39BB24500097005A7F59 /* FormSection.m in Sources */,
+				876DC54C2451475E00A1A5DA /* CustomerManager.m in Sources */,
 				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
+				87BD39A6244FE773005A7F59 /* iPadSelectCustomerViewController.m in Sources */,
 				87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */,
 				8785ABCB2437F5B80055C23C /* iPadCalculationAddItemViewController.m in Sources */,
+				87BD39B4244FF31F005A7F59 /* iPadEditCustomerViewController.m in Sources */,
 				87B9B3A524381C7C0034A9BF /* OrderManager.m in Sources */,
 				87497AB324187595003B0468 /* LogEntryTableViewCell.m in Sources */,
 				87C0C5372417C9C80093840D /* AppDelegate.m in Sources */,
 				87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */,
 				87C0C5332417C9C80093840D /* main.m in Sources */,
 				87CE36AC2436AB6E00C48742 /* BakeryCalculatorController.m in Sources */,
+				87BD39A2244FE520005A7F59 /* SheetNavigationController.m in Sources */,
 				8785ABDA2438012D0055C23C /* iPadCalculationSummaryViewController.m in Sources */,
 				8785ABC72437D7060055C23C /* WindowManager.m in Sources */,
+				876DC54F2451476600A1A5DA /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
