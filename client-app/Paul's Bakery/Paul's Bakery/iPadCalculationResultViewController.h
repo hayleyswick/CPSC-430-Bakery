@@ -16,7 +16,7 @@
 @interface iPadCalculationResultViewController : UIViewController <AddOrderItemDelegate> {
     iPadCalculationSummaryViewController *summaryTableView;
     iPadCalculationAddItemViewController *addItemView;
-    SheetNavigationController *selectCustomerView;
+    iPadSelectCustomerViewController *selectCustomerView;
 }
 
 -(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view;

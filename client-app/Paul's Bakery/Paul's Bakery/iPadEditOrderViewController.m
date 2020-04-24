@@ -48,6 +48,11 @@
     
     [self closeView];
 }
+-(void)setSelectedCustomer:(Customer *)cust {
+    NSLog(@"Setting customer: %@", cust.customerID);
+    selectedCustomer = cust;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -73,8 +78,8 @@
         if (indexPath.section == editOrderSectionCustomer) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
             CustomerTableViewCell *cell = [nib objectAtIndex:0];
-            cell.customerNameLabel.text = @"Customer Name";
-            cell.phoneNumberLabel.text = @"(111) 111-1111";
+            cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", selectedCustomer.firstname, selectedCustomer.lastname];
+            cell.phoneNumberLabel.text = selectedCustomer.phone;
             cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
             return cell;
         } else if (indexPath.section == editOrderSectionNotes) {

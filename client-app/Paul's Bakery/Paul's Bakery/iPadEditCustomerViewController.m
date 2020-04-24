@@ -44,19 +44,19 @@
     form = [[Form alloc] init];
     FormSection *name = [[FormSection alloc] init];
     name.title = @"Customer Name";
-    [name addItem:[[FormItem alloc] initWithIdentifier:@"customer_firstname" withPlaceholder:@"First Name"]];
-    [name addItem:[[FormItem alloc] initWithIdentifier:@"customer_lastname" withPlaceholder:@"Last Name"]];
+    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerFirstname withPlaceholder:@"First Name"]];
+    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerLastname withPlaceholder:@"Last Name"]];
     [form addSection:name];
     FormSection *phone = [[FormSection alloc] init];
     phone.title = @"Phone Number";
-    [phone addItem:[[FormItem alloc] initWithIdentifier:@"customer_phone" withPlaceholder:@"Phone"]];
+    [phone addItem:[[FormItem alloc] initWithIdentifier:@kCustomerPhoneNumber withPlaceholder:@"Phone"]];
     [form addSection:phone];
     FormSection *address = [[FormSection alloc] init];
     address.title = @"Address";
-    [address addItem:[[FormItem alloc] initWithIdentifier:@"customer_street" withPlaceholder:@"12345 Example Dr."]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@"customer_city" withPlaceholder:@"City"]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@"customer_state" withPlaceholder:@"State"]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@"customer_zip" withPlaceholder:@"ZIP Code"]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerStreet withPlaceholder:@"12345 Example Dr."]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerCity withPlaceholder:@"City"]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerState withPlaceholder:@"State"]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerZip withPlaceholder:@"ZIP Code"]];
     [form addSection:address];
 }
 - (void)didReceiveMemoryWarning
@@ -72,9 +72,21 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)addCustomer {
-    
+    NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
+    for (FormItem *i in [form getAllItems]) {
+        NSLog(@"%@: %@", i.identifier, i.value);
+        [d setObject:i.value forKey:i.identifier];
+    }
+    [CustomerManager sharedInstance].delegate = self;
+    [[CustomerManager sharedInstance] addCustomer:[[Customer alloc] initWithDict:d]];
 }
-
+-(void)customerWasAdded:(Customer *)cust {
+    if (!editOrderView) {
+        editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
+    }
+    [editOrderView setSelectedCustomer:cust];
+    [self.navigationController pushViewController:editOrderView animated:YES];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

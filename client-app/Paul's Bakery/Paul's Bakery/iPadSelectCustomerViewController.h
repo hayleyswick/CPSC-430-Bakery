@@ -10,10 +10,12 @@
 #import "CustomerTableViewCell.h"
 #import "iPadEditCustomerViewController.h"
 #import "iPadEditOrderViewController.h"
+#import "CustomerManager.h"
 
-@interface iPadSelectCustomerViewController : UITableViewController {
+@interface iPadSelectCustomerViewController : UITableViewController <CustomerManagerDelegate> {
     iPadEditCustomerViewController *editCustomerView;
     iPadEditOrderViewController *editOrderView;
+    NSArray *preUpdate;
 }
 
 @end

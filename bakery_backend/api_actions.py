@@ -37,6 +37,7 @@ def verify_session(session_id):
 	cursor = connection.cursor()
 	sql = "SELECT `user_id` FROM `sessions` WHERE `session_id`=%s"
 	cursor.execute(sql, (session_id))
+	connection.commit()
 	result = cursor.fetchone()
 
 	if not result or len(result) < 1:
@@ -62,17 +63,65 @@ def create_user(username, password, user_type, firstname, lastname):
 	cursor = connection.cursor()
 	sql = "SELECT COUNT(`username`) FROM `users` WHERE `username`=%s"
 	cursor.execute(sql, (username))
+	connection.commit()
 	result = cursor.fetchone()
 	count = result['COUNT(`username`)']
 
 	if count > 0:
 		return {'status': 'ERR',
-		       'code': 'user_exists' }
+				'code': 'user_exists' }
 	else:
-	    sql = "INSERT INTO `users` (`id`, `username`, `password`, `type`, `firstname`, `lastname`) VALUES (%s, %s, %s, %s, %s, %s)"
-	    cursor.execute(sql, (generate_random_id(), username, password, user_type, firstname, lastname))
-	    connection.commit()
-	    return {'status':'OK'}
+		sql = "INSERT INTO `users` (`id`, `username`, `password`, `type`, `firstname`, `lastname`) VALUES (%s, %s, %s, %s, %s, %s)"
+		cursor.execute(sql, (generate_random_id(), username, password, user_type, firstname, lastname))
+		connection.commit()
+		return {'status':'OK'}
+
+
+
+def add_customer(session_id, firstname, lastname, phone_number, street, city, state, zip):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "SELECT `id` FROM `customers` WHERE `firstname`=%s AND `lastname`=%s AND `phone_number`=%s"
+		cursor.execute(sql, (firstname, lastname, phone_number))
+		result = cursor.fetchone()
+
+		if not result or len(result) < 1:
+			id = generate_random_id()
+			sql = "INSERT INTO `customers` (`id`, `firstname`, `lastname`, `phone_number`, `street`, `city`, `state`, `zip`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+			cursor.execute(sql, (id, firstname, lastname, phone_number, street, city, state, zip))
+			connection.commit()
+			customer = {'id':id,
+						'firstname':firstname,
+						'lastname':lastname,
+						'phone_number':phone_number,
+						'street':street,
+						'city':city,
+						'state':state,
+						'zip':zip}
+			return {'status':'OK',
+					'data':customer}
+		else:
+			return {'status':'ERR',
+					'code':'customer_exists'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def get_customers(session_id):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "SELECT * FROM `customers`"
+		cursor.execute(sql)
+		connection.commit()
+		result = cursor.fetchall()
+
+		return {'status':'OK',
+				'data':result}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
 
 def create_order(customer_firstname, customer_lastname):
 	cursor = connection.cursor()
@@ -80,9 +129,9 @@ def create_order(customer_firstname, customer_lastname):
 	cursor.execute(sql, (customer_firstname, customer_lastname))
 	sql = "SELECT order_number FROM orders WHERE customer_firstname = %s AND customer_lastname = %s"
 	cursor.execute(sql, (customer_firstname, customer_lastname))
+	connection.commit()
 	order_number = cursor.fetchone()
 
-	connection.commit()
 	return {'status':'OK', 
 			'order_number':order_number
 			}

@@ -10,6 +10,7 @@
 #import "RESTQueryController.h"
 #import "User.h"
 #import "PreferencesHandler.h"
+#import "Customer.h"
 
 #define kResponseState "status"
 #define kErrorCode "code"
@@ -31,7 +32,8 @@ typedef enum {
 
 @protocol BakeryCalculatorCustomerDelegate <NSObject>
 @optional
--(void)handleError:(NSString *)err_code;
+-(void)didReceiveCustomerData:(NSArray *)customerData;
+-(void)didAddCustomerWithData:(NSDictionary *)data;
 @end
 
 @interface BakeryCalculatorController : NSObject {
@@ -40,11 +42,14 @@ typedef enum {
 
 @property (nonatomic, strong) id <BakeryCalculatorLoginDelegate> loginDelegate;
 @property (nonatomic, strong) id <BakeryCalculatorErrorDelegate> errorDelegate;
+@property (nonatomic, strong) id <BakeryCalculatorCustomerDelegate> customerDelegate;
 
 -(id)init;
 +(BakeryCalculatorController *)sharedInstance;
 -(void)loginWithUsername:(NSString *)username withPassword:(NSString *)password;
 -(void)loginWithSession:(NSString *)sessionID;
 -(User *)loggedInUser;
+-(void)retrieveCustomers;
+-(void)addCustomer:(Customer *)c;
 
 @end

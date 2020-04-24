@@ -62,6 +62,12 @@
                 [self.loginDelegate didLoginAsUser:loggedInUser];
                 break;
             }
+            case connectionGetCustomers:
+                [self.customerDelegate didReceiveCustomerData:[data objectForKey:@"data"]];
+                break;
+            case connectionAddCustomer:
+                [self.customerDelegate didAddCustomerWithData:[data objectForKey:@"data"]];
+                break;
         }
     } else {
         [self.errorDelegate handleError:[data objectForKey:@kErrorCode]];
@@ -79,6 +85,15 @@
     }
     return loggedInUser;
 }
-
-
+-(void)retrieveCustomers {
+    NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID]};
+    RESTQueryController *c = [[RESTQueryController alloc] init];
+    [c sendGETRequestToEndpoint:@"/api/get_customers" withData:data asID:connectionGetCustomers delegate:self];
+}
+-(void)addCustomer:(Customer *)cust {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[cust dictRepresentation]];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    RESTQueryController *c = [[RESTQueryController alloc] init];
+    [c sendPOSTRequestToEndpoint:@"/api/add_customer" withData:data asID:connectionAddCustomer delegate:self];
+}
 @end

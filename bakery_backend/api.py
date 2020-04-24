@@ -40,6 +40,30 @@ def api_create_user():
 	return jsonify(actions.create_user(username, password, user_type, firstname, lastname))
 
 
+@app.route('/api/add_customer', methods=['POST'])
+def api_add_customer():
+    request.get_data()
+    data = request.form
+
+    session_id = data['session_id']
+    firstname = data['firstname']
+    lastname = data['lastname']
+    phone_number = data['phone_number']
+    street = data['street']
+    city = data['city']
+    state = data['state']
+    zip = data['zip']
+
+    return jsonify(actions.add_customer(session_id, firstname, lastname, phone_number, street, city, state, zip))
+
+@app.route('/api/get_customers', methods=['GET'])
+def api_get_customers():
+
+    session_id = request.args.get('session_id')
+
+    return jsonify(actions.get_customers(session_id))
+
+
 
 
 #Will need to be redone, check against new database schema in bakery.sql

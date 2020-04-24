@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#define kCustomerID "id"
+#define kCustomerFirstname "firstname"
+#define kCustomerLastname "lastname"
+#define kCustomerPhoneNumber "phone_number"
+#define kCustomerStreet "street"
+#define kCustomerCity "city"
+#define kCustomerState "state"
+#define kCustomerZip "zip"
+
+
 @interface Customer : NSObject
 
 @property NSString *customerID;
@@ -18,5 +28,10 @@
 @property NSString *city;
 @property NSString *state;
 @property NSString *zip;
+
+-(id)init;
+-(id)initWithDict:(NSDictionary *)dict;
+-(NSDictionary *)dictRepresentation;
+-(BOOL)isEqual:(Customer *)o;
 
 @end

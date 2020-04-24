@@ -15,5 +15,7 @@
 
 -(id)init;
 -(void)addSection:(FormSection *)section;
+-(FormItem *)getItemWithIdentifier:(NSString *)identifier;
+-(NSArray *)getAllItems;
 
 @end

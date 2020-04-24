@@ -104,10 +104,16 @@
     NSString *info = @"";
     if ([err_code isEqualToString:@"incorrect_login"]) {
         title = @"Login Invalid";
-        info = @"The username or password you have entered is invalid";
+        info = @"The username or password you have entered is invalid.";
     } else if ([err_code isEqualToString:@"conn_error"]) {
         title = @"Network Error";
-        info = @"The server could not be reached. Please check your Internet connection and try again";
+        info = @"The server could not be reached. Please check your Internet connection and try again.";
+    } else if ([err_code isEqualToString:@"invalid_session"]) {
+        title = @"Invalid Session";
+        info = @"Your current session has expired. You will now be logged out.";
+    } else if ([err_code isEqualToString:@"customer_exists"]) {
+        title = @"Customer Exists";
+        info = @"The specified customer has already been added.";
     }
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:info delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
