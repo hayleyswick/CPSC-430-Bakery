@@ -96,4 +96,13 @@
     RESTQueryController *c = [[RESTQueryController alloc] init];
     [c sendPOSTRequestToEndpoint:@"/api/add_customer" withData:data asID:connectionAddCustomer delegate:self];
 }
+-(void)retrieveOrders {
+    
+}
+-(void)addOrder:(Order *)o {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[o dictRepresentation]];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    RESTQueryController *c = [[RESTQueryController alloc] init];
+    [c sendPOSTRequestToEndpoint:@"/api/add_order" withData:data asID:connectionAddOrder delegate:self];
+}
 @end

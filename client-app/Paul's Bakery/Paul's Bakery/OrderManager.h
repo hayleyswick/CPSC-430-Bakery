@@ -8,20 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Order.h"
+#import "BakeryCalculatorController.h"
 
-@interface OrderManager : NSObject {
-    NSMutableDictionary *orders;
-}
+@interface OrderManager : NSObject <BakeryCalculatorOrderDelegate>
 
 @property (nonatomic, strong) Order *editingOrder;
+@property NSMutableArray *orders;
 
 -(id)init;
 +(OrderManager *)sharedInstance;
 -(void)addOrder:(Order *)o;
 -(void)removeOrder:(Order *)o;
--(Order *)getOrderWithNumber:(int)orderNum;
--(NSArray *)getAllOrders;
--(int)count;
 
 
 @end

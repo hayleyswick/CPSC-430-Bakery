@@ -66,16 +66,19 @@ def api_get_customers():
 
 
 
+@app.route('/api/add_order', methods=['POST'])
+def api_add_order():
+    request.get_data()
+    data = request.form
+    session_id = data['session_id']
+    customer_id = data['customer_id']
+    items = data['items']
+    notes = data['notes']
+
+    return jsonify(actions.add_order(session_id, customer_id, items, notes))
+
+
 #Will need to be redone, check against new database schema in bakery.sql
-@app.route('/api/create_order', methods=['POST'])
-def api_create_order():
-	request.get_data()
-	data = request.form
-	customer_firstname = data['customer_firstname']
-	customer_lastname = data['customer_lastname']
-
-	return jsonify(actions.create_order(customer_firstname, customer_lastname))
-
 @app.route('/api/create_cake_order', methods=['POST'])
 def api_create_cake_order():
 	request.get_data()

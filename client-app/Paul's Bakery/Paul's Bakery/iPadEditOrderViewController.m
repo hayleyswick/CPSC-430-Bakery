@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.modalPresentationStyle = UIModalPresentationFormSheet;
+        self.currentMode = orderEditModeEdit;
     }
     return self;
 }
@@ -27,14 +28,19 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setTitle:@"Order Details"];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
-    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
+    
+    switch (self.currentMode) {
+        case orderEditModeAdd:
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
+            break;
+        case orderEditModeEdit:
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
+            break;
+        default:
+            break;
+    }
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -46,11 +52,13 @@
 }
 -(void)addOrderAndClose {
     
+    [[OrderManager sharedInstance] editingOrder].notes = notesTextView.text;
+    [[OrderManager sharedInstance] addOrder:[[OrderManager sharedInstance] editingOrder]];
     [self closeView];
 }
 -(void)setSelectedCustomer:(Customer *)cust {
-    NSLog(@"Setting customer: %@", cust.customerID);
     selectedCustomer = cust;
+    [[OrderManager sharedInstance] editingOrder].customer = cust;
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 #pragma mark - Table view data source
@@ -87,22 +95,10 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
-            textView.font = [UIFont systemFontOfSize:14.0];
-            
-            
-            
-            // Add a UITextField
-            //UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, cell.frame.size.height - 4)];
-            // Set a unique tag on each text field
-            //textField.tag = titleTag2 + indexPath.row;
-            // Add general UITextAttributes if necessary
-            //textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            //textField.enablesReturnKeyAutomatically = YES;
-            //textField.autocorrectionType = UITextAutocorrectionTypeNo;
-            //textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-            textView.backgroundColor = [UIColor clearColor];
-            [cell.contentView addSubview:textView];
+            notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
+            notesTextView.font = [UIFont systemFontOfSize:14.0];
+            notesTextView.backgroundColor = [UIColor clearColor];
+            [cell.contentView addSubview:notesTextView];
             cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
         }
     }

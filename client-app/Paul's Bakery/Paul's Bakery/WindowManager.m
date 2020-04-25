@@ -99,9 +99,9 @@
     }
 }
 
--(void)handleError:(NSString *)err_code{
-    NSString *title = @"";
-    NSString *info = @"";
+-(void)handleError:(NSString *)err_code {
+    NSString *title = @"Unknown Error";
+    NSString *info = @"An unknown error occurred.";
     if ([err_code isEqualToString:@"incorrect_login"]) {
         title = @"Login Invalid";
         info = @"The username or password you have entered is invalid.";

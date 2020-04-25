@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Add Item" style:UIBarButtonItemStylePlain target:self action:@selector(showAddItemView:)]];
-    if ([[[OrderManager sharedInstance] editingOrder] getItems].count < 1) {
+    if ([[[OrderManager sharedInstance] editingOrder] items].count < 1) {
         [self.view addSubview:self.noDataView];
     }
     [self.navigationItem setTitle:@"Calculation"];
@@ -50,7 +50,7 @@
     [self presentViewController:addItemView animated:YES completion:nil];
 }
 -(void)didFinishEditingOrder {
-    if ([[[OrderManager sharedInstance] editingOrder] getItems].count > 0) {
+    if ([[[OrderManager sharedInstance] editingOrder] items].count > 0) {
         [self.noDataView removeFromSuperview];
     } else {
         [self.view addSubview:self.noDataView];

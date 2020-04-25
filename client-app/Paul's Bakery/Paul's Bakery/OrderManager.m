@@ -12,7 +12,7 @@
 
 -(id)init {
     self = [super init];
-    orders = [[NSMutableDictionary alloc] init];
+    self.orders = [[NSMutableArray alloc] init];
     self.editingOrder = [[Order alloc] init];
     return self;
 }
@@ -26,23 +26,12 @@
     return sharedObject;
 }
 -(void)addOrder:(Order *)o {
-    [orders setObject:o forKey:[NSNumber numberWithInt:o.orderNumber]];
+    [BakeryCalculatorController sharedInstance].orderDelegate = self;
+    [[BakeryCalculatorController sharedInstance] addOrder:o];
 }
 -(void)removeOrder:(Order *)o {
-    [orders removeObjectForKey:[NSNumber numberWithInt:o.orderNumber]];
-}
--(Order *)getOrderWithNumber:(int)orderNum {
-    return [orders objectForKey:[NSNumber numberWithInt:orderNum]];
+    
 }
 
--(int)count {
-    return orders.count;
-}
--(NSArray *)getAllOrders {
-    NSMutableArray *a = [[NSMutableArray alloc] init];
-    for (NSString *key in orders.allKeys) {
-        [a addObject:[orders objectForKey:key]];
-    }
-    return [NSArray arrayWithArray:a];
-}
+
 @end

@@ -46,7 +46,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[[[OrderManager sharedInstance] editingOrder] getItems] count];
+    return [[[[OrderManager sharedInstance] editingOrder] items] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,7 +58,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CalculationViewItemCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    OrderItem *item = [[[[OrderManager sharedInstance] editingOrder] getItems] objectAtIndex:indexPath.row];
+    OrderItem *item = [[[[OrderManager sharedInstance] editingOrder] items] objectAtIndex:indexPath.row];
     
     cell.cakeTypeTextLabel.text = item.cakeTypeText;
     cell.batterTypeTextLabel.text= item.batterTypeText;
@@ -90,7 +90,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[[OrderManager sharedInstance] editingOrder] removeItem:[[[[OrderManager sharedInstance] editingOrder] getItems] objectAtIndex:indexPath.row]];
+        [[[OrderManager sharedInstance] editingOrder] removeItem:[[[[OrderManager sharedInstance] editingOrder] items] objectAtIndex:indexPath.row]];
         [self.delegate didDeleteItemFromEditingOrder];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -123,7 +123,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [addItemView setEditingOrderItem:[[[[OrderManager sharedInstance] editingOrder] getItems] objectAtIndex:indexPath.row]];
+    [addItemView setEditingOrderItem:[[[[OrderManager sharedInstance] editingOrder] items] objectAtIndex:indexPath.row]];
     [addItemView setSelectionMode:selectionModeEdit];
     [self presentViewController:addItemView animated:YES completion:nil];
 }

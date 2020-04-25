@@ -14,5 +14,14 @@
     self = [super init];
     return self;
 }
-
+-(id)initWithDict:(NSDictionary *)dict {
+    self = [self init];
+    self.batterType = [dict objectForKey:@kOrderItemBatterType];
+    self.cakeType = [dict objectForKey:@kOrderItemCakeType];
+    self.quantity = [[dict objectForKey:@kOrderItemQuantity] doubleValue];
+    return self;
+}
+-(NSDictionary *)dictRepresentation {
+    return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithDouble:self.quantity]};
+}
 @end

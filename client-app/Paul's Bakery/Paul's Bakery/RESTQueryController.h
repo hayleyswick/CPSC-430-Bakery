@@ -15,7 +15,8 @@ typedef enum {
     connectionLogin = 0,
     connectionLoginWithSession = 1,
     connectionGetCustomers = 2,
-    connectionAddCustomer = 3
+    connectionAddCustomer = 3,
+    connectionAddOrder = 4
 } RESTConnectionID;
 
 

@@ -1,4 +1,5 @@
 from config import *
+from datetime import datetime
 
 def generate_random_id(stringLength=45):
 	lettersAndDigits = string.ascii_letters + string.digits
@@ -123,18 +124,28 @@ def get_customers(session_id):
 				'code': 'invalid_session'}
 
 
-def create_order(customer_firstname, customer_lastname):
-	cursor = connection.cursor()
-	sql = "INSERT INTO `orders` (`customer_firstname`, `customer_lastname`) VALUES (%s, %s)"
-	cursor.execute(sql, (customer_firstname, customer_lastname))
-	sql = "SELECT order_number FROM orders WHERE customer_firstname = %s AND customer_lastname = %s"
-	cursor.execute(sql, (customer_firstname, customer_lastname))
-	connection.commit()
-	order_number = cursor.fetchone()
+def add_order(session_id, customer_id, items, notes):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "INSERT INTO `orders` (`customer_id`, `order_notes`, `order_date`) VALUES (%s, %s, %s)"
+		cursor.execute(sql, (customer_id, notes, datetime.now()))
+		connection.commit()
+		sql = "SELECT LAST_INSERT_ID()"
+		cursor.execute(sql)
+		connection.commit()
+		result = cursor.fetchone()
+		order_number = result['LAST_INSERT_ID()']
 
-	return {'status':'OK', 
-			'order_number':order_number
-			}
+		for order_item in items:
+			sql = "INSERT INTO `order_details` (`order_number`, `batter_type`, `cake_type`, `quantity`) VALUES (%s, %s, %s, %s)"
+			cursor.execute(sql, (order_number, order_item['batter_type'], order_item['cake_type'], order_item['quantity']))
+			connection.commit()
+
+		return {'status':'OK',
+				'data':{}}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
 
 def create_cake_order(order_number, batter_type, cake_type, quantity):
 	cursor = connection.cursor()

@@ -13,21 +13,35 @@
 -(id)init {
     self = [super init];
     self.orderNumber = -1;
-    items = [[NSMutableArray alloc] init];
+    self.items = [[NSMutableArray alloc] init];
+    return self;
+}
+-(id)initWithDict:(NSDictionary *)dict {
+    self = [self init];
+    self.orderNumber = [[dict objectForKey:@kOrderNumber] intValue];
+    NSArray *a = [dict objectForKey:@kOrderItems];
+    for (NSDictionary *d in a) {
+        [self.items addObject:[[OrderItem alloc] initWithDict:d]];
+    }
     return self;
 }
 -(void)addItem:(OrderItem *)item {
-    for (OrderItem *i in items) {
+    for (OrderItem *i in self.items) {
         if (i == item) {
             return;
         }
     }
-    [items addObject:item];
+    [self.items addObject:item];
 }
 -(void)removeItem:(OrderItem *)item {
-    [items removeObject:item];
+    [self.items removeObject:item];
 }
--(NSArray *)getItems {
-    return items;
+
+-(NSDictionary *)dictRepresentation {
+    NSMutableArray *a = [[NSMutableArray alloc] init];
+    for (OrderItem *i in self.items) {
+        [a addObject:[i dictRepresentation]];
+    }
+    return @{@kOrderNumber:[NSNumber numberWithInt:self.orderNumber], @kOrderItems:a, @kOrderNotes:self.notes, @kOrderCustomerID:self.customer.customerID};
 }
 @end

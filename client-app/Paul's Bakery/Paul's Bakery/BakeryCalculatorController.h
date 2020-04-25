@@ -11,6 +11,7 @@
 #import "User.h"
 #import "PreferencesHandler.h"
 #import "Customer.h"
+#import "Order.h"
 
 #define kResponseState "status"
 #define kErrorCode "code"
@@ -36,6 +37,12 @@ typedef enum {
 -(void)didAddCustomerWithData:(NSDictionary *)data;
 @end
 
+@protocol BakeryCalculatorOrderDelegate <NSObject>
+@optional
+-(void)didReceiveOrderData:(NSArray *)orderData;
+-(void)didAddOrderWithData:(NSDictionary *)data;
+@end
+
 @interface BakeryCalculatorController : NSObject {
     User *loggedInUser;
 }
@@ -43,6 +50,7 @@ typedef enum {
 @property (nonatomic, strong) id <BakeryCalculatorLoginDelegate> loginDelegate;
 @property (nonatomic, strong) id <BakeryCalculatorErrorDelegate> errorDelegate;
 @property (nonatomic, strong) id <BakeryCalculatorCustomerDelegate> customerDelegate;
+@property (nonatomic, strong) id <BakeryCalculatorOrderDelegate> orderDelegate;
 
 -(id)init;
 +(BakeryCalculatorController *)sharedInstance;
@@ -50,6 +58,9 @@ typedef enum {
 -(void)loginWithSession:(NSString *)sessionID;
 -(User *)loggedInUser;
 -(void)retrieveCustomers;
--(void)addCustomer:(Customer *)c;
+-(void)addCustomer:(Customer *)cust;
+-(void)retrieveOrders;
+-(void)addOrder:(Order *)o;
+
 
 @end

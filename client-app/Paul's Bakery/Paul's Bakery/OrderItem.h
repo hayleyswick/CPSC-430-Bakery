@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#define kOrderItemBatterType "batter_type"
+#define kOrderItemCakeType "cake_type"
+#define kOrderItemQuantity "quantity"
+
 @interface OrderItem : NSObject
 
 -(id)init;
+-(id)initWithDict:(NSDictionary *)dict;
+-(NSDictionary *)dictRepresentation;
 
 @property NSString *batterType;
 @property NSString *cakeType;
