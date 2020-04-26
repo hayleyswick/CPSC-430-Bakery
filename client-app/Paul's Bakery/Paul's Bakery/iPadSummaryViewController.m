@@ -28,7 +28,7 @@
     [super viewDidLoad];
     [self.batterInventoryView.layer setCornerRadius:20];
     self.navigationItem.title = @"Paul's Bakery Batter Calculator";
-    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@!", [[[BakeryCalculatorController sharedInstance] loggedInUser] firstname]];
+    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@!", [[[LoginManager sharedInstance] loggedInUser] firstname]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -6,9 +6,8 @@
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Manager.h"
 #import "Customer.h"
-#import "BakeryCalculatorController.h"
 
 @protocol CustomerManagerDelegate <NSObject>
 @optional
@@ -16,7 +15,10 @@
 -(void)customerWasAdded:(Customer *)cust;
 @end
 
-@interface CustomerManager : NSObject <BakeryCalculatorCustomerDelegate>
+@interface CustomerManager : Manager {
+    RESTQueryController *connectionAddCustomer;
+    RESTQueryController *connectionGetCustomers;
+}
 
 @property NSMutableArray *customers;
 
@@ -24,6 +26,7 @@
 
 +(CustomerManager *)sharedInstance;
 -(id)init;
+-(Customer *)getCustomerWithID:(NSString *)customerID;
 -(void)fetchCustomerData;
 -(void)addCustomer:(Customer *)cust;
 

@@ -13,7 +13,6 @@
 -(id)init {
     self = [super init];
     self.customers = [[NSMutableArray alloc] init];
-    [BakeryCalculatorController sharedInstance].customerDelegate = self;
     return self;
 }
 
@@ -26,23 +25,42 @@
     });
     return sharedObject;
 }
--(void)didReceiveCustomerData:(NSArray *)customerData {
-    [self.customers removeAllObjects];
-    for (NSDictionary *d in customerData) {
-        Customer *c = [[Customer alloc] initWithDict:d];
-        [self.customers addObject:c];
+
+-(void)connection:(RESTQueryController *)conn didFinishSuccessfullyWithData:(NSDictionary *)data {
+    
+    if (conn == connectionAddCustomer) {
+        Customer *cust = [[Customer alloc] initWithDict:[data objectForKey:@kResponseDataItem]];
+        [self.customers addObject:cust];
+        [self.delegate customerWasAdded:cust];
+    } else if (conn == connectionGetCustomers) {
+        [self.customers removeAllObjects];
+        for (NSDictionary *d in [data objectForKey:@kResponseDataItem]) {
+            Customer *c = [[Customer alloc] initWithDict:d];
+            [self.customers addObject:c];
+        }
+        [self.delegate customerDataDidUpdate:self.customers];
     }
-    [self.delegate customerDataDidUpdate:self.customers];
 }
--(void)didAddCustomerWithData:(NSDictionary *)data {
-    Customer *cust = [[Customer alloc] initWithDict:data];
-    [self.customers addObject:cust];
-    [self.delegate customerWasAdded:cust];
+
+-(Customer *)getCustomerWithID:(NSString *)customerID {
+    for (Customer *c in self.customers) {
+        if ([[c customerID] isEqualToString:customerID]) {
+            return c;
+        }
+    }
+    [self fetchCustomerData];
+    return nil;
 }
+
 -(void)fetchCustomerData {
-    [[BakeryCalculatorController sharedInstance] retrieveCustomers];
+    NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID]};
+    connectionGetCustomers = [[RESTQueryController alloc] init];
+    [connectionGetCustomers sendGETRequestToEndpoint:@"/api/get_customers" withData:data delegate:self];
 }
 -(void)addCustomer:(Customer *)cust {
-    [[BakeryCalculatorController sharedInstance] addCustomer:cust];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[cust dictRepresentation]];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    connectionAddCustomer = [[RESTQueryController alloc] init];
+    [connectionAddCustomer sendPOSTRequestToEndpoint:@"/api/add_customer" withData:data delegate:self];
 }
 @end

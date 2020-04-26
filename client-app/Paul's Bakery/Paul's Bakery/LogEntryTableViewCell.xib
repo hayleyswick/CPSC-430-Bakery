@@ -14,21 +14,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="768" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bs4-dM-PPm">
-                        <rect key="frame" x="20" y="13" width="612" height="24"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CustName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bs4-dM-PPm">
+                        <rect key="frame" x="20" y="13" width="515" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f9v-pl-B42">
-                        <rect key="frame" x="640" y="24" width="108" height="21"/>
+                        <rect key="frame" x="556" y="24" width="192" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CustName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zhA-Jk-GAl">
-                        <rect key="frame" x="20" y="39" width="592" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OrderNo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zhA-Jk-GAl">
+                        <rect key="frame" x="20" y="39" width="496" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
@@ -36,9 +36,9 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="customerNameLabel" destination="zhA-Jk-GAl" id="evR-jf-Pog"/>
+                <outlet property="customerNameLabel" destination="Bs4-dM-PPm" id="y5L-AW-UUx"/>
                 <outlet property="dateLabel" destination="f9v-pl-B42" id="aYx-1F-hZz"/>
-                <outlet property="orderNumberLabel" destination="Bs4-dM-PPm" id="y9J-cz-qZ4"/>
+                <outlet property="orderNumberLabel" destination="zhA-Jk-GAl" id="YZ8-8R-Tog"/>
             </connections>
         </tableViewCell>
     </objects>

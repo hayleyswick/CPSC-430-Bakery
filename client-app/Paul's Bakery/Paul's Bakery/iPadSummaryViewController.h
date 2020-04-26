@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BakeryCalculatorController.h"
+#import "LoginManager.h"
 
 @interface iPadSummaryViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *batterInventoryView;

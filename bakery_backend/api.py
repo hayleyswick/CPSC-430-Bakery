@@ -8,8 +8,7 @@ def home():
 
 @app.route('/api/login', methods=['POST'])
 def api_login():
-	request.get_data()
-	data = request.form
+	data = request.get_json()
 
 	username = data['username']
 	password = data['password']
@@ -19,8 +18,7 @@ def api_login():
 
 @app.route('/api/login_with_session', methods=['POST'])
 def api_verify_session():
-	request.get_data()
-	data = request.form
+	data = request.get_json()
 	session_id = data['session_id']
 
 	return jsonify(actions.verify_session(session_id))
@@ -28,8 +26,7 @@ def api_verify_session():
 
 @app.route('/api/create_user', methods=['POST'])
 def api_create_user():
-	request.get_data()
-	data = request.form
+	data = request.get_json()
 
 	username = data['username']
 	password = data['password']
@@ -42,8 +39,7 @@ def api_create_user():
 
 @app.route('/api/add_customer', methods=['POST'])
 def api_add_customer():
-    request.get_data()
-    data = request.form
+    data = request.get_json()
 
     session_id = data['session_id']
     firstname = data['firstname']
@@ -68,31 +64,24 @@ def api_get_customers():
 
 @app.route('/api/add_order', methods=['POST'])
 def api_add_order():
-    request.get_data()
-    data = request.form
+    data = request.get_json()
     session_id = data['session_id']
     customer_id = data['customer_id']
-    items = data['items']
     notes = data['notes']
+    items = data['items']
 
     return jsonify(actions.add_order(session_id, customer_id, items, notes))
 
+@app.route('/api/get_orders', methods=['GET'])
+def api_get_orders():
+	session_id = request.args.get('session_id')
+	return jsonify(actions.get_orders(session_id))
 
-#Will need to be redone, check against new database schema in bakery.sql
-@app.route('/api/create_cake_order', methods=['POST'])
-def api_create_cake_order():
-	request.get_data()
-	data = request.form
-	order_number = data['order_number']
-	batter_type = data['batter_type']
-	cake_type = data['cake_type']
-	quanity = data['quanity']
 
-	return jsonify(actions.create_cake_order(order_number, batter_type, cake_type, quanity))
 
-@app.route('/api/get_logs', methods=['GET'])
-def api_get_logs():
-	return jsonify(actions.get_logs())
+
+
+
 
 @app.route('/api/delete_order', methods=['POST'])
 def api_delete_order():

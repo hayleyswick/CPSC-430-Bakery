@@ -8,25 +8,28 @@
 
 #import <Foundation/Foundation.h>
 #import "OrderItem.h"
-#import "Customer.h"
+#import "CustomerManager.h"
 
 #define kOrderNumber "order_number"
-#define kOrderItems "items"
 #define kOrderNotes "notes"
 #define kOrderCustomerID "customer_id"
+#define kOrderItems "items"
+#define kOrderDate "order_date"
 
 @interface Order : NSObject
+
+@property NSMutableArray *items;
+@property int orderNumber;
+@property NSString *notes;
+@property Customer *customer;
+@property NSDate *orderDate;
 
 -(id)init;
 -(id)initWithDict:(NSDictionary *)dict;
 -(void)addItem:(OrderItem *)item;
 -(void)removeItem:(OrderItem *)item;
 -(NSDictionary *)dictRepresentation;
-
-@property NSMutableArray *items;
-@property int orderNumber;
-@property NSString *notes;
-@property Customer *customer;
+-(BOOL)isEqual:(Order *)o;
 
 
 @end

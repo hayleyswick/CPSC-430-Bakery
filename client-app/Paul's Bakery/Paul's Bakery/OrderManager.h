@@ -6,12 +6,22 @@
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Manager.h"
 #import "Order.h"
-#import "BakeryCalculatorController.h"
+#import "CustomerManager.h"
 
-@interface OrderManager : NSObject <BakeryCalculatorOrderDelegate>
+@protocol OrderManagerDelegate <NSObject>
+@optional
+-(void)orderDataDidUpdate:(NSArray *)orders;
+-(void)orderWasAdded:(Order *)o;
+@end
 
+@interface OrderManager : Manager <CustomerManagerDelegate> {
+    RESTQueryController *connectionAddOrder;
+    RESTQueryController *connectionGetOrders;
+}
+
+@property (nonatomic, strong) id <OrderManagerDelegate> delegate;
 @property (nonatomic, strong) Order *editingOrder;
 @property NSMutableArray *orders;
 
@@ -19,6 +29,7 @@
 +(OrderManager *)sharedInstance;
 -(void)addOrder:(Order *)o;
 -(void)removeOrder:(Order *)o;
+-(void)fetchOrders;
 
 
 @end

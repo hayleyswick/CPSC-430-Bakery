@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage imageNamed:@"notebook.png"] tag:1];
+        preUpdate = [NSArray arrayWithArray:[[OrderManager sharedInstance] orders]];
     }
     return self;
 }
@@ -35,13 +36,34 @@
     self.navigationItem.title = @"Paul's Bakery Batter Calculator";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
-
+-(void)viewDidAppear:(BOOL)animated {
+    [OrderManager sharedInstance].delegate = self;
+    [[OrderManager sharedInstance] fetchOrders];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)orderDataDidUpdate:(NSArray *)orders {
+    NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+    NSMutableArray *removeIndexPaths = [[NSMutableArray alloc] init];
+    for (int i=0; i < orders.count; i++) {
+        if (![preUpdate containsObject:[orders objectAtIndex:i]]) {
+            [insertIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+    }
+    for (int i=0; i < preUpdate.count; i++) {
+        if (![orders containsObject:[preUpdate objectAtIndex:i]]) {
+            [removeIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+    }
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    preUpdate = [NSArray arrayWithArray:orders];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -53,7 +75,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return [[OrderManager sharedInstance] orders].count;
 }
 
 
@@ -66,9 +88,14 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LogEntryTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.orderNumberLabel.text = @"OrderNum1";
-    cell.dateLabel.text = @"12/1/1999";
-    cell.customerNameLabel.text = @"Joe Schmoe";
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+    [formatter setDateFormat:@"M/d/yyyy H:mm a"];
+    
+    Order *o = [[[OrderManager sharedInstance] orders] objectAtIndex:indexPath.row];
+    cell.orderNumberLabel.text = [NSString stringWithFormat:@"Order Number %d", o.orderNumber];
+    cell.dateLabel.text = [formatter stringFromDate:o.orderDate];
+    cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", o.customer.firstname, o.customer.lastname];
     cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
     
     return cell;

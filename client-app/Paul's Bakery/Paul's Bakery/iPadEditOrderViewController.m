@@ -32,10 +32,10 @@
     
     switch (self.currentMode) {
         case orderEditModeAdd:
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrder)];
             break;
         case orderEditModeEdit:
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrderAndClose)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save Order" style:UIBarButtonItemStyleDone target:self action:@selector(addOrder)];
             break;
         default:
             break;
@@ -50,16 +50,18 @@
 - (void)closeView {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(void)addOrderAndClose {
-    
+-(void)addOrder {
+    [OrderManager sharedInstance].delegate = self;
     [[OrderManager sharedInstance] editingOrder].notes = notesTextView.text;
     [[OrderManager sharedInstance] addOrder:[[OrderManager sharedInstance] editingOrder]];
-    [self closeView];
 }
 -(void)setSelectedCustomer:(Customer *)cust {
     selectedCustomer = cust;
     [[OrderManager sharedInstance] editingOrder].customer = cust;
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+-(void)orderWasAdded:(Order *)o {
+    [self closeView];
 }
 #pragma mark - Table view data source
 

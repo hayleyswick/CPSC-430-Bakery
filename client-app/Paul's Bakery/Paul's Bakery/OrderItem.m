@@ -22,6 +22,6 @@
     return self;
 }
 -(NSDictionary *)dictRepresentation {
-    return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithDouble:self.quantity]};
+    return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithInt:self.quantity]};
 }
 @end

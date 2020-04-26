@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BakeryCalculatorController.h"
+#import "LoginManager.h"
 #import "iPadLoginViewController.h"
 #import "iPadAdminViewController.h"
 
-@interface WindowManager : NSObject <BakeryCalculatorLoginDelegate, BakeryCalculatorErrorDelegate> {
+@interface WindowManager : NSObject <LoginManagerDelegate> {
     iPadAdminViewController *iPadAdminVC;
     iPadLoginViewController *iPadLoginVC;
 }

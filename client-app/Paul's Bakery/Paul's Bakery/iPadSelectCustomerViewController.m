@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.modalPresentationStyle = UIModalPresentationFormSheet;
-        preUpdate = [[NSArray alloc] init];
+        preUpdate = [NSArray arrayWithArray:[[CustomerManager sharedInstance] customers]];
     }
     return self;
 }

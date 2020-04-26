@@ -53,11 +53,13 @@ def verify_session(session_id):
 		user_type = result['type']
 		firstname = result['firstname']
 		lastname = result['lastname']
-		return {'status':'OK',
-				'username':username,
+		user = {'username':username,
 				'user_type':user_type,
 				'firstname':firstname,
 				'lastname':lastname}
+
+		return {'status':'OK',
+				'data':user}
 
 
 def create_user(username, password, user_type, firstname, lastname):
@@ -141,25 +143,31 @@ def add_order(session_id, customer_id, items, notes):
 			cursor.execute(sql, (order_number, order_item['batter_type'], order_item['cake_type'], order_item['quantity']))
 			connection.commit()
 
+		order = {'order_number':order_number,
+				'notes':notes,
+				'customer_id':customer_id}
+
 		return {'status':'OK',
-				'data':{}}
+				'data':order}
 	else:
 		return {'status': 'ERR',
 				'code': 'invalid_session'}
 
-def create_cake_order(order_number, batter_type, cake_type, quantity):
-	cursor = connection.cursor()
-	sql = "INSERT INTO `order_details` (`order_number`, `batter_type`, `cake_type`, `quantity`) VALUES (%s, %s, %s, %s)"
-	cursor.execute(sql, (customer_firstname, customer_lastname))
-	connection.commit()
-	return {'status':'OK'}			
 
-def get_logs():
-	cursor = connection.cursor()
-	sql = "SELECT * FROM `orders`"
-	cursor.execute(sql)
-	connection.commit()
-	return{'status':'OK'}
+def get_orders(session_id):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "SELECT `order_number`, `order_notes`, `customer_id`, DATE_FORMAT(order_date, '%Y-%m-%d %H:%i:%s') as order_date FROM `orders`"
+		cursor.execute(sql)
+		connection.commit()
+		result = cursor.fetchall()
+
+		return {'status':'OK',
+				'data':result}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
 
 def delete_order(orderNumber):
 	cursor = connection.cursor()

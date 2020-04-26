@@ -5,7 +5,8 @@ USE bakery_calc;
 CREATE TABLE users (
 	id VARCHAR(45) PRIMARY KEY NOT NULL, 
 	username TEXT NOT NULL, 
-	password TEXT, type TEXT, 
+	password TEXT, 
+	type TEXT, 
 	firstname TEXT, 
 	lastname TEXT
 );
@@ -35,14 +36,14 @@ CREATE TABLE order_details (
 	order_number INT NOT NULL, 
 	batter_type TEXT, 
 	cake_type TEXT, 
-	quantity DOUBLE
+	quantity INT
 );
 
 CREATE TABLE orders (
 	order_number INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 	customer_id VARCHAR(45), 
 	order_notes TEXT, 
-	order_date DATE
+	order_date DATETIME
 );
 
 CREATE TABLE baked_goods (

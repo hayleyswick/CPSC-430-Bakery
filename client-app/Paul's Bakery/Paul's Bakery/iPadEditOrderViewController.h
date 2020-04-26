@@ -23,7 +23,7 @@ typedef enum {
     orderEditModeEdit = 1
 } orderEditMode;
 
-@interface iPadEditOrderViewController : UITableViewController {
+@interface iPadEditOrderViewController : UITableViewController <OrderManagerDelegate> {
     Customer *selectedCustomer;
     UITextView *notesTextView;
 }

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "LogEntryTableViewCell.h"
 #import "iPadLogDetailViewController.h"
+#import "OrderManager.h"
 
-@interface iPadLogViewController : UITableViewController {
+@interface iPadLogViewController : UITableViewController <OrderManagerDelegate> {
     iPadLogDetailViewController *detailVC;
+    NSArray *preUpdate;
 }
 
 @end

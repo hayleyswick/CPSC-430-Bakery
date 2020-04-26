@@ -113,6 +113,6 @@
 }
 
 - (IBAction)login:(id)sender {
-    [[BakeryCalculatorController sharedInstance] loginWithUsername:[self.usernameField text] withPassword:[self.passwordField text]];
+    [[LoginManager sharedInstance] loginWithUsername:[self.usernameField text] withPassword:[self.passwordField text]];
 }
 @end

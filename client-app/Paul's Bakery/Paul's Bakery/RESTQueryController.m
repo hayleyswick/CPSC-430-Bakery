@@ -15,26 +15,24 @@
     return self;
 }
 
--(void)sendPOSTRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget {
+-(void)sendPOSTRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query delegate:(id)delegateTarget {
     
     self.delegate = delegateTarget;
-    self.connID = connID;
     
-    NSString *queryString = [self getQueryStringForDict:query];
-    NSData *queryData = [queryString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSData *queryData = [NSJSONSerialization dataWithJSONObject:query options:kNilOptions error:nil];
     NSString *queryLength = [NSString stringWithFormat:@"%d", [queryData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%s:%s%@", ServerAddress, ServerPort, endp]]];
     [request setHTTPMethod:@"POST"];
     [request setValue:queryLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setHTTPBody:queryData];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
 }
--(void)sendGETRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query asID:(RESTConnectionID)connID delegate:(id)delegateTarget {
+-(void)sendGETRequestToEndpoint:(NSString *)endp withData:(NSDictionary *)query delegate:(id)delegateTarget {
     self.delegate = delegateTarget;
-    self.connID = connID;
     
     NSString *queryString = [self getQueryStringForDict:query];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

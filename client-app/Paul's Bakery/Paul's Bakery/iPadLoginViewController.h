@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BakeryCalculatorController.h"
+#import "LoginManager.h"
 
 @interface iPadLoginViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
