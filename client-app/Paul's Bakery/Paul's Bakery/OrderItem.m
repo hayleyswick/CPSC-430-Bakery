@@ -19,9 +19,30 @@
     self.batterType = [dict objectForKey:@kOrderItemBatterType];
     self.cakeType = [dict objectForKey:@kOrderItemCakeType];
     self.quantity = [[dict objectForKey:@kOrderItemQuantity] doubleValue];
+    [self setUserData];
     return self;
 }
 -(NSDictionary *)dictRepresentation {
     return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithInt:self.quantity]};
+}
+-(BOOL)isEqual:(OrderItem *)i {
+    return ([self.batterType isEqualToString:i.batterType] && [self.cakeType isEqualToString:i.cakeType] && self.quantity == i.quantity);
+}
+-(void)setUserData {
+    if ([self.batterType isEqualToString:@BatterTypeVanilla]) {
+        self.batterTypeText = @"Vanilla Batter";
+    } else if ([self.batterType isEqualToString:@BatterTypeChocolate]) {
+        self.batterTypeText = @"Chocolate Batter";
+    }
+    
+    if ([self.cakeType isEqualToString:@CakeTypeQuarterSheet]) {
+        self.cakeTypeText = @"1/4 Sheet";
+    } else if ([self.cakeType isEqualToString:@CakeTypeHalfSheet]) {
+        self.cakeTypeText = @"1/2 Sheet";
+    } else if ([self.cakeType isEqualToString:@CakeTypeFullSheet]) {
+        self.cakeTypeText = @"Full Sheet";
+    } else if ([self.cakeType isEqualToString:@CakeTypeFullRound]) {
+        self.cakeTypeText = @"Full Round";
+    }
 }
 @end

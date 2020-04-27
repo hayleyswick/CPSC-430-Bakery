@@ -12,11 +12,20 @@
 #define kOrderItemCakeType "cake_type"
 #define kOrderItemQuantity "quantity"
 
+#define CakeTypeQuarterSheet "quarter-sheet"
+#define CakeTypeHalfSheet "half-sheet"
+#define CakeTypeFullSheet "full-sheet"
+#define CakeTypeFullRound "full-round"
+
+#define BatterTypeVanilla "vanilla"
+#define BatterTypeChocolate "chocolate"
+
 @interface OrderItem : NSObject
 
 -(id)init;
 -(id)initWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
+-(BOOL)isEqual:(OrderItem *)i;
 
 @property NSString *batterType;
 @property NSString *cakeType;

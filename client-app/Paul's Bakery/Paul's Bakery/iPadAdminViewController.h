@@ -10,6 +10,7 @@
 #import "iPadSummaryViewController.h"
 #import "iPadLogViewController.h"
 #import "iPadCalculationViewController.h"
+#import "iPadUserSettingsViewController.h"
 
 @interface iPadAdminViewController : UITabBarController <UISplitViewControllerDelegate> {
     NSMutableArray *tabbedViews;

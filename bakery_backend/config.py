@@ -6,7 +6,7 @@ import random
 
 connection = pymysql.connect(host='localhost',
                              user='bakery_calc',
-                             password='testpasswd',
+                             password='y3myChfMa0oop0rz5RiOPDdTq93eBLK5RonWpDbrurbLr',
                              db='bakery_calc',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)

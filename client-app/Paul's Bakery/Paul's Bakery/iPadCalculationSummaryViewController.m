@@ -73,7 +73,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CalculationViewItemCell" owner:self options:nil];
+    CalculationViewItemCell *cell = [nib objectAtIndex:0];
+    return cell.frame.size.height;
 }
 
 

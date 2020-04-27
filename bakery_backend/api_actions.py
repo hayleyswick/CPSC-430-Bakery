@@ -61,6 +61,15 @@ def verify_session(session_id):
 		return {'status':'OK',
 				'data':user}
 
+def logout(session_id):
+	cursor = connection.cursor()
+	sql = "DELETE FROM `sessions` WHERE `session_id`=%s"
+	cursor.execute(sql, (session_id))
+	connection.commit()
+	result = cursor.fetchall()
+
+	return {'status':'OK'}
+
 
 def create_user(username, password, user_type, firstname, lastname):
 	cursor = connection.cursor()
@@ -126,11 +135,11 @@ def get_customers(session_id):
 				'code': 'invalid_session'}
 
 
-def add_order(session_id, customer_id, items, notes):
+def add_order(session_id, customer_id, items, order_notes):
 	if (verify_session(session_id)['status'] == 'OK'):
 		cursor = connection.cursor()
 		sql = "INSERT INTO `orders` (`customer_id`, `order_notes`, `order_date`) VALUES (%s, %s, %s)"
-		cursor.execute(sql, (customer_id, notes, datetime.now()))
+		cursor.execute(sql, (customer_id, order_notes, datetime.now()))
 		connection.commit()
 		sql = "SELECT LAST_INSERT_ID()"
 		cursor.execute(sql)
@@ -144,7 +153,7 @@ def add_order(session_id, customer_id, items, notes):
 			connection.commit()
 
 		order = {'order_number':order_number,
-				'notes':notes,
+				'order_notes':order_notes,
 				'customer_id':customer_id}
 
 		return {'status':'OK',
@@ -157,7 +166,7 @@ def add_order(session_id, customer_id, items, notes):
 def get_orders(session_id):
 	if (verify_session(session_id)['status'] == 'OK'):
 		cursor = connection.cursor()
-		sql = "SELECT `order_number`, `order_notes`, `customer_id`, DATE_FORMAT(order_date, '%Y-%m-%d %H:%i:%s') as order_date FROM `orders`"
+		sql = "SELECT `order_number`, `order_notes`, `customer_id`, DATE_FORMAT(order_date, '%Y-%m-%d %H:%i:%s') as order_date FROM `orders` ORDER BY `order_date` DESC"
 		cursor.execute(sql)
 		connection.commit()
 		result = cursor.fetchall()
@@ -167,6 +176,21 @@ def get_orders(session_id):
 	else:
 		return {'status': 'ERR',
 				'code': 'invalid_session'}
+
+def get_order_items(session_id, order_number):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "SELECT * FROM `order_details` WHERE `order_number`=%s"
+		cursor.execute(sql, (order_number))
+		connection.commit()
+		result = cursor.fetchall()
+
+		return {'status':'OK',
+				'data':result}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
 
 
 def delete_order(orderNumber):

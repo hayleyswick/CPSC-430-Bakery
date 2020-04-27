@@ -24,6 +24,12 @@ def api_verify_session():
 	return jsonify(actions.verify_session(session_id))
 
 
+@app.route('/api/logout', methods=['POST'])
+def api_logout():
+	data = request.get_json()
+	session_id = data['session_id']
+	return jsonify(actions.logout(session_id))
+
 @app.route('/api/create_user', methods=['POST'])
 def api_create_user():
 	data = request.get_json()
@@ -67,18 +73,21 @@ def api_add_order():
     data = request.get_json()
     session_id = data['session_id']
     customer_id = data['customer_id']
-    notes = data['notes']
+    order_notes = data['order_notes']
     items = data['items']
 
-    return jsonify(actions.add_order(session_id, customer_id, items, notes))
+    return jsonify(actions.add_order(session_id, customer_id, items, order_notes))
 
 @app.route('/api/get_orders', methods=['GET'])
 def api_get_orders():
 	session_id = request.args.get('session_id')
 	return jsonify(actions.get_orders(session_id))
 
-
-
+@app.route('/api/get_order_items', methods=['GET'])
+def api_get_order_items():
+	session_id = request.args.get('session_id')
+	order_number = request.args.get('order_number')
+	return jsonify(actions.get_order_items(session_id, order_number))
 
 
 

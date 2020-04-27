@@ -14,9 +14,10 @@
 @property NSString *value;
 @property NSString *placeholder;
 @property BOOL editable;
+@property BOOL secure;
 
 -(id)init;
--(id)initWithIdentifier:(NSString *)identifier withPlaceholder:(NSString *)placeholder;
+-(id)initWithIdentifier:(NSString *)identifier withPlaceholder:(NSString *)placeholder withSecurity:(BOOL)secure allowEditing:(BOOL)editable;
 -(void)textFieldDidChange:(UITextField *)textField;
 
 

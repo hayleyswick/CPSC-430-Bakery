@@ -45,7 +45,7 @@
         info = @"The server could not be reached. Please check your Internet connection and try again.";
     } else if ([err_code isEqualToString:@"invalid_session"]) {
         title = @"Invalid Session";
-        info = @"Your current session has expired. You will now be logged out.";
+        info = @"Your current session has expired. Please log out.";
     } else if ([err_code isEqualToString:@"customer_exists"]) {
         title = @"Customer Exists";
         info = @"The specified customer has already been added.";

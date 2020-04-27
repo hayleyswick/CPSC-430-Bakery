@@ -24,6 +24,7 @@ typedef enum {
 -(id)initWithUsername:(NSString *)username withFirstname:(NSString *)first withLastname:(NSString *)last ofType:(userType)type;
 -(id)initWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
+-(NSString *)typeString;
 
 @property NSString *username;
 @property userType type;

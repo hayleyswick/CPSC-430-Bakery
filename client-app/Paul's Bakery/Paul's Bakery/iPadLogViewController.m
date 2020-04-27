@@ -90,7 +90,7 @@
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-    [formatter setDateFormat:@"M/d/yyyy H:mm a"];
+    [formatter setDateFormat:@"M/d/yyyy h:mm a"];
     
     Order *o = [[[OrderManager sharedInstance] orders] objectAtIndex:indexPath.row];
     cell.orderNumberLabel.text = [NSString stringWithFormat:@"Order Number %d", o.orderNumber];
@@ -149,12 +149,11 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!detailVC) {
-        detailVC = [[iPadLogDetailViewController alloc] initWithNibName:@"iPadLogDetailViewController" bundle:nil];
-        detailVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
-    [self presentViewController:detailVC animated:YES completion:nil];
+    detailVC = [[iPadLogDetailViewController alloc] initWithNibName:@"iPadLogDetailViewController" bundle:nil];
+    [detailVC setSelectedOrder:[[[OrderManager sharedInstance] orders] objectAtIndex:indexPath.row]];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SheetNavigationController *detailVCNav = [[SheetNavigationController alloc] initWithRootViewController:detailVC];
+    [self presentViewController:detailVCNav animated:YES completion:nil];
 }
 
 

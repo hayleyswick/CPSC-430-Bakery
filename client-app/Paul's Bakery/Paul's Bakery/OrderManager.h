@@ -14,11 +14,14 @@
 @optional
 -(void)orderDataDidUpdate:(NSArray *)orders;
 -(void)orderWasAdded:(Order *)o;
+-(void)didReceiveItemsForOrder:(Order *)o;
 @end
 
 @interface OrderManager : Manager <CustomerManagerDelegate> {
     RESTQueryController *connectionAddOrder;
     RESTQueryController *connectionGetOrders;
+    RESTQueryController *connectionGetOrderItems;
+    Order *updatingOrder;
 }
 
 @property (nonatomic, strong) id <OrderManagerDelegate> delegate;
@@ -27,9 +30,11 @@
 
 -(id)init;
 +(OrderManager *)sharedInstance;
+-(Order *)getOrderWithNumber:(int)orderNumber;
 -(void)addOrder:(Order *)o;
 -(void)removeOrder:(Order *)o;
 -(void)fetchOrders;
+-(void)fetchItemsForOrder:(Order *)o;
 
 
 @end

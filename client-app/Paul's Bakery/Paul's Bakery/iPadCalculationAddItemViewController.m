@@ -48,15 +48,15 @@ static NSString *CellIdentifier = @"SelectionViewCell";
     if (!cakeTypeSelections) {
         cakeTypeSelections = [[NSMutableArray alloc] init];
     }
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"quarter.png"] forText:@"1/4 Sheet" withReferenceString:@"quarter-sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"half.png"] forText:@"1/2 Sheet" withReferenceString:@"half-sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"full.png"] forText:@"Full Sheet" withReferenceString:@"full-sheet"]];
-    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"round.png"] forText:@"Full Round" withReferenceString:@"full-round"]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"quarter.png"] forText:@"1/4 Sheet" withReferenceString:@CakeTypeQuarterSheet]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"half.png"] forText:@"1/2 Sheet" withReferenceString:@CakeTypeHalfSheet]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"full.png"] forText:@"Full Sheet" withReferenceString:@CakeTypeFullSheet]];
+    [cakeTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"round.png"] forText:@"Full Round" withReferenceString:@CakeTypeFullRound]];
     if (!batterTypeSelections) {
         batterTypeSelections = [[NSMutableArray alloc] init];
     }
-    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"cake.png"] forText:@"Vanilla Batter" withReferenceString:@"vanilla"]];
-    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"chocolate.png"] forText:@"Chocolate Batter" withReferenceString:@"chocolate"]];
+    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"cake.png"] forText:@"Vanilla Batter" withReferenceString:@BatterTypeVanilla]];
+    [batterTypeSelections addObject:[[SelectionItem alloc] initWithImage:[UIImage imageNamed:@"chocolate.png"] forText:@"Chocolate Batter" withReferenceString:@BatterTypeChocolate]];
 }
 -(void)updateUIForCurrentMode {
     switch (currentMode) {

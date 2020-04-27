@@ -10,6 +10,7 @@
 #import "LogEntryTableViewCell.h"
 #import "iPadLogDetailViewController.h"
 #import "OrderManager.h"
+#import "SheetNavigationController.h"
 
 @interface iPadLogViewController : UITableViewController <OrderManagerDelegate> {
     iPadLogDetailViewController *detailVC;

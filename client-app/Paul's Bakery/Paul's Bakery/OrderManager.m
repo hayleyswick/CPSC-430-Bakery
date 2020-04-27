@@ -14,6 +14,7 @@
     self = [super init];
     self.orders = [[NSMutableArray alloc] init];
     self.editingOrder = [[Order alloc] init];
+    updatingOrder = [[Order alloc] init];
     return self;
 }
 +(OrderManager *)sharedInstance
@@ -26,6 +27,15 @@
     return sharedObject;
 }
 
+-(Order *)getOrderWithNumber:(int)orderNumber {
+    for (Order *o in self.orders) {
+        if ([o orderNumber] == orderNumber) {
+            return o;
+        }
+    }
+    [self fetchOrders];
+    return nil;
+}
 
 -(void)connection:(RESTQueryController *)conn didFinishSuccessfullyWithData:(NSDictionary *)data {
     
@@ -38,6 +48,13 @@
             [self.orders addObject:[[Order alloc] initWithDict:d]];
         }
         [self.delegate orderDataDidUpdate:self.orders];
+    } else if (conn == connectionGetOrderItems) {
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        for (NSDictionary *d in [data objectForKey:@kResponseDataItem]) {
+            [items addObject:[[OrderItem alloc] initWithDict:d]];
+            updatingOrder.items = items;
+        }
+        [self.delegate didReceiveItemsForOrder:updatingOrder];
     }
 }
 
@@ -59,5 +76,11 @@
     NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID]};
     connectionGetOrders = [[RESTQueryController alloc] init];
     [connectionGetOrders sendGETRequestToEndpoint:@"/api/get_orders" withData:data delegate:self];
+}
+-(void)fetchItemsForOrder:(Order *)o {
+    NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID], @kOrderNumber:[NSNumber numberWithInt:o.orderNumber]};
+    updatingOrder = o;
+    connectionGetOrderItems = [[RESTQueryController alloc] init];
+    [connectionGetOrderItems sendGETRequestToEndpoint:@"/api/get_order_items" withData:data delegate:self];
 }
 @end

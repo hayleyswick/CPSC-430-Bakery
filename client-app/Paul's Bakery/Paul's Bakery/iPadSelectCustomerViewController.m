@@ -107,12 +107,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 58;
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
+    CustomerTableViewCell *cell = [nib objectAtIndex:0];
+    return cell.frame.size.height;
 }
 -(void)transitionToAddNewCustomerView {
-    if (!editCustomerView) {
-        editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
-    }
+    editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
     [editCustomerView setViewMode:customerEditModeAdd];
     [self.navigationController pushViewController:editCustomerView animated:YES];
 }
@@ -163,7 +163,7 @@
     // Navigation logic may go here, for example:
     // Create the next view controller.
     if (!editOrderView) {
-        editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
+        editOrderView = [[iPadEditOrderViewController alloc] init];
     }
     
     // Pass the selected object to the new view controller.

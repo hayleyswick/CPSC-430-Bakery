@@ -11,7 +11,7 @@
 #import "CustomerManager.h"
 
 #define kOrderNumber "order_number"
-#define kOrderNotes "notes"
+#define kOrderNotes "order_notes"
 #define kOrderCustomerID "customer_id"
 #define kOrderItems "items"
 #define kOrderDate "order_date"

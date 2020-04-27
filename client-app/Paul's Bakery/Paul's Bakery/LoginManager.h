@@ -12,11 +12,13 @@
 @protocol LoginManagerDelegate <NSObject>
 @optional
 -(void)didLoginAsUser:(User *)user;
+-(void)didLogoutSuccessfully;
 @end
 
 @interface LoginManager : Manager <RESTQueryControllerDelegate> {
     RESTQueryController *connectionLoginWithUsername;
     RESTQueryController *connectionLoginWithSession;
+    RESTQueryController *connectionLogout;
     User *loggedInUser;
 }
 
@@ -27,5 +29,7 @@
 -(void)loginWithUsername:(NSString *)username withPassword:(NSString *)password;
 -(void)loginWithSession:(NSString *)sessionID;
 -(User *)loggedInUser;
+-(void)logout;
+-(void)forceLogout;
 
 @end

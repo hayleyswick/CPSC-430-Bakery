@@ -14,7 +14,7 @@
 #define kResponseDataItem "data"
 #define kErrorCode "code"
 
-@interface Manager : NSObject
+@interface Manager : NSObject <UIAlertViewDelegate>
 
 -(id)init;
 -(void)handleError:(NSString *)err_code;

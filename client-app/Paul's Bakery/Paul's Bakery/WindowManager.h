@@ -11,6 +11,12 @@
 #import "iPadLoginViewController.h"
 #import "iPadAdminViewController.h"
 
+typedef enum {
+    animationNone = 0,
+    animationFlipFromLeft = 1,
+    animationFlipFromRight = 2
+}animation;
+
 @interface WindowManager : NSObject <LoginManagerDelegate> {
     iPadAdminViewController *iPadAdminVC;
     iPadLoginViewController *iPadLoginVC;

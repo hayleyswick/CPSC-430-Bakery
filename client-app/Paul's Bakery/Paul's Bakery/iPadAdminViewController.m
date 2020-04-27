@@ -38,6 +38,7 @@
     calcView.delegate = self;
     [tabbedViews addObject:calcView];
     [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadLogViewController alloc] initWithNibName:@"iPadLogViewController" bundle:nil]]];
+    [tabbedViews addObject:[[UINavigationController alloc] initWithRootViewController:[[iPadUserSettingsViewController alloc] initWithNibName:@"iPadUserSettingsViewController" bundle:nil]]];
     
     self.viewControllers = tabbedViews;
     

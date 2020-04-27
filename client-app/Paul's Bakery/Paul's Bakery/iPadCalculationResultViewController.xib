@@ -24,7 +24,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="showEditOrdderInfoView:" destination="-1" eventType="touchUpInside" id="W9D-CQ-DUH"/>
+                        <action selector="showEditOrderInfoView:" destination="-1" eventType="touchUpInside" id="P1T-P2-Iqv"/>
                     </connections>
                 </button>
             </subviews>

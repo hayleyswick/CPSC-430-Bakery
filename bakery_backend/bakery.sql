@@ -1,4 +1,11 @@
+
+DROP USER 'bakery_calc'@'localhost';
+CREATE USER 'bakery_calc'@'localhost' IDENTIFIED BY 'y3myChfMa0oop0rz5RiOPDdTq93eBLK5RonWpDbrurbLr';
+
+DROP DATABASE bakery_calc;
 CREATE DATABASE bakery_calc;
+
+GRANT all privileges ON bakery_calc.* to 'bakery_calc'@'localhost';
 
 USE bakery_calc;
 
@@ -54,3 +61,7 @@ CREATE TABLE baked_goods (
 	batter_per_batch DOUBLE, 
 	quantity INT
 ); 
+
+#Temporary User
+
+

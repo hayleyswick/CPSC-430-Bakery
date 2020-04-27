@@ -33,4 +33,15 @@
 -(NSDictionary *)dictRepresentation {
     return @{@kUsername:self.username, @kType:[NSNumber numberWithInt:self.type], @kFirstname:self.firstname, @kLastname:self.lastname};
 }
+-(NSString *)typeString {
+    switch (self.type) {
+        case userTypeAdmin:
+            return @"Admin";
+            break;
+        case userTypeBaker:
+            return @"Baker";
+            break;
+    }
+    return @"Baker";
+}
 @end

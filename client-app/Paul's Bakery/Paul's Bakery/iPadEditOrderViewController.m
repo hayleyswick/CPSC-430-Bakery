@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.modalPresentationStyle = UIModalPresentationFormSheet;
-        self.currentMode = orderEditModeEdit;
+        self.currentMode = orderEditModeAdd;
     }
     return self;
 }
@@ -57,6 +57,7 @@
 }
 -(void)setSelectedCustomer:(Customer *)cust {
     selectedCustomer = cust;
+    [notesTextView setText:@""];
     [[OrderManager sharedInstance] editingOrder].customer = cust;
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -118,7 +119,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == editOrderSectionCustomer) {
-        return 58;
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
+        CustomerTableViewCell *cell = [nib objectAtIndex:0];
+        return cell.frame.size.height;
     } else if (indexPath.section == editOrderSectionNotes) {
         return textViewCellHeight;
     }

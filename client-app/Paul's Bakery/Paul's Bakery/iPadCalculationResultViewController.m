@@ -56,7 +56,7 @@
         [self.view addSubview:self.noDataView];
     }
 }
-- (IBAction)showEditOrdderInfoView:(id)sender {
+- (IBAction)showEditOrderInfoView:(id)sender {
     if (!selectCustomerView) {
         selectCustomerView = [[iPadSelectCustomerViewController alloc] initWithNibName:@"iPadSelectCustomerViewController" bundle:nil];
     }

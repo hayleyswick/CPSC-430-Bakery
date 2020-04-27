@@ -21,6 +21,7 @@
 
 -(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view;
 -(IBAction)showAddItemView:(id)sender;
+-(IBAction)showEditOrderInfoView:(id)sender;
 -(void)useAddItemView:(iPadCalculationAddItemViewController *)v;
 -(void)didFinishEditingOrder;
 @property (strong, nonatomic) IBOutlet UIView *noDataView;

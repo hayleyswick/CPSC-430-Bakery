@@ -50,6 +50,10 @@
         loggedInUser = [[User alloc] initWithUsername:[user objectForKey:@"username"] withFirstname:[user objectForKey:@"firstname"] withLastname:[user objectForKey:@"lastname"] ofType:t];
         [[PreferencesHandler sharedInstance] setCurrentUser:loggedInUser];
         [self.delegate didLoginAsUser:loggedInUser];
+    } else if (conn == connectionLogout) {
+        [[PreferencesHandler sharedInstance] setHasValidSession:NO];
+        [[PreferencesHandler sharedInstance] setCurrentSessionID:@""];
+        [self.delegate didLogoutSuccessfully];
     }
 }
 -(User *)loggedInUser {
@@ -59,5 +63,15 @@
         }
     }
     return loggedInUser;
+}
+-(void)logout {
+    NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID]};
+    connectionLogout = [[RESTQueryController alloc] init];
+    [connectionLogout sendPOSTRequestToEndpoint:@"/api/logout" withData:data delegate:self];
+}
+-(void)forceLogout {
+    [[PreferencesHandler sharedInstance] setHasValidSession:NO];
+    [[PreferencesHandler sharedInstance] setCurrentSessionID:@""];
+    [self.delegate didLogoutSuccessfully];
 }
 @end

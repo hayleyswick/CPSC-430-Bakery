@@ -25,18 +25,14 @@
 -(void)loadInitialView {
     if ([[LoginManager sharedInstance] loggedInUser]) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if (!iPadAdminVC) {
-                iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
-            }
-            [self setActiveViewController:iPadAdminVC withAnimation:NO];
+            iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
+            [self setActiveViewController:iPadAdminVC withAnimation:animationNone];
         }
         
     } else {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if (!iPadLoginVC) {
-                iPadLoginVC = [[iPadLoginViewController alloc] initWithNibName:@"iPadLoginViewController" bundle:nil];
-            }
-            [self setActiveViewController:iPadLoginVC withAnimation:NO];
+            iPadLoginVC = [[iPadLoginViewController alloc] initWithNibName:@"iPadLoginViewController" bundle:nil];
+            [self setActiveViewController:iPadLoginVC withAnimation:animationNone];
         }
     }
     
@@ -45,21 +41,31 @@
     [self.window makeKeyAndVisible];
     
 }
--(void)setActiveViewController:(UIViewController *)controller withAnimation:(BOOL)animate {
+-(void)setActiveViewController:(UIViewController *)controller withAnimation:(animation)animationType {
     
     UIViewController *wrapperVC = [[UIViewController alloc] init];
     [wrapperVC.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:235.0/255.0 blue:219.0/255.0 alpha:1.0f]];
     [wrapperVC.view addSubview:controller.view];
     
-    if (animate) {
+    if (animationType != animationNone) {
         UIViewAnimationOptions opt;
         
-        if(UIInterfaceOrientationIsLandscape(self.window.rootViewController.interfaceOrientation)) {
-            opt = UIViewAnimationOptionTransitionFlipFromBottom;
+        if (animationType == animationFlipFromRight) {
+            if(UIInterfaceOrientationIsLandscape(self.window.rootViewController.interfaceOrientation)) {
+                opt = UIViewAnimationOptionTransitionFlipFromBottom;
+            }
+            else {
+                opt = UIViewAnimationOptionTransitionFlipFromRight;
+            }
+        } else if (animationType == animationFlipFromLeft) {
+            if(UIInterfaceOrientationIsLandscape(self.window.rootViewController.interfaceOrientation)) {
+                opt = UIViewAnimationOptionTransitionFlipFromTop;
+            }
+            else {
+                opt = UIViewAnimationOptionTransitionFlipFromLeft;
+            }
         }
-        else {
-            opt = UIViewAnimationOptionTransitionFlipFromRight;
-        }
+        
         
         [UIView transitionWithView:self.window
                           duration:0.5
@@ -72,33 +78,16 @@
 }
 
 -(void)didLoginAsUser:(User *)user {
-    switch (user.type) {
-        case userTypeAdmin: {
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                if (!iPadAdminVC) {
-                    iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
-                }
-                
-                [self setActiveViewController:iPadAdminVC withAnimation:YES];
-            }
-            break;
-        }
-        case userTypeBaker:
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                if (!iPadAdminVC) {
-                    iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
-                }
-                [self setActiveViewController:iPadAdminVC withAnimation:YES];
-            }
-            break;
-        default: {
-            
-            break;
-        }
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        iPadAdminVC = [[iPadAdminViewController alloc] initWithNibName:@"iPadAdminViewController" bundle:nil];
+        [self setActiveViewController:iPadAdminVC withAnimation:animationFlipFromRight];
     }
 }
 
-
+-(void)didLogoutSuccessfully {
+    iPadLoginVC = [[iPadLoginViewController alloc] initWithNibName:@"iPadLoginViewController" bundle:nil];
+    [self setActiveViewController:iPadLoginVC withAnimation:animationFlipFromLeft];
+}
 
 
 @end

@@ -19,7 +19,7 @@
     if (self) {
         self.modalPresentationStyle = UIModalPresentationFormSheet;
         currentMode = customerEditModeEdit;
-        [self initCells];
+        [self initForm];
     }
     return self;
 }
@@ -35,28 +35,36 @@
         case customerEditModeEdit:
             [self.navigationItem setTitle:@"Edit Customer"];
             break;
+        case customerEditModeView:
+            [self.navigationItem setTitle:@"Customer Details"];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
         default:
             break;
     }
 }
--(void)initCells {
+-(void)initForm {
+    
+    BOOL editable = YES;
+    if (currentMode == customerEditModeView) {
+        editable = NO;
+    }
     
     form = [[Form alloc] init];
     FormSection *name = [[FormSection alloc] init];
     name.title = @"Customer Name";
-    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerFirstname withPlaceholder:@"First Name"]];
-    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerLastname withPlaceholder:@"Last Name"]];
+    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerFirstname withPlaceholder:@"First Name" withSecurity:NO allowEditing:editable]];
+    [name addItem:[[FormItem alloc] initWithIdentifier:@kCustomerLastname withPlaceholder:@"Last Name" withSecurity:NO allowEditing:editable]];
     [form addSection:name];
     FormSection *phone = [[FormSection alloc] init];
     phone.title = @"Phone Number";
-    [phone addItem:[[FormItem alloc] initWithIdentifier:@kCustomerPhoneNumber withPlaceholder:@"Phone"]];
+    [phone addItem:[[FormItem alloc] initWithIdentifier:@kCustomerPhoneNumber withPlaceholder:@"Phone" withSecurity:NO allowEditing:editable]];
     [form addSection:phone];
     FormSection *address = [[FormSection alloc] init];
     address.title = @"Address";
-    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerStreet withPlaceholder:@"12345 Example Dr."]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerCity withPlaceholder:@"City"]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerState withPlaceholder:@"State"]];
-    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerZip withPlaceholder:@"ZIP Code"]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerStreet withPlaceholder:@"12345 Example Dr." withSecurity:NO allowEditing:editable]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerCity withPlaceholder:@"City" withSecurity:NO allowEditing:editable]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerState withPlaceholder:@"State" withSecurity:NO allowEditing:YES]];
+    [address addItem:[[FormItem alloc] initWithIdentifier:@kCustomerZip withPlaceholder:@"ZIP Code" withSecurity:NO allowEditing:YES]];
     [form addSection:address];
 }
 - (void)didReceiveMemoryWarning
@@ -64,9 +72,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 -(void)setViewMode:(customerEditMode)mode {
     currentMode = mode;
+    [self initForm];
+}
+-(void)setEditingCustomer:(Customer *)cust {
+    editingCustomer = cust;
+    for (NSString *key in [cust dictRepresentation].allKeys) {
+        FormItem *itm = [form getItemWithIdentifier:key];
+        itm.value = [[cust dictRepresentation] objectForKey:key];
+    }
+    [self.tableView reloadData];
 }
 - (void)closeView {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -74,7 +90,6 @@
 -(void)addCustomer {
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
     for (FormItem *i in [form getAllItems]) {
-        NSLog(@"%@: %@", i.identifier, i.value);
         [d setObject:i.value forKey:i.identifier];
     }
     [CustomerManager sharedInstance].delegate = self;
@@ -87,106 +102,6 @@
     [editOrderView setSelectedCustomer:cust];
     [self.navigationController pushViewController:editOrderView animated:YES];
 }
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return form.sections.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[[form.sections objectAtIndex:section] items] count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"TextFieldCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        FormSection *section = [form.sections objectAtIndex:indexPath.section];
-        FormItem *item = [section.items objectAtIndex:indexPath.row];
-        
-        NSString *placeholder = item.placeholder;
-        
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, cell.frame.size.height - 4)];
-        
-        [textField addTarget:item action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        
-        textField.placeholder = placeholder;
-        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        textField.enablesReturnKeyAutomatically = YES;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        [cell.contentView addSubview:textField];
-        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-    }
-    
-    return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    FormSection *formSection = [form.sections objectAtIndex:section];
-    return formSection.title;
-}
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-*/
 
 @end
