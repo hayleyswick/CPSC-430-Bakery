@@ -7,11 +7,13 @@
 //
 
 #import "iPadModalFormEditor.h"
+#import "UserManager.h"
+#import "LoginManager.h"
 
 #define kOldPassword "old_password"
 #define kNewPassword "new_password"
 #define kNewPasswordConfirmation "password_confirm"
 
-@interface iPadChangePasswordFormViewController : iPadModalFormEditor
+@interface iPadChangePasswordFormViewController : iPadModalFormEditor <UserManagerDelegate>
 
 @end

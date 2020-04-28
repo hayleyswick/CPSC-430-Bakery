@@ -32,6 +32,7 @@
             resultView = [[iPadCalculationResultViewController alloc] initWithNibName:@"iPadCalculationResultViewController" bundle:nil];
             [resultView setSummaryTableView:summaryView];
             [resultView useAddItemView:addItemView];
+            resultView.delegate = self;
         }
         UINavigationController *mainNavController = [[UINavigationController alloc] initWithRootViewController:resultView];
         UINavigationController *secondaryNavController = [[UINavigationController alloc] initWithRootViewController:summaryView];
@@ -58,6 +59,24 @@
     [resultView didFinishEditingOrder];
 }
 -(void)didDeleteItemFromEditingOrder {
+    [resultView didFinishEditingOrder];
+}
+-(void)beginOrderSubmission {
+    if (!editOrderView) {
+        editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
+        editOrderView.delegate = self;
+    }
+    
+    if (!selectCustomerView) {
+        selectCustomerView = [[iPadSelectCustomerViewController alloc] initWithNibName:@"iPadSelectCustomerViewController" bundle:nil];
+        selectCustomerView.editOrderView = editOrderView;
+    }
+    SheetNavigationController *selectCustomerViewNav = [[SheetNavigationController alloc] initWithRootViewController:selectCustomerView];
+    [self presentViewController:selectCustomerViewNav animated:YES completion:nil];
+}
+-(void)didFinishEditingOrder:(Order *)o {
+    [[[OrderManager sharedInstance] editingOrder].items removeAllObjects];
+    [summaryView didFinishEditingOrder];
     [resultView didFinishEditingOrder];
 }
 @end

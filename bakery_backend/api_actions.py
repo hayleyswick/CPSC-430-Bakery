@@ -56,7 +56,8 @@ def verify_session(session_id):
 		user = {'username':username,
 				'user_type':user_type,
 				'firstname':firstname,
-				'lastname':lastname}
+				'lastname':lastname,
+				'user_id':user_id}
 
 		return {'status':'OK',
 				'data':user}
@@ -193,17 +194,106 @@ def get_order_items(session_id, order_number):
 
 
 
-def delete_order(orderNumber):
-	cursor = connection.cursor()
-	sql = "SELECT order_number FROM order_details WHERE order_number = %s"
-	cursor.execute(sql, (orderNumber))
-	order_number = cursor.fetchall()
+def delete_order(session_id, order_number):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "DELETE FROM `orders` WHERE `order_number` = %s"
+		cursor.execute(sql, (order_umber))
+		sql = "DELETE FROM `order_details` WHERE `order_number` = %s"
+		cursor.execute(sql, (order_umber))
+		connection.commit()
+		return{'status':'OK'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
 
-	sql = "DELETE * FROM `order_details` WHERE order_number = %s"
-	cursor.execute(sql, (orderNumber))
 
-	connection.commit()
-	return{'status':'OK'}
+
+def change_user_password(session_id, old_password, new_password):
+	session_info = verify_session(session_id)
+	if (session_info['status'] == 'OK'):
+		user_data = session_info['data']
+		user_id = user_data['user_id']
+		cursor = connection.cursor()
+		sql = "SELECT `password` FROM `users` WHERE `id` = %s"
+		cursor.execute(sql, (user_id))
+		connection.commit()
+		result = cursor.fetchone()
+		if (old_password == result['password']):
+			sql = "UPDATE `users` SET `password`=%s WHERE `id` = %s"
+			cursor.execute(sql, (new_password, user_id))
+			connection.commit()
+			return{'status':'OK'}
+
+		return {'status': 'ERR',
+				'code': 'incorrect_old_password'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def change_user_username(session_id, new_username):
+	session_info = verify_session(session_id)
+	if (session_info['status'] == 'OK'):
+		user_data = session_info['data']
+		user_id = user_data['user_id']
+		cursor = connection.cursor()
+		sql = "SELECT `username` FROM `users` WHERE `username` = %s AND `id` != %s"
+		cursor.execute(sql, (new_username, user_id))
+		connection.commit()
+		result = cursor.fetchone()
+		if not result or len(result) < 1:
+			sql = "UPDATE `users` SET `username`=%s WHERE `id` = %s"
+			cursor.execute(sql, (new_username, user_id))
+			connection.commit()
+			return{'status':'OK'}
+
+		return {'status':'ERR',
+				'code':'user_exists'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def get_inventory(session_id):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+		sql = "SELECT `inventory_id`, DATE_FORMAT(count_date, '%Y-%m-%d %H:%i:%s') as count_date FROM `inventories`"
+		cursor.execute(sql)
+		connection.commit()
+		inventories = cursor.fetchall()
+		for inventory in inventories:
+			sql = "SELECT * FROM `inventory_items` WHERE `inventory_id` = %s"
+			cursor.execute(sql, (inventory['inventory_id']))
+			connection.commit()
+			items = cursor.fetchall()
+			inventory['items'] = items
+
+		return {'status':'OK',
+				'data':inventories}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def update_inventory(session_id, inventory_id, inventory_items):
+	if (verify_session(session_id)['status'] == 'OK'):
+		cursor = connection.cursor()
+
+		sql = "INSERT INTO `inventories` (`inventory_id`, `count_date`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE `count_date` = %s"
+		cursor.execute(sql, (inventory_id, datetime.now(), datetime.now()))
+		connection.commit()
+		for item in inventory_items:
+			sql = "INSERT INTO `inventory_items` (`item_id`, `inventory_id`, `quantity`) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE `quantity` = %s"
+			cursor.execute(sql, (item['item_id'], inventory_id, item['quantity'], item['quantity']))
+			connection.commit()
+
+		return {'status':'OK'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
 
 def update_batter_quantity(flavor, quantity):
     cursor = connection.cursor()

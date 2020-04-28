@@ -29,7 +29,10 @@
     
     self.navigationItem.title = @"Paul's Bakery Batter Calculator";
 }
-
+-(void)viewDidAppear:(BOOL)animated {
+    [UserManager sharedInstance].delegate = self;
+    [[UserManager sharedInstance] retrieveUpdatedDataForUser:[[LoginManager sharedInstance] loggedInUser]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -78,10 +81,11 @@
         
         if (indexPath.section == userSettingsSectionInfo) {
             User *currentUser = [[LoginManager sharedInstance] loggedInUser];
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
-            CustomerTableViewCell *cell = [nib objectAtIndex:0];
-            cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", currentUser.firstname, currentUser.lastname];
-            cell.phoneNumberLabel.text = [currentUser typeString];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:self options:nil];
+            UserTableViewCell *cell = [nib objectAtIndex:0];
+            cell.userFullName.text = [NSString stringWithFormat:@"%@ %@", currentUser.firstname, currentUser.lastname];
+            cell.userType.text = [currentUser typeString];
+            cell.username.text = [currentUser username];
             cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -133,8 +137,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == userSettingsSectionInfo) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
-        CustomerTableViewCell *cell = [nib objectAtIndex:0];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:self options:nil];
+        UserTableViewCell *cell = [nib objectAtIndex:0];
         return cell.frame.size.height;
     }
     return 44;
@@ -190,6 +194,7 @@
             switch (indexPath.row) {
                 case userSettingsRowChangeUsername: {
                     iPadChangeUsernameFormViewController *v = [[iPadChangeUsernameFormViewController alloc] init];
+                    v.delegate = self;
                     [self presentViewController:[[SheetNavigationController alloc] initWithRootViewController:v] animated:YES completion:nil];
                     break;
                 } case userSettingsRowChangePassword: {
@@ -203,10 +208,29 @@
             [[LoginManager sharedInstance] logout];
             break;
         case userSettingsSectionAdministration:
+            switch (indexPath.row) {
+                case userSettingsAdminRowManageInventory: {
+                    iPadManageInventoryViewController *v = [[iPadManageInventoryViewController alloc] initWithNibName:@"iPadManageInventoryViewController" bundle:nil];
+                    [self presentViewController:v animated:YES completion:nil];
+                    break;
+                }
+                case userSettingsAdminRowManageUsers: {
+                    iPadEditUserFormViewController *v = [[iPadEditUserFormViewController alloc] init];
+                    [self presentViewController:[[SheetNavigationController alloc] initWithRootViewController:v] animated:YES completion:nil];
+                    break;
+                }
+            }
             break;
     }
 }
 
+-(void)didFinishChangingUsername {
+    [UserManager sharedInstance].delegate = self;
+    [[UserManager sharedInstance] retrieveUpdatedDataForUser:[[LoginManager sharedInstance] loggedInUser]];
+}
 
+-(void)userDataWasUpdated {
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:userSettingsSectionInfo]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 @end

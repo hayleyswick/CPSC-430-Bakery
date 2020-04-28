@@ -43,7 +43,7 @@
     
     [self.navigationItem setTitle:@"Change Password"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStyleDone target:self action:@selector(changePassword)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(closeView)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,8 +53,25 @@
 }
 
 -(void)changePassword {
+    NSString *oldPassword = [form getItemWithIdentifier:@kOldPassword].value;
+    NSString *newPassword = [form getItemWithIdentifier:@kNewPassword].value;
+    NSString *confirmPassword = [form getItemWithIdentifier:@kNewPasswordConfirmation].value;
+    if (![oldPassword isEqualToString:@""] && ![newPassword isEqualToString:@""] && ![confirmPassword isEqualToString:@""]) {
+        if ([newPassword isEqualToString:confirmPassword]) {
+            [UserManager sharedInstance].delegate = self;
+            [[UserManager sharedInstance] updatePasswordForUser:[[LoginManager sharedInstance] loggedInUser] fromPassword:oldPassword toPassword:newPassword];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Passwords Don't Match" message:@"The new password entered and confirmation do not match." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Info" message:@"Please enter all the requested information to perform this operation." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
     
 }
-
+-(void)passwordWasUpdatedForUser:(User *)user {
+    [self closeView];
+}
 
 @end

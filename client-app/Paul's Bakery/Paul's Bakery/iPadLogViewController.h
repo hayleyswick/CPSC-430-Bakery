@@ -16,5 +16,6 @@
     iPadLogDetailViewController *detailVC;
     NSArray *preUpdate;
 }
+@property (strong, nonatomic) IBOutlet UIView *noDataView;
 
 @end

@@ -19,9 +19,10 @@ typedef enum {
 
 @interface iPadEditCustomerViewController : iPadModalFormEditor <CustomerManagerDelegate> {
     customerEditMode currentMode;
-    iPadEditOrderViewController *editOrderView;
     Customer *editingCustomer;
 }
+
+@property iPadEditOrderViewController *editOrderView;
 
 -(void)setViewMode:(customerEditMode)mode;
 -(void)setEditingCustomer:(Customer *)cust;

@@ -85,6 +85,17 @@
 		87C0C5422417C9C80093840D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0C52A2417C9C80093840D /* UIKit.framework */; };
 		87C0C54A2417C9C80093840D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C0C5482417C9C80093840D /* InfoPlist.strings */; };
 		87C0C54C2417C9C80093840D /* Paul_s_BakeryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */; };
+		87C2098D245767D500B6C111 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2098C245767D500B6C111 /* UserManager.m */; };
+		87C20991245781D400B6C111 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2098F245781D400B6C111 /* UserTableViewCell.m */; };
+		87C20992245781D400B6C111 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C20990245781D400B6C111 /* UserTableViewCell.xib */; };
+		87C209962457879E00B6C111 /* iPadManageInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C209942457879E00B6C111 /* iPadManageInventoryViewController.m */; };
+		87C209972457879E00B6C111 /* iPadManageInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C209952457879E00B6C111 /* iPadManageInventoryViewController.xib */; };
+		87C2099A245796D300B6C111 /* InventoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C20999245796D300B6C111 /* InventoryManager.m */; };
+		87C2099D2457997D00B6C111 /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2099C2457997D00B6C111 /* Inventory.m */; };
+		87C209A02457998B00B6C111 /* InventoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2099F2457998B00B6C111 /* InventoryItem.m */; };
+		87C209A32457EAFF00B6C111 /* FormItemSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C209A22457EAFF00B6C111 /* FormItemSelection.m */; };
+		87C209A62457EE0900B6C111 /* iPadEditUserFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C209A52457EE0900B6C111 /* iPadEditUserFormViewController.m */; };
+		87C209A92457F42A00B6C111 /* ModalFormSelectionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C209A82457F42A00B6C111 /* ModalFormSelectionEditor.m */; };
 		87CA19B72436D7AA00036F7B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CA19B62436D7AA00036F7B /* User.m */; };
 		87CA19BD2436E50600036F7B /* PreferencesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CA19BC2436E50600036F7B /* PreferencesHandler.m */; };
 		87CE36A82436AABC00C48742 /* iPadLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE36A62436AABC00C48742 /* iPadLoginViewController.m */; };
@@ -223,6 +234,26 @@
 		87C0C5472417C9C80093840D /* Paul's BakeryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Paul's BakeryTests-Info.plist"; sourceTree = "<group>"; };
 		87C0C5492417C9C80093840D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87C0C54B2417C9C80093840D /* Paul_s_BakeryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Paul_s_BakeryTests.m; sourceTree = "<group>"; };
+		87C2098B245767D500B6C111 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		87C2098C245767D500B6C111 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		87C2098E245781D400B6C111 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		87C2098F245781D400B6C111 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		87C20990245781D400B6C111 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		87C209932457879E00B6C111 /* iPadManageInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadManageInventoryViewController.h; sourceTree = "<group>"; };
+		87C209942457879E00B6C111 /* iPadManageInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadManageInventoryViewController.m; sourceTree = "<group>"; };
+		87C209952457879E00B6C111 /* iPadManageInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadManageInventoryViewController.xib; sourceTree = "<group>"; };
+		87C20998245796D300B6C111 /* InventoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryManager.h; sourceTree = "<group>"; };
+		87C20999245796D300B6C111 /* InventoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryManager.m; sourceTree = "<group>"; };
+		87C2099B2457997D00B6C111 /* Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inventory.h; sourceTree = "<group>"; };
+		87C2099C2457997D00B6C111 /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
+		87C2099E2457998B00B6C111 /* InventoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItem.h; sourceTree = "<group>"; };
+		87C2099F2457998B00B6C111 /* InventoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItem.m; sourceTree = "<group>"; };
+		87C209A12457EAFF00B6C111 /* FormItemSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormItemSelection.h; sourceTree = "<group>"; };
+		87C209A22457EAFF00B6C111 /* FormItemSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormItemSelection.m; sourceTree = "<group>"; };
+		87C209A42457EE0900B6C111 /* iPadEditUserFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadEditUserFormViewController.h; sourceTree = "<group>"; };
+		87C209A52457EE0900B6C111 /* iPadEditUserFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadEditUserFormViewController.m; sourceTree = "<group>"; };
+		87C209A72457F42A00B6C111 /* ModalFormSelectionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalFormSelectionEditor.h; sourceTree = "<group>"; };
+		87C209A82457F42A00B6C111 /* ModalFormSelectionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalFormSelectionEditor.m; sourceTree = "<group>"; };
 		87CA19B52436D7AA00036F7B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		87CA19B62436D7AA00036F7B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		87CA19BB2436E50600036F7B /* PreferencesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesHandler.h; sourceTree = "<group>"; };
@@ -290,8 +321,14 @@
 				87BD39BA24500097005A7F59 /* FormSection.m */,
 				87BD39BC245000A1005A7F59 /* FormItem.h */,
 				87BD39BD245000A1005A7F59 /* FormItem.m */,
+				87C209A12457EAFF00B6C111 /* FormItemSelection.h */,
+				87C209A22457EAFF00B6C111 /* FormItemSelection.m */,
 				876DC54D2451476600A1A5DA /* Customer.h */,
 				876DC54E2451476600A1A5DA /* Customer.m */,
+				87C2099B2457997D00B6C111 /* Inventory.h */,
+				87C2099C2457997D00B6C111 /* Inventory.m */,
+				87C2099E2457998B00B6C111 /* InventoryItem.h */,
+				87C2099F2457998B00B6C111 /* InventoryItem.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -308,6 +345,9 @@
 				87BD39A8244FE7C2005A7F59 /* CustomerTableViewCell.h */,
 				87BD39A9244FE7C2005A7F59 /* CustomerTableViewCell.m */,
 				87BD39AA244FE7C2005A7F59 /* CustomerTableViewCell.xib */,
+				87C2098E245781D400B6C111 /* UserTableViewCell.h */,
+				87C2098F245781D400B6C111 /* UserTableViewCell.m */,
+				87C20990245781D400B6C111 /* UserTableViewCell.xib */,
 				8767AC49241F42BB00C8FD73 /* ItemSelectionView.h */,
 				8767AC4A241F42BB00C8FD73 /* ItemSelectionView.m */,
 				8767AC4B241F42BB00C8FD73 /* ItemSelectionView.xib */,
@@ -363,6 +403,9 @@
 				8798894C24564D68006F686A /* iPadUserSettingsViewController.h */,
 				8798894D24564D68006F686A /* iPadUserSettingsViewController.m */,
 				8798894E24564D68006F686A /* iPadUserSettingsViewController.xib */,
+				87C209932457879E00B6C111 /* iPadManageInventoryViewController.h */,
+				87C209942457879E00B6C111 /* iPadManageInventoryViewController.m */,
+				87C209952457879E00B6C111 /* iPadManageInventoryViewController.xib */,
 				8798895624567437006F686A /* Form Editors */,
 			);
 			name = "iPad Views";
@@ -375,10 +418,14 @@
 				8790F15D2455387A0051B749 /* Manager.m */,
 				8790F15F245538900051B749 /* LoginManager.h */,
 				8790F160245538900051B749 /* LoginManager.m */,
+				87C2098B245767D500B6C111 /* UserManager.h */,
+				87C2098C245767D500B6C111 /* UserManager.m */,
 				87B9B3A324381C7C0034A9BF /* OrderManager.h */,
 				87B9B3A424381C7C0034A9BF /* OrderManager.m */,
 				876DC54A2451475E00A1A5DA /* CustomerManager.h */,
 				876DC54B2451475E00A1A5DA /* CustomerManager.m */,
+				87C20998245796D300B6C111 /* InventoryManager.h */,
+				87C20999245796D300B6C111 /* InventoryManager.m */,
 			);
 			name = "Data Managers";
 			sourceTree = "<group>";
@@ -388,12 +435,16 @@
 			children = (
 				8798895124565A78006F686A /* iPadModalFormEditor.h */,
 				8798895224565A78006F686A /* iPadModalFormEditor.m */,
+				87C209A72457F42A00B6C111 /* ModalFormSelectionEditor.h */,
+				87C209A82457F42A00B6C111 /* ModalFormSelectionEditor.m */,
 				87BD39B1244FF31F005A7F59 /* iPadEditCustomerViewController.h */,
 				87BD39B2244FF31F005A7F59 /* iPadEditCustomerViewController.m */,
 				8798895C245674DD006F686A /* iPadChangePasswordFormViewController.h */,
 				8798895D245674DD006F686A /* iPadChangePasswordFormViewController.m */,
 				87988961245679A3006F686A /* iPadChangeUsernameFormViewController.h */,
 				87988962245679A3006F686A /* iPadChangeUsernameFormViewController.m */,
+				87C209A42457EE0900B6C111 /* iPadEditUserFormViewController.h */,
+				87C209A52457EE0900B6C111 /* iPadEditUserFormViewController.m */,
 			);
 			name = "Form Editors";
 			sourceTree = "<group>";
@@ -576,6 +627,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C20992245781D400B6C111 /* UserTableViewCell.xib in Resources */,
 				872CA1112421FFC6005D043A /* calculator@2x.png in Resources */,
 				8798896A24568B9B006F686A /* settings@2x.png in Resources */,
 				8767AC43241F3F5E00C8FD73 /* round.png in Resources */,
@@ -603,6 +655,7 @@
 				87497AAF24186DAB003B0468 /* iPadLogViewController.xib in Resources */,
 				8798895024564D68006F686A /* iPadUserSettingsViewController.xib in Resources */,
 				87497AB424187595003B0468 /* LogEntryTableViewCell.xib in Resources */,
+				87C209972457879E00B6C111 /* iPadManageInventoryViewController.xib in Resources */,
 				8785ABE0243803790055C23C /* iPadCalculationResultViewController.xib in Resources */,
 				8767AC3F241F3F5600C8FD73 /* half.png in Resources */,
 				87BD39AE244FEBC7005A7F59 /* sihouette-large.png in Resources */,
@@ -649,6 +702,7 @@
 				87BD39B824500089005A7F59 /* Form.m in Sources */,
 				872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */,
 				8785ABD02437FE290055C23C /* CalculationViewItemCell.m in Sources */,
+				87C209A92457F42A00B6C111 /* ModalFormSelectionEditor.m in Sources */,
 				87CE36AF2436B3B400C48742 /* RESTQueryController.m in Sources */,
 				87B9B3A824381E110034A9BF /* Order.m in Sources */,
 				8798893824560D94006F686A /* iPadLogDetailViewController.m in Sources */,
@@ -656,24 +710,32 @@
 				87E131DB243A917B00C77514 /* iPadEditOrderViewController.m in Sources */,
 				8767AC4C241F42BB00C8FD73 /* ItemSelectionView.m in Sources */,
 				8798894F24564D68006F686A /* iPadUserSettingsViewController.m in Sources */,
+				87C2098D245767D500B6C111 /* UserManager.m in Sources */,
 				87BD39BE245000A1005A7F59 /* FormItem.m in Sources */,
+				87C2099A245796D300B6C111 /* InventoryManager.m in Sources */,
 				87BD39BB24500097005A7F59 /* FormSection.m in Sources */,
 				876DC54C2451475E00A1A5DA /* CustomerManager.m in Sources */,
 				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
 				87BD39A6244FE773005A7F59 /* iPadSelectCustomerViewController.m in Sources */,
+				87C20991245781D400B6C111 /* UserTableViewCell.m in Sources */,
 				87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */,
 				8785ABCB2437F5B80055C23C /* iPadCalculationAddItemViewController.m in Sources */,
+				87C2099D2457997D00B6C111 /* Inventory.m in Sources */,
 				87BD39B4244FF31F005A7F59 /* iPadEditCustomerViewController.m in Sources */,
 				87B9B3A524381C7C0034A9BF /* OrderManager.m in Sources */,
 				8798894524562A57006F686A /* MultiDetailTableViewCell.m in Sources */,
 				87497AB324187595003B0468 /* LogEntryTableViewCell.m in Sources */,
+				87C209A02457998B00B6C111 /* InventoryItem.m in Sources */,
 				87C0C5372417C9C80093840D /* AppDelegate.m in Sources */,
+				87C209A32457EAFF00B6C111 /* FormItemSelection.m in Sources */,
 				87D166C32417EF8500E866A2 /* iPadAdminViewController.m in Sources */,
 				87C0C5332417C9C80093840D /* main.m in Sources */,
 				8790F161245538900051B749 /* LoginManager.m in Sources */,
 				87BD39A2244FE520005A7F59 /* SheetNavigationController.m in Sources */,
 				8785ABDA2438012D0055C23C /* iPadCalculationSummaryViewController.m in Sources */,
 				8785ABC72437D7060055C23C /* WindowManager.m in Sources */,
+				87C209962457879E00B6C111 /* iPadManageInventoryViewController.m in Sources */,
+				87C209A62457EE0900B6C111 /* iPadEditUserFormViewController.m in Sources */,
 				876DC54F2451476600A1A5DA /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

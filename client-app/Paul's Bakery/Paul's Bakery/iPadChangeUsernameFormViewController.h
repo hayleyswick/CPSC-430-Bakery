@@ -7,9 +7,18 @@
 //
 
 #import "iPadModalFormEditor.h"
+#import "UserManager.h"
+#import "LoginManager.h"
 
 #define kUsername "username"
 
-@interface iPadChangeUsernameFormViewController : iPadModalFormEditor
+@protocol ChangeUsernameViewDelegate <NSObject>
+@optional
+-(void)didFinishChangingUsername;
+@end
+
+@interface iPadChangeUsernameFormViewController : iPadModalFormEditor <UserManagerDelegate>
+
+@property (nonatomic, strong) id <ChangeUsernameViewDelegate> delegate;
 
 @end

@@ -36,8 +36,8 @@
     [super viewDidLoad];
     
     [self.navigationItem setTitle:@"Change Username"];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStyleDone target:self action:@selector(changePassword)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(closeView)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStyleDone target:self action:@selector(changeUsername)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +46,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
+-(void)changeUsername {
+    [UserManager sharedInstance].delegate = self;
+    [[UserManager sharedInstance] updateUsernameForUser:[[LoginManager sharedInstance] loggedInUser] toUsername:[form getItemWithIdentifier:@kUsername].value];
+}
+-(void)usernameWasUpdatedForUser:(User *)user {
+    [self.delegate didFinishChangingUsername];
+    [self closeView];
+}
 @end

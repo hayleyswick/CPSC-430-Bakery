@@ -10,12 +10,17 @@
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationResultViewController.h"
 #import "iPadCalculationAddItemViewController.h"
+#import "iPadSelectCustomerViewController.h"
+#import "iPadEditCustomerViewController.h"
+#import "SheetNavigationController.h"
 
 
-@interface iPadCalculationViewController : UISplitViewController <AddOrderItemDelegate, SummaryViewDelegate> {
+@interface iPadCalculationViewController : UISplitViewController <AddOrderItemDelegate, SummaryViewDelegate, CalculationResultDelegate, EditOrderViewDelegate> {
     iPadCalculationSummaryViewController *summaryView;
     iPadCalculationResultViewController *resultView;
     iPadCalculationAddItemViewController *addItemView;
+    iPadSelectCustomerViewController *selectCustomerView;
+    iPadEditOrderViewController *editOrderView;
 }
 
 @end

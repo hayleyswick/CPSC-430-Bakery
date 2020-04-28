@@ -10,14 +10,18 @@
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationAddItemViewController.h"
 #import "OrderManager.h"
-#import "iPadSelectCustomerViewController.h"
-#import "SheetNavigationController.h"
+
+@protocol CalculationResultDelegate <NSObject>
+@optional
+-(void)beginOrderSubmission;
+@end
 
 @interface iPadCalculationResultViewController : UIViewController <AddOrderItemDelegate> {
     iPadCalculationSummaryViewController *summaryTableView;
     iPadCalculationAddItemViewController *addItemView;
-    iPadSelectCustomerViewController *selectCustomerView;
 }
+
+@property (nonatomic, strong) id<CalculationResultDelegate> delegate;
 
 -(void)setSummaryTableView:(iPadCalculationSummaryViewController *)view;
 -(IBAction)showAddItemView:(id)sender;

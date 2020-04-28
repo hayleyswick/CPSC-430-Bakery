@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Form.h"
+#import "ModalFormSelectionEditor.h"
 
-@interface iPadModalFormEditor : UITableViewController {
+@interface iPadModalFormEditor : UITableViewController <FormSelectionDelegate> {
     Form *form;
 }
 -(void)setForm:(Form *)f;

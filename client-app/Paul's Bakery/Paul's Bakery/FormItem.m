@@ -12,8 +12,11 @@
 
 -(id)init {
     self = [super init];
+    self.value=@"";
     self.editable = YES;
     self.secure = NO;
+    self.type = formItemTypeText;
+    self.selectionItems = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -29,5 +32,15 @@
 -(void)textFieldDidChange:(UITextField *)textField {
     self.value = textField.text;
 }
-
+-(FormItemSelection *)selectedItem {
+    for (FormItemSelection *i in self.selectionItems) {
+        if (i.selected) {
+            return i;
+        }
+    }
+    return [self.selectionItems objectAtIndex:0];
+}
+-(void)addSelectionItem:(FormItemSelection *)i {
+    [self.selectionItems addObject:i];
+}
 @end

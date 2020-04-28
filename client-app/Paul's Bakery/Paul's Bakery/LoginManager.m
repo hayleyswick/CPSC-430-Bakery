@@ -54,7 +54,7 @@
         [[PreferencesHandler sharedInstance] setHasValidSession:NO];
         [[PreferencesHandler sharedInstance] setCurrentSessionID:@""];
         [self.delegate didLogoutSuccessfully];
-    }
+    } 
 }
 -(User *)loggedInUser {
     if (!loggedInUser) {

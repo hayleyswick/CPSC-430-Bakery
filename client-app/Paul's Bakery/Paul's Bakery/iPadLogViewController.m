@@ -75,7 +75,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[OrderManager sharedInstance] orders].count;
+    NSInteger count = [[OrderManager sharedInstance] orders].count;
+    if (count < 1) {
+        [self.view addSubview:self.noDataView];
+    } else {
+        [self.noDataView removeFromSuperview];
+    }
+    return count;
 }
 
 

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iPadSelectCustomerViewController">
             <connections>
+                <outlet property="noDataView" destination="b9Z-Ye-U1w" id="ot4-yB-Dqh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,5 +22,31 @@
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
             </connections>
         </tableView>
+        <view contentMode="scaleToFill" id="b9Z-Ye-U1w">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Customers Available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="73f-qX-8gE">
+                    <rect key="frame" x="74" y="231" width="393" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uag-u8-KMf">
+                    <rect key="frame" x="164" y="283" width="212" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <state key="normal" title="Add a Customer">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addNewCustomer:" destination="-1" eventType="touchUpInside" id="UPZ-5Z-GGw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="calibratedRGB"/>
+            <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
     </objects>
 </document>

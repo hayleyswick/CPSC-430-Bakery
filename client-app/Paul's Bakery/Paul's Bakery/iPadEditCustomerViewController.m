@@ -96,11 +96,11 @@
     [[CustomerManager sharedInstance] addCustomer:[[Customer alloc] initWithDict:d]];
 }
 -(void)customerWasAdded:(Customer *)cust {
-    if (!editOrderView) {
-        editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
+    if (!self.editOrderView) {
+        self.editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
     }
-    [editOrderView setSelectedCustomer:cust];
-    [self.navigationController pushViewController:editOrderView animated:YES];
+    [self.editOrderView setSelectedCustomer:cust];
+    [self.navigationController pushViewController:self.editOrderView animated:YES];
 }
 
 

@@ -13,6 +13,11 @@
 
 #define textViewCellHeight 155
 
+@protocol EditOrderViewDelegate <NSObject>
+@optional
+-(void)didFinishEditingOrder:(Order *)o;
+@end
+
 typedef enum {
     editOrderSectionCustomer = 0,
     editOrderSectionNotes = 1
@@ -27,6 +32,8 @@ typedef enum {
     Customer *selectedCustomer;
     UITextView *notesTextView;
 }
+
+@property (nonatomic, strong) id <EditOrderViewDelegate> delegate;
 
 @property orderEditMode currentMode;
 

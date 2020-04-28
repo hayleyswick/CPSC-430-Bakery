@@ -14,8 +14,11 @@
 
 @interface iPadSelectCustomerViewController : UITableViewController <CustomerManagerDelegate> {
     iPadEditCustomerViewController *editCustomerView;
-    iPadEditOrderViewController *editOrderView;
     NSArray *preUpdate;
 }
+
+@property iPadEditOrderViewController *editOrderView;
+@property (strong, nonatomic) IBOutlet UIView *noDataView;
+- (IBAction)addNewCustomer:(id)sender;
 
 @end

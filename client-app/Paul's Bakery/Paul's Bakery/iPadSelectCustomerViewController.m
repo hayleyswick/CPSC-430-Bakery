@@ -80,7 +80,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[CustomerManager sharedInstance] customers].count;
+    NSInteger count = [[CustomerManager sharedInstance] customers].count;
+    if (count < 1) {
+        [self.view addSubview:self.noDataView];
+    } else {
+        [self.noDataView removeFromSuperview];
+    }
+    return count;
 }
 
 
@@ -113,6 +119,7 @@
 }
 -(void)transitionToAddNewCustomerView {
     editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    editCustomerView.editOrderView = self.editOrderView;
     [editCustomerView setViewMode:customerEditModeAdd];
     [self.navigationController pushViewController:editCustomerView animated:YES];
 }
@@ -160,18 +167,16 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    if (!editOrderView) {
-        editOrderView = [[iPadEditOrderViewController alloc] init];
+    if (!self.editOrderView) {
+        self.editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
     }
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [editOrderView setSelectedCustomer:[[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:editOrderView animated:YES];
+
+    [self.editOrderView setSelectedCustomer:[[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:self.editOrderView animated:YES];
 }
 
 
+- (IBAction)addNewCustomer:(id)sender {
+    [self transitionToAddNewCustomerView];
+}
 @end

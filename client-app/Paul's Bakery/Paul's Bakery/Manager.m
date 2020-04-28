@@ -49,6 +49,9 @@
     } else if ([err_code isEqualToString:@"customer_exists"]) {
         title = @"Customer Exists";
         info = @"The specified customer has already been added.";
+    } else if ([err_code isEqualToString:@"incorrect_old_password"]) {
+        title = @"Incorrect Password";
+        info = @"The old passwordd you have entered is incorrect.";
     }
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:info delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];

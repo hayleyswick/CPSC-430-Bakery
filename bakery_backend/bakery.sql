@@ -23,8 +23,14 @@ CREATE TABLE sessions (
 	user_id VARCHAR(45) NOT NULL
 );
 
-CREATE TABLE inventory (
-	batter_type TEXT, 
+CREATE TABLE inventories (
+	inventory_id VARCHAR(45) PRIMARY KEY NOT NULL,
+	count_date TIMESTAMP
+);
+
+CREATE TABLE inventory_items (
+	item_id VARCHAR(45) PRIMARY KEY NOT NULL, 
+	inventory_id VARCHAR(45) NOT NULL,
 	quantity DOUBLE
 );
 
@@ -50,7 +56,7 @@ CREATE TABLE orders (
 	order_number INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 	customer_id VARCHAR(45), 
 	order_notes TEXT, 
-	order_date DATETIME
+	order_date TIMESTAMP
 );
 
 CREATE TABLE baked_goods (

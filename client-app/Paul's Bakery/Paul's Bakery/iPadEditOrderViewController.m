@@ -62,6 +62,7 @@
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 -(void)orderWasAdded:(Order *)o {
+    [self.delegate didFinishEditingOrder:o];
     [self closeView];
 }
 #pragma mark - Table view data source
@@ -81,32 +82,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (indexPath.section == editOrderSectionCustomer) {
         
-        if (indexPath.section == editOrderSectionCustomer) {
+        CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell"];
+        
+        if (cell == nil) {
+            
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
-            CustomerTableViewCell *cell = [nib objectAtIndex:0];
-            cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", selectedCustomer.firstname, selectedCustomer.lastname];
-            cell.phoneNumberLabel.text = selectedCustomer.phone;
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-            return cell;
-        } else if (indexPath.section == editOrderSectionNotes) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell = [nib objectAtIndex:0];
             
-            
-            notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
-            notesTextView.font = [UIFont systemFontOfSize:14.0];
-            notesTextView.backgroundColor = [UIColor clearColor];
-            [cell.contentView addSubview:notesTextView];
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
         }
+        cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", selectedCustomer.firstname, selectedCustomer.lastname];
+        cell.phoneNumberLabel.text = selectedCustomer.phone;
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        return cell;
+        
+    } else if (indexPath.section == editOrderSectionNotes) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotesCell"];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NotesCell"];
+        }
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        
+        notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
+        notesTextView.font = [UIFont systemFontOfSize:14.0];
+        notesTextView.backgroundColor = [UIColor clearColor];
+        [cell.contentView addSubview:notesTextView];
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        
+        return cell;
     }
     
-    return cell;
+    
+    return nil;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == editOrderSectionCustomer) {

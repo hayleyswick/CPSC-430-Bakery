@@ -26,7 +26,6 @@
     [super viewDidLoad];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
-    self.tableView.allowsSelection = NO;
     self.tableView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:219.0/255.0 alpha:1.0f];
 }
 -(void)initForm {
@@ -45,6 +44,13 @@
 - (void)closeView {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+-(void)didChangeSelectionOfItems:(NSArray *)items forIndexPath:(NSIndexPath *)path {
+    FormSection *section = [form.sections objectAtIndex:path.section];
+    FormItem *formItem = [section.items objectAtIndex:path.row];
+    formItem.selectionItems = [[NSMutableArray alloc] initWithArray:items];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,21 +66,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"TextFieldCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    FormSection *section = [form.sections objectAtIndex:indexPath.section];
+    FormItem *item = [section.items objectAtIndex:indexPath.row];
+    
+    if (item.type == formItemTypeText) {
         
-        FormSection *section = [form.sections objectAtIndex:indexPath.section];
-        FormItem *item = [section.items objectAtIndex:indexPath.row];
+        static NSString *CellIdentifier = @"TextFieldCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
         
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, cell.frame.size.height - 4)];
         
         [textField addTarget:item action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
-
+        
         textField.userInteractionEnabled = item.editable;
         textField.secureTextEntry = item.secure;
         textField.text = item.value;
@@ -84,10 +95,27 @@
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [cell.contentView addSubview:textField];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        
+        return cell;
+    } else if (item.type == formItemTypeSelection) {
+        static NSString *CellIdentifier = @"SelectionItemCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        }
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        cell.textLabel.text = item.placeholder;
+        cell.detailTextLabel.text = [item selectedItem].selectionText;
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        
+        return cell;
     }
-    
-    return cell;
+    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -133,21 +161,22 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    FormSection *section = [form.sections objectAtIndex:indexPath.section];
+    FormItem *item = [section.items objectAtIndex:indexPath.row];
+    if (item.type == formItemTypeSelection) {
+        ModalFormSelectionEditor *selEditor = [[ModalFormSelectionEditor alloc] init];
+        selEditor.delegate = self;
+        selEditor.editingIndexPath = indexPath;
+        [selEditor setSelectionItems:item.selectionItems];
+        [self.navigationController pushViewController:selEditor animated:YES];
+    }
 }
-*/
+
 
 @end

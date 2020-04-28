@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomerTableViewCell.h"
+#import "UserTableViewCell.h"
 #import "LoginManager.h"
+#import "UserManager.h"
 #import "SheetNavigationController.h"
 #import "iPadChangePasswordFormViewController.h"
 #import "iPadChangeUsernameFormViewController.h"
+#import "iPadManageInventoryViewController.h"
+#import "iPadEditUserFormViewController.h"
 
 typedef enum {
     userSettingsSectionInfo = 0,
@@ -31,6 +34,6 @@ typedef enum {
     userSettingsAdminRowManageCustomers = 2
 }userSettingsAdminRow;
 
-@interface iPadUserSettingsViewController : UITableViewController 
+@interface iPadUserSettingsViewController : UITableViewController <ChangeUsernameViewDelegate, UserManagerDelegate>
 
 @end

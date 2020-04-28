@@ -90,49 +90,60 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (indexPath.section == orderDetailSectionCustomer) {
         
-        if (indexPath.section == orderDetailSectionCustomer) {
+        CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell"];
+        if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomerTableViewCell" owner:self options:nil];
-            CustomerTableViewCell *cell = [nib objectAtIndex:0];
-            cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", selectedOrder.customer.firstname, selectedOrder.customer.lastname];
-            cell.phoneNumberLabel.text = selectedOrder.customer.phone;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-            return cell;
+            cell = [nib objectAtIndex:0];
             
-        } else if (indexPath.section == orderDetailSectionItems) {
-            
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MultiDetailTableViewCell" owner:self options:nil];
-            MultiDetailTableViewCell *cell = [nib objectAtIndex:0];
-
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-            cell.mainTextLabel.text = [[selectedOrder.items objectAtIndex:indexPath.row] cakeTypeText];
-            cell.mainDetailTextLabel.text = [[selectedOrder.items objectAtIndex:indexPath.row] batterTypeText];
-            cell.secondaryDetailTextLabel.text = [NSString stringWithFormat:@"Quantity: %d", [[selectedOrder.items objectAtIndex:indexPath.row] quantity]];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        } else if (indexPath.section == orderDetailSectionNotes) {
-            
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            
-            notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
-            [notesTextView setText:selectedOrder.notes];
-            [notesTextView setEditable:NO];
-            notesTextView.font = [UIFont systemFontOfSize:14.0];
-            notesTextView.backgroundColor = [UIColor clearColor];
-            [cell.contentView addSubview:notesTextView];
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        cell.customerNameLabel.text = [NSString stringWithFormat:@"%@ %@", selectedOrder.customer.firstname, selectedOrder.customer.lastname];
+        cell.phoneNumberLabel.text = selectedOrder.customer.phone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        
+        return cell;
+        
+    } else if (indexPath.section == orderDetailSectionItems) {
+        
+        MultiDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MultiDetailTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        cell.mainTextLabel.text = [[selectedOrder.items objectAtIndex:indexPath.row] cakeTypeText];
+        cell.mainDetailTextLabel.text = [[selectedOrder.items objectAtIndex:indexPath.row] batterTypeText];
+        cell.secondaryDetailTextLabel.text = [NSString stringWithFormat:@"Quantity: %d", [[selectedOrder.items objectAtIndex:indexPath.row] quantity]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    } else if (indexPath.section == orderDetailSectionNotes) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotesCell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NotesCell"];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
+            
+        }
+        
+        [notesTextView setText:selectedOrder.notes];
+        [notesTextView setEditable:NO];
+        notesTextView.font = [UIFont systemFontOfSize:14.0];
+        notesTextView.backgroundColor = [UIColor clearColor];
+        [cell.contentView addSubview:notesTextView];
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
     }
     
-    return cell;
+    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
