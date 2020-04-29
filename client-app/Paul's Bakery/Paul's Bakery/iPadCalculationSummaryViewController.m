@@ -137,5 +137,7 @@
     
     [self.tableView reloadData];
 }
-
+-(void)didFinishSubmittingOrder {
+    [self.tableView reloadData];
+}
 @end

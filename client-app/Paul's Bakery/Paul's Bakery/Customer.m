@@ -16,7 +16,13 @@
 }
 -(id)initWithDict:(NSDictionary *)dict {
     self = [self init];
-    self.customerID = [dict objectForKey:@kCustomerID];
+    [self updateWithDict:dict];
+    return self;
+}
+-(void)updateWithDict:(NSDictionary *)dict {
+    if ([dict objectForKey:@kCustomerID]) {
+        self.customerID = [dict objectForKey:@kCustomerID];
+    }
     self.firstname = [dict objectForKey:@kCustomerFirstname];
     self.lastname = [dict objectForKey:@kCustomerLastname];
     self.phone = [dict objectForKey:@kCustomerPhoneNumber];
@@ -24,7 +30,6 @@
     self.city = [dict objectForKey:@kCustomerCity];
     self.state = [dict objectForKey:@kCustomerState];
     self.zip = [dict objectForKey:@kCustomerZip];
-    return self;
 }
 -(NSDictionary *)dictRepresentation {
     if (!self.customerID) {

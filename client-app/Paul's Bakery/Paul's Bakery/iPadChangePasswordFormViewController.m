@@ -59,7 +59,7 @@
     if (![oldPassword isEqualToString:@""] && ![newPassword isEqualToString:@""] && ![confirmPassword isEqualToString:@""]) {
         if ([newPassword isEqualToString:confirmPassword]) {
             [UserManager sharedInstance].delegate = self;
-            [[UserManager sharedInstance] updatePasswordForUser:[[LoginManager sharedInstance] loggedInUser] fromPassword:oldPassword toPassword:newPassword];
+            [[UserManager sharedInstance] updatePasswordForCurrentUserFromPassword:oldPassword toPassword:newPassword];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Passwords Don't Match" message:@"The new password entered and confirmation do not match." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];

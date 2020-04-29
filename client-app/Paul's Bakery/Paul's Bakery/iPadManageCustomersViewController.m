@@ -1,18 +1,18 @@
 //
-//  iPadSelectCustomerViewController.m
+//  iPadManageCustomersViewController.m
 //  Paul's Bakery
 //
-//  Created by Collin Mistr on 4/21/20.
+//  Created by Collin Mistr on 4/28/20.
 //  Copyright (c) 2020 dosdude1 Apps. All rights reserved.
 //
 
-#import "iPadSelectCustomerViewController.h"
+#import "iPadManageCustomersViewController.h"
 
-@interface iPadSelectCustomerViewController ()
+@interface iPadManageCustomersViewController ()
 
 @end
 
-@implementation iPadSelectCustomerViewController
+@implementation iPadManageCustomersViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +28,9 @@
 {
     [super viewDidLoad];
     
-    [self.navigationItem setTitle:@"Select Customer"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New Customer" style:UIBarButtonItemStylePlain target:self action:@selector(transitionToAddNewCustomerView)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
+    [self.navigationItem setTitle:@"Manage Customers"];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -66,6 +66,15 @@
     [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
     preUpdate = [NSArray arrayWithArray:customers];
+}
+-(void)didFinishEditingCustomerAtIndexPath:(NSIndexPath *)path {
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+-(void)transitionToAddNewCustomerView {
+    [self setEditing:NO animated:NO];
+    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    [editCustomerView setViewMode:customerEditModeAdd];
+    [self.navigationController pushViewController:editCustomerView animated:YES];
 }
 #pragma mark - Table view data source
 
@@ -115,50 +124,43 @@
     CustomerTableViewCell *cell = [nib objectAtIndex:0];
     return cell.frame.size.height;
 }
--(void)transitionToAddNewCustomerView {
-    editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
-    editCustomerView.editOrderView = self.editOrderView;
-    editCustomerView.inOrderFlow = YES;
-    [editCustomerView setViewMode:customerEditModeAdd];
-    [self.navigationController pushViewController:editCustomerView animated:YES];
-}
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 /*
-// Override to support editing the table view.
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        Customer *c = [[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row];
+        [[CustomerManager sharedInstance] removeCustomer:c];
+        preUpdate = [NSArray arrayWithArray:[[CustomerManager sharedInstance] customers]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 
 #pragma mark - Table view delegate
@@ -166,16 +168,26 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.editOrderView) {
-        self.editOrderView = [[iPadEditOrderViewController alloc] initWithNibName:@"iPadEditOrderViewController" bundle:nil];
-    }
-
-    [self.editOrderView setSelectedCustomer:[[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:self.editOrderView animated:YES];
+    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    editCustomerView.delegate = self;
+    [editCustomerView setViewMode:customerEditModeEdit];
+    [editCustomerView beginEditingCustomer:[[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row] atIndexPath:indexPath];
+    [self.navigationController pushViewController:editCustomerView animated:YES];
 }
 
 
 - (IBAction)addNewCustomer:(id)sender {
     [self transitionToAddNewCustomerView];
 }
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [self.navigationItem setRightBarButtonItem:nil animated:YES];
+    if (editing) {
+        [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(transitionToAddNewCustomerView)] animated:YES];
+    } else {
+        [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)] animated:YES];
+    }
+}
+
 @end

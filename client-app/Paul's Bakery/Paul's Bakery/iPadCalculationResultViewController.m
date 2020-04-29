@@ -31,6 +31,8 @@
         [self.view addSubview:self.noDataView];
     }
     [self.navigationItem setTitle:@"Calculation"];
+    [self.vanillaSubview.layer setCornerRadius:20];
+    [self.chocolateSubview.layer setCornerRadius:20];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -51,12 +53,26 @@
 }
 -(void)didFinishEditingOrder {
     if ([[[OrderManager sharedInstance] editingOrder] items].count > 0) {
+        [self updateCalculationResults];
         [self.noDataView removeFromSuperview];
     } else {
         [self.view addSubview:self.noDataView];
     }
 }
+-(void)didFinishSubmittingOrder {
+    
+    [self didFinishEditingOrder];
+}
 - (IBAction)showEditOrderInfoView:(id)sender {
     [self.delegate beginOrderSubmission];
+}
+-(void)updateCalculationResults {
+    [self.vanillaFullSheetLabel setText:[NSString stringWithFormat:@"%d", [[BatterCalculationManager sharedInstance] getNumberOfVanillaSheetsNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    [self.vanillaFullRoundLabel setText:[NSString stringWithFormat:@"%d", [[BatterCalculationManager sharedInstance] getNumberOfVanillaRoundsNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    [self.vanillaQuantityLabel setText:[NSString stringWithFormat:@"%g LBS", [[BatterCalculationManager sharedInstance] getVanillaBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    [self.chocolateFullSheetLabel setText:[NSString stringWithFormat:@"%d", [[BatterCalculationManager sharedInstance] getNumberOfChocolateSheetsNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    [self.chocolateFullRoundLabel setText:[NSString stringWithFormat:@"%d", [[BatterCalculationManager sharedInstance] getNumberOfChocolateRoundsNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    [self.chocolateQuantityLabel setText:[NSString stringWithFormat:@"%g LBS", [[BatterCalculationManager sharedInstance] getChocolateBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]]]];
+    
 }
 @end

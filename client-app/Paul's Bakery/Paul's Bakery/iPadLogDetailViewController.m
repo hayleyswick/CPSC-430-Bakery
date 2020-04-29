@@ -213,7 +213,7 @@
     if (indexPath.section == orderDetailSectionCustomer) {
         editCustomerView = [[iPadEditCustomerViewController alloc] init];
         [editCustomerView setViewMode:customerEditModeView];
-        [editCustomerView setEditingCustomer:selectedOrder.customer];
+        [editCustomerView beginEditingCustomer:selectedOrder.customer atIndexPath:indexPath];
         [self.navigationController pushViewController:editCustomerView animated:YES];
     }
 }

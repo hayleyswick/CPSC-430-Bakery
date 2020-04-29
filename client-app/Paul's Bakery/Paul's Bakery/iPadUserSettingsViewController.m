@@ -31,14 +31,21 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
     [UserManager sharedInstance].delegate = self;
-    [[UserManager sharedInstance] retrieveUpdatedDataForUser:[[LoginManager sharedInstance] loggedInUser]];
+    [[UserManager sharedInstance] retrieveUpdatedDataForCurrentUser];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)didFinishChangingUsername {
+    [UserManager sharedInstance].delegate = self;
+    [[UserManager sharedInstance] retrieveUpdatedDataForCurrentUser];
+}
 
+-(void)userDataWasUpdated {
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:userSettingsSectionInfo]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,30 +76,42 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
+    if (indexPath.section == userSettingsSectionInfo) {
         
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"UserInfoCell";
+        UserTableViewCell *cell = (UserTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        User *currentUser = [[LoginManager sharedInstance] loggedInUser];
+        cell.userFullName.text = [NSString stringWithFormat:@"%@ %@", currentUser.firstname, currentUser.lastname];
+        cell.userType.text = [currentUser typeString];
+        cell.username.text = [currentUser username];
+        cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    } else {
+        
+        static NSString *CellIdentifier = @"UserInfoCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
         
-        if (indexPath.section == userSettingsSectionInfo) {
-            User *currentUser = [[LoginManager sharedInstance] loggedInUser];
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:self options:nil];
-            UserTableViewCell *cell = [nib objectAtIndex:0];
-            cell.userFullName.text = [NSString stringWithFormat:@"%@ %@", currentUser.firstname, currentUser.lastname];
-            cell.userType.text = [currentUser typeString];
-            cell.username.text = [currentUser username];
-            cell.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:188.0/255.0 alpha:1.0f];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-            
-        } else if (indexPath.section == userSettingsSectionOptions) {
-            
-            cell.textLabel.textColor = [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f];
+        cell.textLabel.textColor = [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f];
+        
+        if (indexPath.section == userSettingsSectionOptions) {
             
             
             switch (indexPath.row) {
@@ -103,11 +122,14 @@
                     cell.textLabel.text = @"Change Password...";
                     break;
             }
-
+            
         } else if (indexPath.section == userSettingsSectionLogOut) {
+                
             cell.textLabel.textColor = [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f];
             cell.textLabel.text = @"Log Out";
+                
         } else if (indexPath.section == userSettingsSectionAdministration) {
+                
             cell.textLabel.textColor = [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f];
             switch (indexPath.row) {
                 case userSettingsAdminRowManageInventory:
@@ -121,9 +143,10 @@
                     break;
             }
         }
+        return cell;
     }
     
-    return cell;
+    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -215,7 +238,12 @@
                     break;
                 }
                 case userSettingsAdminRowManageUsers: {
-                    iPadEditUserFormViewController *v = [[iPadEditUserFormViewController alloc] init];
+                    iPadManageUsersViewController *v = [[iPadManageUsersViewController alloc] initWithNibName:@"iPadManageUsersViewController" bundle:nil];
+                    [self presentViewController:[[SheetNavigationController alloc] initWithRootViewController:v] animated:YES completion:nil];
+                    break;
+                }
+                case userSettingsAdminRowManageCustomers: {
+                    iPadManageCustomersViewController *v = [[iPadManageCustomersViewController alloc] initWithNibName:@"iPadManageCustomersViewController" bundle:nil];
                     [self presentViewController:[[SheetNavigationController alloc] initWithRootViewController:v] animated:YES completion:nil];
                     break;
                 }
@@ -224,13 +252,5 @@
     }
 }
 
--(void)didFinishChangingUsername {
-    [UserManager sharedInstance].delegate = self;
-    [[UserManager sharedInstance] retrieveUpdatedDataForUser:[[LoginManager sharedInstance] loggedInUser]];
-}
-
--(void)userDataWasUpdated {
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:userSettingsSectionInfo]] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 @end

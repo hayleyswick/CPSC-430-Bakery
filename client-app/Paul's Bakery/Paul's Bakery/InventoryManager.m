@@ -33,7 +33,7 @@
             [inventories addObject:[[Inventory alloc] initWithDict:d]];
         }
         [self.delegate didUpdateInventoryData];
-    } else if (conn == connectionUpdateInventory) {
+    } else if (conn == connectionSaveInventory) {
         [self.delegate inventoryDataWasUpdated];
     }
 }
@@ -44,6 +44,12 @@
     [connectionGetInventory sendGETRequestToEndpoint:@"/api/get_inventory" withData:data delegate:self];
 }
 -(void)saveInventoryEditsForInventory:(Inventory *)i {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[i dictRepresentation]];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    connectionSaveInventory = [[RESTQueryController alloc] init];
+    [connectionSaveInventory sendPOSTRequestToEndpoint:@"/api/update_inventory_count" withData:data delegate:self];
+}
+-(void)updateInventory:(Inventory *)i {
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[i dictRepresentation]];
     [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
     connectionUpdateInventory = [[RESTQueryController alloc] init];

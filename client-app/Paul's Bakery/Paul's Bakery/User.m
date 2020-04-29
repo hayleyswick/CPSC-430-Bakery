@@ -12,6 +12,7 @@
 
 -(id)init {
     self = [super init];
+    self.userID = @"";
     return self;
 }
 -(id)initWithUsername:(NSString *)username withFirstname:(NSString *)first withLastname:(NSString *)last ofType:(userType)type{
@@ -24,24 +25,38 @@
 }
 -(id)initWithDict:(NSDictionary *)dict {
     self = [self init];
-    self.username = [dict objectForKey:@kUsername];
-    self.type = [[dict objectForKey:@kType] intValue];
-    self.firstname = [dict objectForKey:@kFirstname];
-    self.lastname = [dict objectForKey:@kLastname];
+    [self updateWithDict:dict];
     return self;
 }
+-(void)updateWithDict:(NSDictionary *)dict {
+    self.username = [dict objectForKey:@kUsername];
+    NSString *typeString = [dict objectForKey:@kType];
+    if ([typeString isEqualToString:@AdminString]) {
+        self.type = userTypeAdmin;
+    } else {
+        self.type = userTypeBaker;
+    }
+    self.firstname = [dict objectForKey:@kFirstname];
+    self.lastname = [dict objectForKey:@kLastname];
+    if ([dict objectForKey:@kUserID]) {
+        self.userID = [dict objectForKey:@kUserID];
+    }
+}
 -(NSDictionary *)dictRepresentation {
-    return @{@kUsername:self.username, @kType:[NSNumber numberWithInt:self.type], @kFirstname:self.firstname, @kLastname:self.lastname};
+    return @{@kUsername:self.username, @kType:[self typeString], @kFirstname:self.firstname, @kLastname:self.lastname};
 }
 -(NSString *)typeString {
     switch (self.type) {
         case userTypeAdmin:
-            return @"Admin";
+            return @AdminString;
             break;
         case userTypeBaker:
-            return @"Baker";
+            return @BakerString;
             break;
     }
-    return @"Baker";
+    return @BakerString;
+}
+-(BOOL)isEqual:(User *)u {
+    return ([self.userID isEqualToString:u.userID]);
 }
 @end

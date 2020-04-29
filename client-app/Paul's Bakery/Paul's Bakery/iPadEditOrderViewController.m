@@ -104,12 +104,11 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NotesCell"];
+            notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
         }
         
         cell.accessoryType = UITableViewCellAccessoryNone;
         
-        
-        notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 4, tableView.frame.size.width - 10, textViewCellHeight - 10)];
         notesTextView.font = [UIFont systemFontOfSize:14.0];
         notesTextView.backgroundColor = [UIColor clearColor];
         [cell.contentView addSubview:notesTextView];

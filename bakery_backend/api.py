@@ -34,13 +34,45 @@ def api_logout():
 def api_create_user():
 	data = request.get_json()
 
+	session_id = data['session_id']
 	username = data['username']
 	password = data['password']
-	user_type = data['type']
+	user_type = data['user_type']
 	firstname = data['firstname']
 	lastname = data['lastname']
 
-	return jsonify(actions.create_user(username, password, user_type, firstname, lastname))
+	return jsonify(actions.create_user(session_id, username, password, user_type, firstname, lastname))
+
+
+@app.route('/api/update_user_data', methods=['POST'])
+def api_update_user_data():
+	data = request.get_json()
+
+	session_id = data['session_id']
+	user_id = data['user_id']
+	username = data['username']
+	user_type = data['user_type']
+	firstname = data['firstname']
+	lastname = data['lastname']
+
+	return jsonify(actions.update_user_data(session_id, user_id, username, user_type, firstname, lastname))
+
+
+@app.route('/api/get_users', methods=['GET'])
+def api_get_users():
+
+	session_id = request.args.get('session_id')
+	return jsonify(actions.get_users(session_id))
+
+
+@app.route('/api/remove_user', methods=['POST'])
+def api_remove_user():
+	data = request.get_json()
+
+	session_id = data['session_id']
+	user_id = data['user_id']
+
+	return jsonify(actions.remove_user(session_id, user_id))
 
 
 @app.route('/api/add_customer', methods=['POST'])
@@ -65,6 +97,33 @@ def api_get_customers():
 
 	return jsonify(actions.get_customers(session_id))
 
+
+
+@app.route('/api/update_customer_data', methods=['POST'])
+def api_update_customer_data():
+	data = request.get_json()
+
+	session_id = data['session_id']
+	customer_id = data['id']
+	firstname = data['firstname']
+	lastname = data['lastname']
+	phone_number = data['phone_number']
+	street = data['street']
+	city = data['city']
+	state = data['state']
+	zip = data['zip']
+
+	return jsonify(actions.update_customer_data(session_id, customer_id, firstname, lastname, phone_number, street, city, state, zip))
+
+
+@app.route('/api/remove_customer', methods=['POST'])
+def api_remove_customer():
+	data = request.get_json()
+
+	session_id = data['session_id']
+	customer_id = data['id']
+
+	return jsonify(actions.remove_customer(session_id, customer_id))
 
 
 
@@ -131,7 +190,14 @@ def api_update_inventory():
 
 	return jsonify(actions.update_inventory(session_id, inventory_id, items))
 
+@app.route('/api/update_inventory_count', methods=['POST'])
+def api_update_inventory_count():
+	data = request.get_json()
+	session_id = data['session_id']
+	inventory_id = data['inventory_id']
+	items = data['items']
 
+	return jsonify(actions.update_inventory_count(session_id, inventory_id, items))
 
 
 @app.route('/api/update_batter_quantity', methods=['POST'])

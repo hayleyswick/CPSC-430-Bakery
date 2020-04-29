@@ -16,15 +16,23 @@ typedef enum {
     customerEditModeView = 2
 } customerEditMode;
 
+@protocol EditCustomerViewDelegate <NSObject>
+@optional
+-(void)didFinishEditingCustomerAtIndexPath:(NSIndexPath *)path;
+@end
 
 @interface iPadEditCustomerViewController : iPadModalFormEditor <CustomerManagerDelegate> {
     customerEditMode currentMode;
     Customer *editingCustomer;
+    NSIndexPath *editingIndexPath;
 }
 
+@property (nonatomic, strong) id <EditCustomerViewDelegate> delegate;
+
 @property iPadEditOrderViewController *editOrderView;
+@property BOOL inOrderFlow;
 
 -(void)setViewMode:(customerEditMode)mode;
--(void)setEditingCustomer:(Customer *)cust;
+-(void)beginEditingCustomer:(Customer *)cust atIndexPath:(NSIndexPath *)path;
 
 @end

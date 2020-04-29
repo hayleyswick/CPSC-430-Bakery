@@ -32,7 +32,6 @@
 +(OrderManager *)sharedInstance;
 -(Order *)getOrderWithNumber:(int)orderNumber;
 -(void)addOrder:(Order *)o;
--(void)removeOrder:(Order *)o;
 -(void)fetchOrders;
 -(void)fetchItemsForOrder:(Order *)o;
 

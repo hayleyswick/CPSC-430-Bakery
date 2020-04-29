@@ -39,6 +39,8 @@
             [self.customers addObject:c];
         }
         [self.delegate customerDataDidUpdate:self.customers];
+    } else if (conn == connectionSaveCustomerData) {
+        [self.delegate didSaveCustomerData];
     }
 }
 
@@ -62,5 +64,19 @@
     [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
     connectionAddCustomer = [[RESTQueryController alloc] init];
     [connectionAddCustomer sendPOSTRequestToEndpoint:@"/api/add_customer" withData:data delegate:self];
+}
+-(void)saveDataForCustomer:(Customer *)cust {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:[cust dictRepresentation]];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    connectionSaveCustomerData = [[RESTQueryController alloc] init];
+    [connectionSaveCustomerData sendPOSTRequestToEndpoint:@"/api/update_customer_data" withData:data delegate:self];
+}
+-(void)removeCustomer:(Customer *)cust {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    [data setObject:[[PreferencesHandler sharedInstance] currentSessionID] forKey:@"session_id"];
+    [data setObject:cust.customerID forKey:@kCustomerID];
+    connectionRemoveCustomer = [[RESTQueryController alloc] init];
+    [connectionRemoveCustomer sendPOSTRequestToEndpoint:@"/api/remove_customer" withData:data delegate:self];
+    [self.customers removeObject:cust];
 }
 @end

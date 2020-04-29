@@ -15,7 +15,7 @@
 #import "SheetNavigationController.h"
 
 
-@interface iPadCalculationViewController : UISplitViewController <AddOrderItemDelegate, SummaryViewDelegate, CalculationResultDelegate, EditOrderViewDelegate> {
+@interface iPadCalculationViewController : UISplitViewController <AddOrderItemDelegate, SummaryViewDelegate, CalculationResultDelegate, EditOrderViewDelegate, InventoryManagerDelegate> {
     iPadCalculationSummaryViewController *summaryView;
     iPadCalculationResultViewController *resultView;
     iPadCalculationAddItemViewController *addItemView;

@@ -13,7 +13,7 @@ CREATE TABLE users (
 	id VARCHAR(45) PRIMARY KEY NOT NULL, 
 	username TEXT NOT NULL, 
 	password TEXT, 
-	type TEXT, 
+	user_type TEXT, 
 	firstname TEXT, 
 	lastname TEXT
 );

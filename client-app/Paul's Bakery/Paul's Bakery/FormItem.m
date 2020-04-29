@@ -12,7 +12,7 @@
 
 -(id)init {
     self = [super init];
-    self.value=@"";
+    value=@"";
     self.editable = YES;
     self.secure = NO;
     self.type = formItemTypeText;
@@ -30,7 +30,7 @@
 }
 
 -(void)textFieldDidChange:(UITextField *)textField {
-    self.value = textField.text;
+    value = textField.text;
 }
 -(FormItemSelection *)selectedItem {
     for (FormItemSelection *i in self.selectionItems) {
@@ -40,7 +40,29 @@
     }
     return [self.selectionItems objectAtIndex:0];
 }
+-(void)setSelectedItem:(FormItemSelection *)item {
+    for (FormItemSelection *i in self.selectionItems) {
+        if ([i isEqual:item]) {
+            i.selected = YES;
+        } else {
+            i.selected = NO;
+        }
+    }
+}
 -(void)addSelectionItem:(FormItemSelection *)i {
     [self.selectionItems addObject:i];
+}
+-(NSString *)value {
+    if (self.type == formItemTypeSelection) {
+        return [self selectedItem].selectionText;
+    }
+    return value;
+}
+-(void)setValue:(NSString *)val {
+    if (self.type == formItemTypeSelection) {
+        [self setSelectedItem:[[FormItemSelection alloc] initWithSelectionText:val selected:YES]];
+    } else {
+        value = val;
+    }
 }
 @end

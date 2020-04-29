@@ -14,10 +14,11 @@ typedef enum {
     formItemTypeSelection = 1
 }formItemType;
 
-@interface FormItem : NSObject
+@interface FormItem : NSObject {
+    NSString *value;
+}
 
 @property NSString *identifier;
-@property NSString *value;
 @property NSString *placeholder;
 @property BOOL editable;
 @property BOOL secure;
@@ -28,6 +29,9 @@ typedef enum {
 -(id)initWithIdentifier:(NSString *)identifier withPlaceholder:(NSString *)placeholder withSecurity:(BOOL)secure allowEditing:(BOOL)editable;
 -(void)textFieldDidChange:(UITextField *)textField;
 -(FormItemSelection *)selectedItem;
+-(void)setSelectedItem:(FormItemSelection *)item;
 -(void)addSelectionItem:(FormItemSelection *)i;
+-(NSString *)value;
+-(void)setValue:(NSString *)val;
 
 @end

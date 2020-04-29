@@ -13,11 +13,14 @@
 @optional
 -(void)customerDataDidUpdate:(NSArray *)customers;
 -(void)customerWasAdded:(Customer *)cust;
+-(void)didSaveCustomerData;
 @end
 
 @interface CustomerManager : Manager {
     RESTQueryController *connectionAddCustomer;
     RESTQueryController *connectionGetCustomers;
+    RESTQueryController *connectionSaveCustomerData;
+    RESTQueryController *connectionRemoveCustomer;
 }
 
 @property NSMutableArray *customers;
@@ -29,5 +32,7 @@
 -(Customer *)getCustomerWithID:(NSString *)customerID;
 -(void)fetchCustomerData;
 -(void)addCustomer:(Customer *)cust;
+-(void)saveDataForCustomer:(Customer *)cust;
+-(void)removeCustomer:(Customer *)cust;
 
 @end

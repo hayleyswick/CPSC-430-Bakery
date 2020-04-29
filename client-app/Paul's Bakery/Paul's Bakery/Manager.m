@@ -20,7 +20,7 @@
     NSString *responseState = [data objectForKey:@kResponseState];
     
     for (NSString *key in data.allKeys) {
-        NSLog(@"%@:%@", key, [data objectForKey:key]);
+        NSLog(@"Response: %@:%@", key, [data objectForKey:key]);
     }
     
     if ([responseState isEqualToString:@"OK"]) {
@@ -52,6 +52,9 @@
     } else if ([err_code isEqualToString:@"incorrect_old_password"]) {
         title = @"Incorrect Password";
         info = @"The old passwordd you have entered is incorrect.";
+    } else if ([err_code isEqualToString:@"user_exists"]) {
+        title = @"Username In Use";
+        info = @"The username specified is already in use. Please choose a different one.";
     }
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:info delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];

@@ -21,6 +21,7 @@
 
 @interface InventoryManager : Manager {
     RESTQueryController *connectionGetInventory;
+    RESTQueryController *connectionSaveInventory;
     RESTQueryController *connectionUpdateInventory;
     NSMutableArray *inventories;
 }
@@ -33,5 +34,6 @@
 -(void)saveInventoryEditsForInventory:(Inventory *)i;
 -(void)discardInventoryEditsForInventory:(Inventory *)i;
 -(Inventory *)getInventoryWithID:(NSString *)identifier;
+-(void)updateInventory:(Inventory *)i;
 
 @end

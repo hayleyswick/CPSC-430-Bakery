@@ -48,7 +48,7 @@
 
 -(void)changeUsername {
     [UserManager sharedInstance].delegate = self;
-    [[UserManager sharedInstance] updateUsernameForUser:[[LoginManager sharedInstance] loggedInUser] toUsername:[form getItemWithIdentifier:@kUsername].value];
+    [[UserManager sharedInstance] setCurrentUserUsername:[form getItemWithIdentifier:@kUsername].value];
 }
 -(void)usernameWasUpdatedForUser:(User *)user {
     [self.delegate didFinishChangingUsername];

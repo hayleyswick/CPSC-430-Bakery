@@ -36,7 +36,9 @@
     [self.vanillaBatterDetailView.layer setCornerRadius:20];
     [self.chocolateBatterDetailView.layer setCornerRadius:20];
     [self.chocolateValueStepper setStepValue:1.0];
+    [self.chocolateValueStepper setMaximumValue:9999999.0];
     [self.vanillaValueStepper setStepValue:1.0];
+    [self.vanillaValueStepper setMaximumValue:9999999.0];
     [self.vanillaValueField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.chocolateValueField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     

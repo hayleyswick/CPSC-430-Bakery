@@ -32,7 +32,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
     [UserManager sharedInstance].delegate = self;
-    [[UserManager sharedInstance] retrieveUpdatedDataForUser:[[LoginManager sharedInstance] loggedInUser]];
+    [[UserManager sharedInstance] retrieveUpdatedDataForCurrentUser];
 }
 - (void)didReceiveMemoryWarning
 {

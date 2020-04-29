@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #define kUsername "username"
-#define kType "type"
+#define kType "user_type"
 #define kFirstname "firstname"
 #define kLastname "lastname"
+#define kUserID "user_id"
+
+#define AdminString "Admin"
+#define BakerString "Baker"
 
 typedef enum {
     userTypeBaker = 0,
@@ -23,13 +27,16 @@ typedef enum {
 -(id)init;
 -(id)initWithUsername:(NSString *)username withFirstname:(NSString *)first withLastname:(NSString *)last ofType:(userType)type;
 -(id)initWithDict:(NSDictionary *)dict;
+-(void)updateWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
 -(NSString *)typeString;
+-(BOOL)isEqual:(User *)u;
 
 @property NSString *username;
 @property userType type;
 @property NSString *firstname;
 @property NSString *lastname;
+@property NSString *userID;
 
 
 @end

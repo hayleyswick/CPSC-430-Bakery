@@ -31,6 +31,7 @@
 
 -(id)init;
 -(id)initWithDict:(NSDictionary *)dict;
+-(void)updateWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
 -(BOOL)isEqual:(Customer *)o;
 

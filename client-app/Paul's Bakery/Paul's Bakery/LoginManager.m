@@ -42,12 +42,8 @@
         [self loginWithSession:[data objectForKey:@"session_id"]];
     } else if (conn == connectionLoginWithSession) {
         NSDictionary *user = [data objectForKey:@kResponseDataItem];
-        userType t = userTypeBaker;
-        if ([[user objectForKey:@"user_type"] isEqualToString:@"admin"]) {
-            t = userTypeAdmin;
-        }
         [[PreferencesHandler sharedInstance] setHasValidSession:YES];
-        loggedInUser = [[User alloc] initWithUsername:[user objectForKey:@"username"] withFirstname:[user objectForKey:@"firstname"] withLastname:[user objectForKey:@"lastname"] ofType:t];
+        loggedInUser = [[User alloc] initWithDict:user];
         [[PreferencesHandler sharedInstance] setCurrentUser:loggedInUser];
         [self.delegate didLoginAsUser:loggedInUser];
     } else if (conn == connectionLogout) {

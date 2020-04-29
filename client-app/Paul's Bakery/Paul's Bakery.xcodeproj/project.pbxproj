@@ -12,6 +12,12 @@
 		872CA10F2421FFC0005D043A /* calculator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA10E2421FFC0005D043A /* calculator@3x.png */; };
 		872CA1112421FFC6005D043A /* calculator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA1102421FFC6005D043A /* calculator@2x.png */; };
 		872CA1132421FFCB005D043A /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = 872CA1122421FFCB005D043A /* calculator.png */; };
+		87447D09245889060096F2D9 /* iPadManageUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87447D07245889060096F2D9 /* iPadManageUsersViewController.m */; };
+		87447D0A245889060096F2D9 /* iPadManageUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87447D08245889060096F2D9 /* iPadManageUsersViewController.xib */; };
+		87447D0D2458DCFB0096F2D9 /* iPadAddUserFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87447D0C2458DCFB0096F2D9 /* iPadAddUserFormViewController.m */; };
+		87447D142458ED680096F2D9 /* iPadManageCustomersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87447D122458ED680096F2D9 /* iPadManageCustomersViewController.m */; };
+		87447D152458ED680096F2D9 /* iPadManageCustomersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87447D132458ED680096F2D9 /* iPadManageCustomersViewController.xib */; };
+		87447D18245922120096F2D9 /* BatterCalculationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87447D17245922120096F2D9 /* BatterCalculationManager.m */; };
 		87497A98241845BA003B0468 /* chocolate.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A97241845BA003B0468 /* chocolate.png */; };
 		87497A9A241845BE003B0468 /* cake.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A99241845BE003B0468 /* cake.png */; };
 		87497AA024186C25003B0468 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 87497A9F24186C25003B0468 /* star.png */; };
@@ -127,6 +133,16 @@
 		872CA10E2421FFC0005D043A /* calculator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator@3x.png"; sourceTree = "<group>"; };
 		872CA1102421FFC6005D043A /* calculator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator@2x.png"; sourceTree = "<group>"; };
 		872CA1122421FFCB005D043A /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator.png; sourceTree = "<group>"; };
+		87447D06245889060096F2D9 /* iPadManageUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadManageUsersViewController.h; sourceTree = "<group>"; };
+		87447D07245889060096F2D9 /* iPadManageUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadManageUsersViewController.m; sourceTree = "<group>"; };
+		87447D08245889060096F2D9 /* iPadManageUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadManageUsersViewController.xib; sourceTree = "<group>"; };
+		87447D0B2458DCFB0096F2D9 /* iPadAddUserFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadAddUserFormViewController.h; sourceTree = "<group>"; };
+		87447D0C2458DCFB0096F2D9 /* iPadAddUserFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadAddUserFormViewController.m; sourceTree = "<group>"; };
+		87447D112458ED680096F2D9 /* iPadManageCustomersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadManageCustomersViewController.h; sourceTree = "<group>"; };
+		87447D122458ED680096F2D9 /* iPadManageCustomersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadManageCustomersViewController.m; sourceTree = "<group>"; };
+		87447D132458ED680096F2D9 /* iPadManageCustomersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadManageCustomersViewController.xib; sourceTree = "<group>"; };
+		87447D16245922120096F2D9 /* BatterCalculationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatterCalculationManager.h; sourceTree = "<group>"; };
+		87447D17245922120096F2D9 /* BatterCalculationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatterCalculationManager.m; sourceTree = "<group>"; };
 		87497A97241845BA003B0468 /* chocolate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chocolate.png; sourceTree = "<group>"; };
 		87497A99241845BE003B0468 /* cake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cake.png; sourceTree = "<group>"; };
 		87497A9F24186C25003B0468 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -406,6 +422,12 @@
 				87C209932457879E00B6C111 /* iPadManageInventoryViewController.h */,
 				87C209942457879E00B6C111 /* iPadManageInventoryViewController.m */,
 				87C209952457879E00B6C111 /* iPadManageInventoryViewController.xib */,
+				87447D06245889060096F2D9 /* iPadManageUsersViewController.h */,
+				87447D07245889060096F2D9 /* iPadManageUsersViewController.m */,
+				87447D08245889060096F2D9 /* iPadManageUsersViewController.xib */,
+				87447D112458ED680096F2D9 /* iPadManageCustomersViewController.h */,
+				87447D122458ED680096F2D9 /* iPadManageCustomersViewController.m */,
+				87447D132458ED680096F2D9 /* iPadManageCustomersViewController.xib */,
 				8798895624567437006F686A /* Form Editors */,
 			);
 			name = "iPad Views";
@@ -426,6 +448,8 @@
 				876DC54B2451475E00A1A5DA /* CustomerManager.m */,
 				87C20998245796D300B6C111 /* InventoryManager.h */,
 				87C20999245796D300B6C111 /* InventoryManager.m */,
+				87447D16245922120096F2D9 /* BatterCalculationManager.h */,
+				87447D17245922120096F2D9 /* BatterCalculationManager.m */,
 			);
 			name = "Data Managers";
 			sourceTree = "<group>";
@@ -445,6 +469,8 @@
 				87988962245679A3006F686A /* iPadChangeUsernameFormViewController.m */,
 				87C209A42457EE0900B6C111 /* iPadEditUserFormViewController.h */,
 				87C209A52457EE0900B6C111 /* iPadEditUserFormViewController.m */,
+				87447D0B2458DCFB0096F2D9 /* iPadAddUserFormViewController.h */,
+				87447D0C2458DCFB0096F2D9 /* iPadAddUserFormViewController.m */,
 			);
 			name = "Form Editors";
 			sourceTree = "<group>";
@@ -628,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87C20992245781D400B6C111 /* UserTableViewCell.xib in Resources */,
+				87447D152458ED680096F2D9 /* iPadManageCustomersViewController.xib in Resources */,
 				872CA1112421FFC6005D043A /* calculator@2x.png in Resources */,
 				8798896A24568B9B006F686A /* settings@2x.png in Resources */,
 				8767AC43241F3F5E00C8FD73 /* round.png in Resources */,
@@ -637,6 +664,7 @@
 				87C0C5312417C9C80093840D /* InfoPlist.strings in Resources */,
 				8798896924568B9B006F686A /* settings.png in Resources */,
 				8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */,
+				87447D0A245889060096F2D9 /* iPadManageUsersViewController.xib in Resources */,
 				8785ABDB2438012D0055C23C /* iPadCalculationSummaryViewController.xib in Resources */,
 				87497AA024186C25003B0468 /* star.png in Resources */,
 				8798894624562A57006F686A /* MultiDetailTableViewCell.xib in Resources */,
@@ -688,8 +716,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8798895424565A78006F686A /* iPadModalFormEditor.m in Sources */,
+				87447D142458ED680096F2D9 /* iPadManageCustomersViewController.m in Sources */,
 				8785ABBC2437BFA80055C23C /* ThemedTextField.m in Sources */,
 				87CA19B72436D7AA00036F7B /* User.m in Sources */,
+				87447D0D2458DCFB0096F2D9 /* iPadAddUserFormViewController.m in Sources */,
 				8798895F245674DD006F686A /* iPadChangePasswordFormViewController.m in Sources */,
 				87D166C82417F2A600E866A2 /* iPadSummaryViewController.m in Sources */,
 				87BD39AB244FE7C2005A7F59 /* CustomerTableViewCell.m in Sources */,
@@ -697,6 +727,7 @@
 				87CE36A82436AABC00C48742 /* iPadLoginViewController.m in Sources */,
 				8785ABDF243803790055C23C /* iPadCalculationResultViewController.m in Sources */,
 				8790F15E2455387A0051B749 /* Manager.m in Sources */,
+				87447D09245889060096F2D9 /* iPadManageUsersViewController.m in Sources */,
 				87497AAE24186DAB003B0468 /* iPadLogViewController.m in Sources */,
 				87988964245679A3006F686A /* iPadChangeUsernameFormViewController.m in Sources */,
 				87BD39B824500089005A7F59 /* Form.m in Sources */,
@@ -717,6 +748,7 @@
 				876DC54C2451475E00A1A5DA /* CustomerManager.m in Sources */,
 				872CA1072421F0FA005D043A /* SelectionItem.m in Sources */,
 				87BD39A6244FE773005A7F59 /* iPadSelectCustomerViewController.m in Sources */,
+				87447D18245922120096F2D9 /* BatterCalculationManager.m in Sources */,
 				87C20991245781D400B6C111 /* UserTableViewCell.m in Sources */,
 				87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */,
 				8785ABCB2437F5B80055C23C /* iPadCalculationAddItemViewController.m in Sources */,

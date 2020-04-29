@@ -75,8 +75,31 @@
     [self presentViewController:selectCustomerViewNav animated:YES completion:nil];
 }
 -(void)didFinishEditingOrder:(Order *)o {
+    
+    Inventory *batterInventory = [[InventoryManager sharedInstance] getInventoryWithID:@kInventoryIDBatter];
+    double vanillaQuantity = [batterInventory getItemWithIdentifier:@kInventoryItemVanillaBatter].quantity;
+    double chocolateQuantity = [batterInventory getItemWithIdentifier:@kInventoryItemChocolateBatter].quantity;
+    
+    vanillaQuantity -= [[BatterCalculationManager sharedInstance] getVanillaBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]];
+    chocolateQuantity -= [[BatterCalculationManager sharedInstance] getChocolateBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]];
+    
+    NSLog(@"Setting vanilla quantity: %g", vanillaQuantity);
+    
+    if (vanillaQuantity < 0) {
+        vanillaQuantity = 0;
+    }
+    if (chocolateQuantity < 0) {
+        chocolateQuantity = 0;
+    }
+    
+    [batterInventory getItemWithIdentifier:@kInventoryItemVanillaBatter].quantity = vanillaQuantity;
+    [batterInventory getItemWithIdentifier:@kInventoryItemChocolateBatter].quantity = chocolateQuantity;
+    
+    [InventoryManager sharedInstance].delegate = self;
+    [[InventoryManager sharedInstance] updateInventory:batterInventory];
+    
     [[[OrderManager sharedInstance] editingOrder].items removeAllObjects];
-    [summaryView didFinishEditingOrder];
-    [resultView didFinishEditingOrder];
+    [summaryView didFinishSubmittingOrder];
+    [resultView didFinishSubmittingOrder];
 }
 @end

@@ -26,7 +26,7 @@
     return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithInt:self.quantity]};
 }
 -(BOOL)isEqual:(OrderItem *)i {
-    return ([self.batterType isEqualToString:i.batterType] && [self.cakeType isEqualToString:i.cakeType] && self.quantity == i.quantity);
+    return (self == i);
 }
 -(void)setUserData {
     if ([self.batterType isEqualToString:@BatterTypeVanilla]) {

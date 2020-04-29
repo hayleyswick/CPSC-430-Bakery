@@ -14,7 +14,8 @@
 #import "iPadChangePasswordFormViewController.h"
 #import "iPadChangeUsernameFormViewController.h"
 #import "iPadManageInventoryViewController.h"
-#import "iPadEditUserFormViewController.h"
+#import "iPadManageUsersViewController.h"
+#import "iPadManageCustomersViewController.h"
 
 typedef enum {
     userSettingsSectionInfo = 0,

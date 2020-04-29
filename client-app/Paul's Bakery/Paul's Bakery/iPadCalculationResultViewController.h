@@ -10,6 +10,8 @@
 #import "iPadCalculationSummaryViewController.h"
 #import "iPadCalculationAddItemViewController.h"
 #import "OrderManager.h"
+#import "BatterCalculationManager.h"
+#import "InventoryManager.h"
 
 @protocol CalculationResultDelegate <NSObject>
 @optional
@@ -28,6 +30,16 @@
 -(IBAction)showEditOrderInfoView:(id)sender;
 -(void)useAddItemView:(iPadCalculationAddItemViewController *)v;
 -(void)didFinishEditingOrder;
+-(void)didFinishSubmittingOrder;
 @property (strong, nonatomic) IBOutlet UIView *noDataView;
+
+@property (strong, nonatomic) IBOutlet UILabel *vanillaFullSheetLabel;
+@property (strong, nonatomic) IBOutlet UILabel *vanillaFullRoundLabel;
+@property (strong, nonatomic) IBOutlet UILabel *vanillaQuantityLabel;
+@property (strong, nonatomic) IBOutlet UILabel *chocolateFullSheetLabel;
+@property (strong, nonatomic) IBOutlet UILabel *chocolateFullRoundLabel;
+@property (strong, nonatomic) IBOutlet UILabel *chocolateQuantityLabel;
+@property (strong, nonatomic) IBOutlet UIView *vanillaSubview;
+@property (strong, nonatomic) IBOutlet UIView *chocolateSubview;
 
 @end

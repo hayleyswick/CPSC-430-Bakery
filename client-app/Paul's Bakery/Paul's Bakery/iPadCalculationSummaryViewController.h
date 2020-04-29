@@ -25,6 +25,7 @@
 @property (nonatomic, strong) id<SummaryViewDelegate> delegate;
 
 -(void)didFinishEditingOrder;
+-(void)didFinishSubmittingOrder;
 -(void)useAddItemView:(iPadCalculationAddItemViewController *)v;
 
 @end

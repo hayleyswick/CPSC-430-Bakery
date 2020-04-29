@@ -69,9 +69,6 @@
     connectionAddOrder = [[RESTQueryController alloc] init];
     [connectionAddOrder sendPOSTRequestToEndpoint:@"/api/add_order" withData:data delegate:self];
 }
--(void)removeOrder:(Order *)o {
-    
-}
 -(void)customerDataDidUpdate:(NSArray *)customers {
     NSDictionary *data = @{@"session_id":[[PreferencesHandler sharedInstance] currentSessionID]};
     connectionGetOrders = [[RESTQueryController alloc] init];

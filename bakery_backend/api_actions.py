@@ -46,11 +46,11 @@ def verify_session(session_id):
 				'code':'invalid_session'}
 	else:
 		user_id = result['user_id']
-		sql = "SELECT `username`, `type`, `firstname`, `lastname` FROM `users` WHERE `id`=%s"
+		sql = "SELECT `username`, `user_type`, `firstname`, `lastname` FROM `users` WHERE `id`=%s"
 		cursor.execute(sql, (user_id))
 		result = cursor.fetchone()
 		username = result['username']
-		user_type = result['type']
+		user_type = result['user_type']
 		firstname = result['firstname']
 		lastname = result['lastname']
 		user = {'username':username,
@@ -72,22 +72,98 @@ def logout(session_id):
 	return {'status':'OK'}
 
 
-def create_user(username, password, user_type, firstname, lastname):
-	cursor = connection.cursor()
-	sql = "SELECT COUNT(`username`) FROM `users` WHERE `username`=%s"
-	cursor.execute(sql, (username))
-	connection.commit()
-	result = cursor.fetchone()
-	count = result['COUNT(`username`)']
-
-	if count > 0:
-		return {'status': 'ERR',
-				'code': 'user_exists' }
-	else:
-		sql = "INSERT INTO `users` (`id`, `username`, `password`, `type`, `firstname`, `lastname`) VALUES (%s, %s, %s, %s, %s, %s)"
-		cursor.execute(sql, (generate_random_id(), username, password, user_type, firstname, lastname))
+def create_user(session_id, username, password, user_type, firstname, lastname):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		cursor = connection.cursor()
+		sql = "SELECT `username` FROM `users` WHERE `username`=%s"
+		cursor.execute(sql, (username))
 		connection.commit()
+		result = cursor.fetchone()
+
+		if not result or len(result) < 1:
+			sql = "INSERT INTO `users` (`id`, `username`, `password`, `user_type`, `firstname`, `lastname`) VALUES (%s, %s, %s, %s, %s, %s)"
+			cursor.execute(sql, (generate_random_id(), username, password, user_type, firstname, lastname))
+			connection.commit()
+			return {'status':'OK'}
+
+
+		return {'status': 'ERR',
+					'code': 'user_exists' }
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def get_users(session_id):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		user_id = user_info['user_id']
+		cursor = connection.cursor()
+		sql = "SELECT `id`, `username`, `user_type`, `firstname`, `lastname` FROM `users` WHERE `id`!=%s"
+		cursor.execute(sql, (user_id))
+		connection.commit()
+		result = cursor.fetchall()
+
+		users = []
+
+		for user_data in result:
+			users.append({
+				'username':user_data['username'],
+				'user_type':user_data['user_type'],
+				'firstname':user_data['firstname'],
+				'lastname':user_data['lastname'],
+				'user_id':user_data['id']
+				})
+
+		return {'status':'OK',
+				'data':users}
+
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+def update_user_data(session_id, user_id, username, user_type, firstname, lastname):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		cursor = connection.cursor()
+		sql = "SELECT `username` FROM `users` WHERE `username` = %s AND `id` != %s"
+		cursor.execute(sql, (username, user_id))
+		connection.commit()
+		result = cursor.fetchone()
+		if not result or len(result) < 1:
+			sql = "UPDATE `users` SET `username` = %s, `user_type` = %s, `firstname` = %s, `lastname` = %s WHERE `id` = %s"
+			cursor.execute(sql, (username, user_type, firstname, lastname, user_id))
+			connection.commit()
+
+			return {'status':'OK'}
+
+		return {'status':'ERR',
+				'code':'user_exists'}
+
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+
+def remove_user(session_id, user_id):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		cursor = connection.cursor()
+		sql = "DELETE FROM `users` WHERE `id` = %s"
+		cursor.execute(sql, (user_id))
+		connection.commit()
+
 		return {'status':'OK'}
+
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
 
 
 
@@ -96,6 +172,7 @@ def add_customer(session_id, firstname, lastname, phone_number, street, city, st
 		cursor = connection.cursor()
 		sql = "SELECT `id` FROM `customers` WHERE `firstname`=%s AND `lastname`=%s AND `phone_number`=%s"
 		cursor.execute(sql, (firstname, lastname, phone_number))
+		connection.commit()
 		result = cursor.fetchone()
 
 		if not result or len(result) < 1:
@@ -121,6 +198,21 @@ def add_customer(session_id, firstname, lastname, phone_number, street, city, st
 				'code': 'invalid_session'}
 
 
+def update_customer_data(session_id, customer_id, firstname, lastname, phone_number, street, city, state, zip):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		cursor = connection.cursor()
+		sql = "UPDATE `customers` SET `firstname` = %s, `lastname` = %s, `phone_number` = %s, `street` = %s, `city` = %s, `state` = %s, `zip` = %s WHERE id = %s"
+		cursor.execute(sql, (firstname, lastname, phone_number, street, city, state, zip, customer_id))
+		connection.commit()
+
+		return {'status':'OK'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
 def get_customers(session_id):
 	if (verify_session(session_id)['status'] == 'OK'):
 		cursor = connection.cursor()
@@ -131,6 +223,24 @@ def get_customers(session_id):
 
 		return {'status':'OK',
 				'data':result}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+
+def remove_customer(session_id, customer_id):
+	session_info = verify_session(session_id)
+	user_info = session_info['data']
+	if (session_info['status'] == 'OK' and user_info['user_type'] == 'Admin'):
+		cursor = connection.cursor()
+		sql = "DELETE FROM `customers` WHERE `id` = %s"
+		cursor.execute(sql, (customer_id))
+		connection.commit()
+		sql = "DELETE FROM `orders` WHERE `customer_id` = %s"
+		cursor.execute(sql, (customer_id))
+		connection.commit()
+		return {'status':'OK'}
+
 	else:
 		return {'status': 'ERR',
 				'code': 'invalid_session'}
@@ -280,15 +390,26 @@ def update_inventory(session_id, inventory_id, inventory_items):
 	if (verify_session(session_id)['status'] == 'OK'):
 		cursor = connection.cursor()
 
-		sql = "INSERT INTO `inventories` (`inventory_id`, `count_date`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE `count_date` = %s"
-		cursor.execute(sql, (inventory_id, datetime.now(), datetime.now()))
-		connection.commit()
 		for item in inventory_items:
 			sql = "INSERT INTO `inventory_items` (`item_id`, `inventory_id`, `quantity`) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE `quantity` = %s"
 			cursor.execute(sql, (item['item_id'], inventory_id, item['quantity'], item['quantity']))
 			connection.commit()
 
 		return {'status':'OK'}
+	else:
+		return {'status': 'ERR',
+				'code': 'invalid_session'}
+
+def update_inventory_count(session_id, inventory_id, inventory_items):
+	session_info = verify_session(session_id)
+	if (session_info['status'] == 'OK'):
+		cursor = connection.cursor()
+
+		sql = "INSERT INTO `inventories` (`inventory_id`, `count_date`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE `count_date` = %s"
+		cursor.execute(sql, (inventory_id, datetime.now(), datetime.now()))
+		connection.commit()
+		return update_inventory(session_id, inventory_id, inventory_items)
+		
 	else:
 		return {'status': 'ERR',
 				'code': 'invalid_session'}
