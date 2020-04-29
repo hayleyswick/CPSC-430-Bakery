@@ -12,6 +12,7 @@
 
 -(id)init {
     self = [super init];
+    self.itemID = @"";
     return self;
 }
 -(id)initWithDict:(NSDictionary *)dict {
@@ -19,6 +20,9 @@
     self.batterType = [dict objectForKey:@kOrderItemBatterType];
     self.cakeType = [dict objectForKey:@kOrderItemCakeType];
     self.quantity = [[dict objectForKey:@kOrderItemQuantity] doubleValue];
+    if ([dict objectForKey:@kOrderItemID]) {
+        self.itemID = [dict objectForKey:@kOrderItemID];
+    }
     [self setUserData];
     return self;
 }
@@ -26,7 +30,7 @@
     return @{@kOrderItemBatterType:self.batterType, @kOrderItemCakeType:self.cakeType, @kOrderItemQuantity:[NSNumber numberWithInt:self.quantity]};
 }
 -(BOOL)isEqual:(OrderItem *)i {
-    return (self == i);
+    return ([self.itemID isEqualToString:i.itemID]);
 }
 -(void)setUserData {
     if ([self.batterType isEqualToString:@BatterTypeVanilla]) {

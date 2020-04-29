@@ -65,6 +65,9 @@
 		8798896924568B9B006F686A /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8798896624568B9B006F686A /* settings.png */; };
 		8798896A24568B9B006F686A /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8798896724568B9B006F686A /* settings@2x.png */; };
 		8798896B24568B9B006F686A /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8798896824568B9B006F686A /* settings@3x.png */; };
+		87A15BC9245A288A00D33B6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A15BC8245A288A00D33B6A /* Media.xcassets */; };
+		87A15BCE245A291D00D33B6A /* iPhonePlaceholderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A15BCC245A291D00D33B6A /* iPhonePlaceholderViewController.m */; };
+		87A15BCF245A291D00D33B6A /* iPhonePlaceholderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A15BCD245A291D00D33B6A /* iPhonePlaceholderViewController.xib */; };
 		87B9B3A224381C5C0034A9BF /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A124381C5C0034A9BF /* OrderItem.m */; };
 		87B9B3A524381C7C0034A9BF /* OrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A424381C7C0034A9BF /* OrderManager.m */; };
 		87B9B3A824381E110034A9BF /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B9B3A724381E110034A9BF /* Order.m */; };
@@ -210,6 +213,10 @@
 		8798896624568B9B006F686A /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		8798896724568B9B006F686A /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		8798896824568B9B006F686A /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		87A15BC8245A288A00D33B6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		87A15BCB245A291D00D33B6A /* iPhonePlaceholderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhonePlaceholderViewController.h; sourceTree = "<group>"; };
+		87A15BCC245A291D00D33B6A /* iPhonePlaceholderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhonePlaceholderViewController.m; sourceTree = "<group>"; };
+		87A15BCD245A291D00D33B6A /* iPhonePlaceholderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhonePlaceholderViewController.xib; sourceTree = "<group>"; };
 		87B9B3A024381C5C0034A9BF /* OrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderItem.h; sourceTree = "<group>"; };
 		87B9B3A124381C5C0034A9BF /* OrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderItem.m; sourceTree = "<group>"; };
 		87B9B3A324381C7C0034A9BF /* OrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManager.h; sourceTree = "<group>"; };
@@ -475,6 +482,16 @@
 			name = "Form Editors";
 			sourceTree = "<group>";
 		};
+		87A15BCA245A28F800D33B6A /* Placeholders */ = {
+			isa = PBXGroup;
+			children = (
+				87A15BCB245A291D00D33B6A /* iPhonePlaceholderViewController.h */,
+				87A15BCC245A291D00D33B6A /* iPhonePlaceholderViewController.m */,
+				87A15BCD245A291D00D33B6A /* iPhonePlaceholderViewController.xib */,
+			);
+			name = Placeholders;
+			sourceTree = "<group>";
+		};
 		87B9B39F24381BF90034A9BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +538,7 @@
 				87C0C5362417C9C80093840D /* AppDelegate.m */,
 				87497AB6241875CA003B0468 /* iPad Views */,
 				87497AB5241875BD003B0468 /* Universal Views */,
+				87A15BCA245A28F800D33B6A /* Placeholders */,
 				872CA1042421F0CF005D043A /* Classes */,
 				87497A97241845BA003B0468 /* chocolate.png */,
 				87497A99241845BE003B0468 /* cake.png */,
@@ -543,6 +561,7 @@
 				8767AC40241F3F5A00C8FD73 /* full.png */,
 				8767AC42241F3F5E00C8FD73 /* round.png */,
 				8785ABBD2437C4A70055C23C /* logo.png */,
+				87A15BC8245A288A00D33B6A /* Media.xcassets */,
 				87C0C5382417C9C80093840D /* Images.xcassets */,
 				87C0C52D2417C9C80093840D /* Supporting Files */,
 			);
@@ -666,6 +685,7 @@
 				8767AC4D241F42BB00C8FD73 /* ItemSelectionView.xib in Resources */,
 				87447D0A245889060096F2D9 /* iPadManageUsersViewController.xib in Resources */,
 				8785ABDB2438012D0055C23C /* iPadCalculationSummaryViewController.xib in Resources */,
+				87A15BCF245A291D00D33B6A /* iPhonePlaceholderViewController.xib in Resources */,
 				87497AA024186C25003B0468 /* star.png in Resources */,
 				8798894624562A57006F686A /* MultiDetailTableViewCell.xib in Resources */,
 				87BD39B0244FEBCA005A7F59 /* sihouette-large@2x.png in Resources */,
@@ -678,6 +698,7 @@
 				8767AC3D241F3CF000C8FD73 /* quarter.png in Resources */,
 				8798893924560D94006F686A /* iPadLogDetailViewController.xib in Resources */,
 				87497AAA24186CF8003B0468 /* notebook@3x.png in Resources */,
+				87A15BC9245A288A00D33B6A /* Media.xcassets in Resources */,
 				87D166C92417F2A600E866A2 /* iPadSummaryViewController.xib in Resources */,
 				87497AA224186C29003B0468 /* star@2x.png in Resources */,
 				87497AAF24186DAB003B0468 /* iPadLogViewController.xib in Resources */,
@@ -733,6 +754,7 @@
 				87BD39B824500089005A7F59 /* Form.m in Sources */,
 				872CA10D2421FCA5005D043A /* ThemedButton.m in Sources */,
 				8785ABD02437FE290055C23C /* CalculationViewItemCell.m in Sources */,
+				87A15BCE245A291D00D33B6A /* iPhonePlaceholderViewController.m in Sources */,
 				87C209A92457F42A00B6C111 /* ModalFormSelectionEditor.m in Sources */,
 				87CE36AF2436B3B400C48742 /* RESTQueryController.m in Sources */,
 				87B9B3A824381E110034A9BF /* Order.m in Sources */,

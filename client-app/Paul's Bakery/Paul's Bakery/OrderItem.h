@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kOrderItemID "id"
 #define kOrderItemBatterType "batter_type"
 #define kOrderItemCakeType "cake_type"
 #define kOrderItemQuantity "quantity"
@@ -26,6 +27,8 @@
 -(id)initWithDict:(NSDictionary *)dict;
 -(NSDictionary *)dictRepresentation;
 -(BOOL)isEqual:(OrderItem *)i;
+
+@property NSString *itemID;
 
 @property NSString *batterType;
 @property NSString *cakeType;

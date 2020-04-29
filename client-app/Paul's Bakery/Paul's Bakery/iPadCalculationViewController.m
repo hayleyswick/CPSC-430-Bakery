@@ -38,6 +38,8 @@
         UINavigationController *secondaryNavController = [[UINavigationController alloc] initWithRootViewController:summaryView];
         
         [self setViewControllers:@[secondaryNavController, mainNavController]];
+        
+        tempItemID = 0;
     }
     return self;
 }
@@ -54,6 +56,10 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)didFinishEditingWithItem:(OrderItem *)item {
+    if ([item.itemID isEqualToString:@""]) {
+        item.itemID = [NSString stringWithFormat:@"%d", tempItemID];
+        tempItemID ++;
+    }
     [[[OrderManager sharedInstance] editingOrder] addItem:item];
     [summaryView didFinishEditingOrder];
     [resultView didFinishEditingOrder];
@@ -76,14 +82,14 @@
 }
 -(void)didFinishEditingOrder:(Order *)o {
     
+    tempItemID = 0;
+    
     Inventory *batterInventory = [[InventoryManager sharedInstance] getInventoryWithID:@kInventoryIDBatter];
     double vanillaQuantity = [batterInventory getItemWithIdentifier:@kInventoryItemVanillaBatter].quantity;
     double chocolateQuantity = [batterInventory getItemWithIdentifier:@kInventoryItemChocolateBatter].quantity;
     
     vanillaQuantity -= [[BatterCalculationManager sharedInstance] getVanillaBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]];
     chocolateQuantity -= [[BatterCalculationManager sharedInstance] getChocolateBatterNeededForOrder:[[OrderManager sharedInstance] editingOrder]];
-    
-    NSLog(@"Setting vanilla quantity: %g", vanillaQuantity);
     
     if (vanillaQuantity < 0) {
         vanillaQuantity = 0;

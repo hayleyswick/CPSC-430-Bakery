@@ -36,6 +36,10 @@
         }
     }
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        iPhonePlaceholderViewController *v = [[iPhonePlaceholderViewController alloc] initWithNibName:@"iPhonePlaceholderViewController" bundle:nil];
+        [self setActiveViewController:v withAnimation:animationNone];
+    }
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

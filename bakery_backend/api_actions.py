@@ -259,8 +259,8 @@ def add_order(session_id, customer_id, items, order_notes):
 		order_number = result['LAST_INSERT_ID()']
 
 		for order_item in items:
-			sql = "INSERT INTO `order_details` (`order_number`, `batter_type`, `cake_type`, `quantity`) VALUES (%s, %s, %s, %s)"
-			cursor.execute(sql, (order_number, order_item['batter_type'], order_item['cake_type'], order_item['quantity']))
+			sql = "INSERT INTO `order_details` (`id`, `order_number`, `batter_type`, `cake_type`, `quantity`) VALUES (%s, %s, %s, %s, %s)"
+			cursor.execute(sql, (generate_random_id(), order_number, order_item['batter_type'], order_item['cake_type'], order_item['quantity']))
 			connection.commit()
 
 		order = {'order_number':order_number,

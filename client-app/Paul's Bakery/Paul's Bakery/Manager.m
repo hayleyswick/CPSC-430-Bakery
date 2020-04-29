@@ -51,7 +51,7 @@
         info = @"The specified customer has already been added.";
     } else if ([err_code isEqualToString:@"incorrect_old_password"]) {
         title = @"Incorrect Password";
-        info = @"The old passwordd you have entered is incorrect.";
+        info = @"The old password you have entered is incorrect.";
     } else if ([err_code isEqualToString:@"user_exists"]) {
         title = @"Username In Use";
         info = @"The username specified is already in use. Please choose a different one.";

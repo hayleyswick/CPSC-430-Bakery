@@ -46,6 +46,7 @@ CREATE TABLE customers (
 );
 
 CREATE TABLE order_details (
+	id VARCHAR(45) PRIMARY KEY NOT NULL,
 	order_number INT NOT NULL, 
 	batter_type TEXT, 
 	cake_type TEXT, 
@@ -69,5 +70,5 @@ CREATE TABLE baked_goods (
 ); 
 
 #Temporary User
-
+INSERT INTO users (id, username, password, user_type, firstname, lastname) VALUES ('aZ8uJzEE85VnYerTa5hJaEMwk1JNsWotoPnErnjMoQPIq', 'user', 'lol', 'Admin', 'Test', 'User');
 

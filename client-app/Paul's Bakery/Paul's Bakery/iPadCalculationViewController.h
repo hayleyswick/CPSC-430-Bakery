@@ -21,6 +21,8 @@
     iPadCalculationAddItemViewController *addItemView;
     iPadSelectCustomerViewController *selectCustomerView;
     iPadEditOrderViewController *editOrderView;
+    
+    int tempItemID;
 }
 
 @end

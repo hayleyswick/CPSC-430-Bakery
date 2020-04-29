@@ -10,6 +10,7 @@
 #import "LoginManager.h"
 #import "iPadLoginViewController.h"
 #import "iPadAdminViewController.h"
+#import "iPhonePlaceholderViewController.h"
 
 typedef enum {
     animationNone = 0,

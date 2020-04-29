@@ -29,6 +29,7 @@
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Add Item" style:UIBarButtonItemStylePlain target:self action:@selector(showAddItemView:)]];
     if ([[[OrderManager sharedInstance] editingOrder] items].count < 1) {
         [self.view addSubview:self.noDataView];
+        [self.noDataView setFrame:self.view.frame];
     }
     [self.navigationItem setTitle:@"Calculation"];
     [self.vanillaSubview.layer setCornerRadius:20];
@@ -56,6 +57,7 @@
         [self updateCalculationResults];
         [self.noDataView removeFromSuperview];
     } else {
+        [self.noDataView setFrame:self.view.frame];
         [self.view addSubview:self.noDataView];
     }
 }
