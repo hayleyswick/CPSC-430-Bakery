@@ -116,6 +116,7 @@
 		87D166C92417F2A600E866A2 /* iPadSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D166C72417F2A600E866A2 /* iPadSummaryViewController.xib */; };
 		87E131DB243A917B00C77514 /* iPadEditOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */; };
 		87E131DC243A917B00C77514 /* iPadEditOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */; };
+		CE197BC0245A2E1200761021 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE197BBF245A2E1200761021 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +296,7 @@
 		87E131D8243A917B00C77514 /* iPadEditOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadEditOrderViewController.h; sourceTree = "<group>"; };
 		87E131D9243A917B00C77514 /* iPadEditOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadEditOrderViewController.m; sourceTree = "<group>"; };
 		87E131DA243A917B00C77514 /* iPadEditOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadEditOrderViewController.xib; sourceTree = "<group>"; };
+		CE197BBF245A2E1200761021 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,6 +538,7 @@
 			children = (
 				87C0C5352417C9C80093840D /* AppDelegate.h */,
 				87C0C5362417C9C80093840D /* AppDelegate.m */,
+				CE197BBF245A2E1200761021 /* LaunchScreen.storyboard */,
 				87497AB6241875CA003B0468 /* iPad Views */,
 				87497AB5241875BD003B0468 /* Universal Views */,
 				87A15BCA245A28F800D33B6A /* Placeholders */,
@@ -644,6 +647,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "dosdude1 Apps";
 				TargetAttributes = {
+					87C0C5222417C9C80093840D = {
+						DevelopmentTeam = C9R8PL7T6L;
+					};
 					87C0C53D2417C9C80093840D = {
 						TestTargetID = 87C0C5222417C9C80093840D;
 					};
@@ -654,6 +660,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 87C0C51A2417C9C80093840D;
@@ -709,6 +716,7 @@
 				8767AC3F241F3F5600C8FD73 /* half.png in Resources */,
 				87BD39AE244FEBC7005A7F59 /* sihouette-large.png in Resources */,
 				87CE36A92436AABC00C48742 /* iPadLoginViewController.xib in Resources */,
+				CE197BC0245A2E1200761021 /* LaunchScreen.storyboard in Resources */,
 				87D166C42417EF8500E866A2 /* iPadAdminViewController.xib in Resources */,
 				87497AA824186CF4003B0468 /* notebook@2x.png in Resources */,
 				87C0C5392417C9C80093840D /* Images.xcassets in Resources */,
@@ -909,11 +917,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = C9R8PL7T6L;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
 				INFOPLIST_FILE = "Paul's Bakery/Paul's Bakery-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -923,11 +933,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = C9R8PL7T6L;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Paul's Bakery/Paul's Bakery-Prefix.pch";
 				INFOPLIST_FILE = "Paul's Bakery/Paul's Bakery-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

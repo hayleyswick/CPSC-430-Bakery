@@ -13,12 +13,16 @@
 @end
 
 @implementation iPadAddUserFormViewController
-
+-(id)init {
+    self = [super init];
+    [self initForm];
+    return self;
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self initForm];
+        
     }
     return self;
 }

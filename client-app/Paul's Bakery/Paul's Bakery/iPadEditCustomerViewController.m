@@ -13,6 +13,11 @@
 @end
 
 @implementation iPadEditCustomerViewController
+-(id)init {
+    self = [super init];
+    [self initForm];
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -20,7 +25,6 @@
         self.modalPresentationStyle = UIModalPresentationFormSheet;
         currentMode = customerEditModeEdit;
         self.inOrderFlow = NO;
-        [self initForm];
     }
     return self;
 }

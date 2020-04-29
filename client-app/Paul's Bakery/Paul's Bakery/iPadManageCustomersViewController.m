@@ -72,7 +72,7 @@
 }
 -(void)transitionToAddNewCustomerView {
     [self setEditing:NO animated:NO];
-    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] init];
     [editCustomerView setViewMode:customerEditModeAdd];
     [self.navigationController pushViewController:editCustomerView animated:YES];
 }
@@ -168,7 +168,7 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    iPadEditCustomerViewController *editCustomerView = [[iPadEditCustomerViewController alloc] init];
     editCustomerView.delegate = self;
     [editCustomerView setViewMode:customerEditModeEdit];
     [editCustomerView beginEditingCustomer:[[[CustomerManager sharedInstance] customers] objectAtIndex:indexPath.row] atIndexPath:indexPath];

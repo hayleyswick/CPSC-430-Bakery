@@ -116,7 +116,7 @@
     return cell.frame.size.height;
 }
 -(void)transitionToAddNewCustomerView {
-    editCustomerView = [[iPadEditCustomerViewController alloc] initWithNibName:@"iPadEditCustomerViewController" bundle:nil];
+    editCustomerView = [[iPadEditCustomerViewController alloc] init];
     editCustomerView.editOrderView = self.editOrderView;
     editCustomerView.inOrderFlow = YES;
     [editCustomerView setViewMode:customerEditModeAdd];
