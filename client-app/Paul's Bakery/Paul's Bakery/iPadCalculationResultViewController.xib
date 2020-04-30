@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13F1911" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iPadCalculationResultViewController">
@@ -27,9 +31,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rk1-IG-QvJ" customClass="ThemedButton">
                     <rect key="frame" x="294" y="889" width="181" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" red="0.99607843139999996" green="0.73725490199999999" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.99607843139999996" green="0.73725490199999999" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Add as Order">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="showEditOrderInfoView:" destination="-1" eventType="touchUpInside" id="P1T-P2-Iqv"/>
@@ -90,7 +94,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.73825273719999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.73825273719999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" id="daD-Nr-SfT">
                     <rect key="frame" x="91" y="494" width="587" height="304"/>
@@ -147,11 +151,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.73825273719999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.73825273719999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </view>
         <view contentMode="scaleToFill" id="Xam-2V-o59">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
@@ -161,7 +164,7 @@
                     <rect key="frame" x="245" y="444" width="278" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                    <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iB5-ya-TvP">
@@ -169,19 +172,21 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <state key="normal" title="Add an Item">
-                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="showAddItemView:" destination="-1" eventType="touchUpInside" id="JIo-ma-TxW"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94650829079999999" green="0.92092348769999999" blue="0.86063054240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="cake.png" width="512" height="512"/>
-        <image name="chocolate.png" width="512" height="512"/>
+        <image name="cake.png" width="384" height="384"/>
+        <image name="chocolate.png" width="384" height="384"/>
         <image name="full.png" width="512" height="512"/>
         <image name="round.png" width="512" height="512"/>
     </resources>
