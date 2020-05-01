@@ -70,5 +70,5 @@ CREATE TABLE baked_goods (
 ); 
 
 #Temporary User
-INSERT INTO users (id, username, password, user_type, firstname, lastname) VALUES ('aZ8uJzEE85VnYerTa5hJaEMwk1JNsWotoPnErnjMoQPIq', 'user', 'lol', 'Admin', 'Test', 'User');
+INSERT INTO users (id, username, password, user_type, firstname, lastname) VALUES ('aZ8uJzEE85VnYerTa5hJaEMwk1JNsWotoPnErnjMoQPIq', 'admin', 'password', 'Admin', 'Test', 'User');
 
