@@ -15,8 +15,8 @@ An instance of the API will be running on my server (`svc.dosdude1.com`) listeni
 ## Setting up the API
  - First, import the provided SQL file `bakery.sql` into MySQL
 	 - `mysql -u root -p < /path/to/bakery.sql`
-- Next, install the Python runtime if not already, then install `flask` and `pymysql`, the dependencies required for our backend, using PIP
-	- `pip install flask pymysql`
+- Next, install the Python runtime if not already, then install `flask`, `flask-mysql` and `pymysql`, the dependencies required for our backend, using PIP
+	- `pip install flask flask-mysql pymysql`
 - Lastly, start the API
 	- `python api.py`
 

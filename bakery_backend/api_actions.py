@@ -7,8 +7,8 @@ def generate_random_id(stringLength=45):
 
 def login(username, password):
 
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		sql = "SELECT `id`, `password` FROM `users` WHERE `username`=%s"
@@ -40,8 +40,8 @@ def login(username, password):
 
 
 def verify_session(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		sql = "SELECT `user_id` FROM `sessions` WHERE `session_id`=%s"
@@ -74,8 +74,8 @@ def verify_session(session_id):
 
 
 def logout(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		sql = "DELETE FROM `sessions` WHERE `session_id`=%s"
@@ -90,8 +90,8 @@ def logout(session_id):
 
 
 def create_user(session_id, username, password, user_type, firstname, lastname):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -120,8 +120,8 @@ def create_user(session_id, username, password, user_type, firstname, lastname):
 
 
 def get_users(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -155,8 +155,8 @@ def get_users(session_id):
 		connection.close()
 
 def update_user_data(session_id, user_id, username, user_type, firstname, lastname):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -186,8 +186,8 @@ def update_user_data(session_id, user_id, username, user_type, firstname, lastna
 
 
 def remove_user(session_id, user_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -209,8 +209,8 @@ def remove_user(session_id, user_id):
 
 
 def add_customer(session_id, firstname, lastname, phone_number, street, city, state, zip):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -246,8 +246,8 @@ def add_customer(session_id, firstname, lastname, phone_number, street, city, st
 
 
 def update_customer_data(session_id, customer_id, firstname, lastname, phone_number, street, city, state, zip):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -267,8 +267,8 @@ def update_customer_data(session_id, customer_id, firstname, lastname, phone_num
 
 
 def get_customers(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -289,8 +289,8 @@ def get_customers(session_id):
 
 
 def remove_customer(session_id, customer_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -313,8 +313,8 @@ def remove_customer(session_id, customer_id):
 
 
 def add_order(session_id, customer_id, items, order_notes):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -347,8 +347,8 @@ def add_order(session_id, customer_id, items, order_notes):
 
 
 def get_orders(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -367,8 +367,8 @@ def get_orders(session_id):
 		connection.close()
 
 def get_order_items(session_id, order_number):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -389,8 +389,8 @@ def get_order_items(session_id, order_number):
 
 
 def delete_order(session_id, order_number):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -410,8 +410,8 @@ def delete_order(session_id, order_number):
 
 
 def change_user_password(session_id, old_password, new_password):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -439,8 +439,8 @@ def change_user_password(session_id, old_password, new_password):
 
 
 def change_user_username(session_id, new_username):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
@@ -468,8 +468,8 @@ def change_user_username(session_id, new_username):
 
 
 def get_inventory(session_id):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
@@ -495,17 +495,14 @@ def get_inventory(session_id):
 
 
 def update_inventory(session_id, inventory_id, inventory_items):
-	connection = db_connection()
-	cursor = connection.cursor()
-
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	try:
 		if (verify_session(session_id)['status'] == 'OK'):
-
 			for item in inventory_items:
 				sql = "INSERT INTO `inventory_items` (`item_id`, `inventory_id`, `quantity`) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE `quantity` = %s"
 				cursor.execute(sql, (item['item_id'], inventory_id, item['quantity'], item['quantity']))
 				connection.commit()
-
 			return {'status':'OK'}
 		else:
 			return {'status': 'ERR',
@@ -515,13 +512,12 @@ def update_inventory(session_id, inventory_id, inventory_items):
 		connection.close()
 
 def update_inventory_count(session_id, inventory_id, inventory_items):
-	connection = db_connection()
-	cursor = connection.cursor()
+	connection = mysql.connect()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 
 	try:
 		session_info = verify_session(session_id)
 		if (session_info['status'] == 'OK'):
-
 			sql = "INSERT INTO `inventories` (`inventory_id`, `count_date`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE `count_date` = %s"
 			cursor.execute(sql, (inventory_id, datetime.now(), datetime.now()))
 			connection.commit()
@@ -537,35 +533,35 @@ def update_inventory_count(session_id, inventory_id, inventory_items):
 
 
 def update_batter_quantity(flavor, quantity):
-    cursor = connection.cursor()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
     sql = "UPDATE `inventory` SET quantity=%S WHERE batter_type=%s"
     cursor.execute(sql, (quantity, flavor))
     connection.commit()
     return{'status':'OK'}
         
 def get_batter_quantity(flavor):
-    cursor = connection.cursor()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
     sql = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
     cursor.execute(sql, (flavor))
     connection.commit()
     return{'status':'OK'}
 
 def create_baked_good(name, shape, batter_type, batter_per_batch):
-	cursor = connection.cursor()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	sql = "INSERT INTO `baked_goods` (`name`, `shape`, `batter_type`, `batter_per_batch`) VALUES (%s, %s, %s, %s)"
 	cursor.execute(sql, (name, shape, batter_type, batter_per_batch))
 	connection.commit()
 	return{'status':'OK'}
 	
 def update_baked_good_quantity(shape, batter_type, quantity):
-	cursor = connection.cursor()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	sql = "UPDATE `baked_goods` SET quantity=%s WHERE shape=%s and batter_type=%s"
 	cursor.execute(sql, (quantity, shape, batter_type))
 	connection.commit()
 	return{'status':'OK'}
    
 def calculate_batter(order_number):
-	cursor = connection.cursor()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	sql1 = "SELECT batter_type, cake_type, quantity FROM `order_details` WHERE order_number=%s"
 	cursor.execute(sql1, (order_number))
 	quantity = 0
@@ -582,7 +578,7 @@ def calculate_batter(order_number):
 	return{'status':'OK'}
 
 def calculate_batches_with_extra_batter(shape, batter_type):
-	cursor = connection.cursor()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	sql1 = "SELECT quantity FROM `inventory` WHERE batter_type=%s"
 	cursor.execute(sql1, (batter_type))
 	batter_quantity = 0
@@ -596,7 +592,7 @@ def calculate_batches_with_extra_batter(shape, batter_type):
     
 #very simple method for adjusting formulas
 def adjust_formula(shape, batter_type, batter_per_batch):
-	cursor = connection.cursor()
+	cursor = connection.cursor(pymysql.cursors.DictCursor)
 	sql = "UPDATE `baked_goods` SET batter_per_batch=%s WHERE batter_type=%s and shape=%s"
 	cursor.execute(sql, (batter_per_batch, batter_type, shape))
 	connection.commit()
