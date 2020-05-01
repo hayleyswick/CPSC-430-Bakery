@@ -10,6 +10,7 @@ An instance of the API will be running on my server (`svc.dosdude1.com`) listeni
 
  - The API's temporary testing user is an admin, and can be logged into using the username `admin` with the password `password`
  - If using the API instance running on my server, some testing data will be in place, allowing you to test all aspects of the user interface
+ - The iPhone UI is not implemented, due to lack of time. The program should be run on an iPad/iPad simulator only
 
 ## Setting up the API
  - First, import the provided SQL file `bakery.sql` into MySQL
