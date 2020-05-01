@@ -4,7 +4,8 @@ import pymysql.cursors
 import string
 import random
 
-connection = pymysql.connect(host='localhost',
+def db_connection():
+	return pymysql.connect(host='localhost',
                              user='bakery_calc',
                              password='y3myChfMa0oop0rz5RiOPDdTq93eBLK5RonWpDbrurbLr',
                              db='bakery_calc',
