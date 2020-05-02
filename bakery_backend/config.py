@@ -1,13 +1,15 @@
 import flask
 from flask import request, jsonify
-from flaskext.mysql import MySQL
-import pymysql
+import pymysql.cursors
 import string
 import random
 
-mysql = MySQL()
-
-
+connection = pymysql.connect(host='localhost',
+                             user='bakery_calc',
+                             password='y3myChfMa0oop0rz5RiOPDdTq93eBLK5RonWpDbrurbLr',
+                             db='bakery_calc',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
 
 app = flask.Flask(__name__)
@@ -18,9 +20,3 @@ app.config['DEFAULT_PARSERS'] = [
     'flask.ext.api.parsers.URLEncodedParser',
     'flask.ext.api.parsers.MultiPartParser'
 ]
-
-app.config['MYSQL_DATABASE_USER'] = 'bakery_calc'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'y3myChfMa0oop0rz5RiOPDdTq93eBLK5RonWpDbrurbLr'
-app.config['MYSQL_DATABASE_DB'] = 'bakery_calc'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
